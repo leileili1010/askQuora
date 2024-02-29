@@ -101,7 +101,7 @@ comments = [
     },
     {
         "comment": "To get started with machine learning, I recommend familiarizing yourself with basic concepts and algorithms through online courses like Andrew Ng's 'Machine Learning' on Coursera or fast.ai's practical deep learning course. Experiment with popular machine learning libraries like scikit-learn or TensorFlow, and work on simple projects to apply your knowledge in practice.",
-        "author_id": 31,
+        "author_id": 3,
         "question_id": 11
     },
     {
@@ -191,7 +191,7 @@ comments = [
     },
     {
         "comment": "To recover from burnout and regain motivation, it's essential to take a step back and reassess your priorities and commitments. Allow yourself time to rest and recharge, and engage in activities that bring you joy and fulfillment outside of work. Reflect on your career goals and aspirations, and consider seeking support from a mentor, coach, or therapist to navigate through challenging times.",
-        "author_id": 49,
+        "author_id": 9,
         "question_id": 21
     },
     {
