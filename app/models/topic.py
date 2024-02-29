@@ -13,6 +13,7 @@ class Topic(db.Model):
     name = db.Column(db.String(50), nullable=False)
     description = db.Column(db.String(255), nullable=False)
     creator_id = db.Column(db.Integer, ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
+    cover_img = db.Column(db.String)
     created_at = db.Column(db.DateTime, default=datetime.now)
     updated_at = db.Column(db.DateTime, default=datetime.now, onupdate=datetime.now)
 
@@ -27,6 +28,7 @@ class Topic(db.Model):
             'name': self.name,
             'description': self.description,
             'creator': self.creator.to_dict(),
+            'cover_img': self.cover_img,
             'created_at': self.created_at,
             'updated_at': self.updated_at
         }
