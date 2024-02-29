@@ -2,7 +2,7 @@ from .db import db, environment, SCHEMA, add_prefix_for_prod
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 from datetime import datetime
-
+from .space_contributors import space_contributors
 
 class User(db.Model, UserMixin):
     __tablename__ = 'users'
@@ -19,7 +19,7 @@ class User(db.Model, UserMixin):
     profile_img = db.Column(db.String)
     position = db.Column(db.String(50))
     field = db.Column(db.String(50))
-    years_of_experience = db.Column(db.Float)
+    years_of_experience = db.Column(db.Integer)
     created_at = db.Column(db.DateTime, default=datetime.now)
     updated_at = db.Column(db.DateTime, default=datetime.now, onupdate=datetime.now)
 
@@ -27,7 +27,7 @@ class User(db.Model, UserMixin):
     questions = db.relationship('Question', back_populates = 'owner', cascade = 'all, delete-orphan')
     answers = db.relationship('Answer', back_populates = 'author', cascade = 'all, delete-orphan')
     comments = db.relationship('Comment', back_populates = 'author', cascade = 'all, delete-orphan')
-
+    spaces = db.relationship('Topic', secondary=space_contributors,  back_populates = 'contributors')
 
     @property
     def password(self):

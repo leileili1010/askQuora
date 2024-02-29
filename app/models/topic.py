@@ -1,6 +1,7 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
 from sqlalchemy import ForeignKey
 from datetime import datetime
+from .space_contributors import space_contributors
 
 class Topic(db.Model):
     __tablename__ = 'topics'
@@ -18,7 +19,8 @@ class Topic(db.Model):
     creator = db.relationship('User', back_populates = 'topics')
     questions = db.relationship('Question', back_populates = 'topic', cascade = 'all, delete-orphan')
     answers = db.relationship('Answer', back_populates = 'topic', cascade = 'all, delete-orphan')
-  
+    contributors = db.relationship('User', secondary=space_contributors,  back_populates = 'spaces')
+
     def to_dict(self):
         return {
             'id': self.id,
