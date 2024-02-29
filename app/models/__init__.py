@@ -4,4 +4,5 @@ from .user import User
 from .question import Question
 from .answer import Answer
 from .comment import Comment
+from .topic import Topic
 from .space_contributors import space_contributors
