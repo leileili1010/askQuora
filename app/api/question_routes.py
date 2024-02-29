@@ -1,6 +1,7 @@
-from flask import Blueprint
+from flask import Blueprint, request
 from flask_login import current_user, login_required
-from ..models import Question
+from ..models import db, Question
+from ..forms import QuestionForm
 
 question_routes = Blueprint('questions', __name__)
 
@@ -34,4 +35,23 @@ def get_user_questions():
         return [question.to_dict() for question in questions]
     else:
         return []
+
+# post a new question
+@login_required    
+@question_routes.route('/new', methods=["POST"])
+def new_project(): 
+    form = QuestionForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
     
+    if form.validate_on_submit():
+        new_question = Question(
+            title = form.data["title"],
+            description = form.data["description"],
+            owner_id = current_user.id,
+            cover_image = form.data["cover_image"],
+        )
+
+        db.session.add(new_question)
+        db.session.commit()
+        return new_question.to_dict()
+    return form.errors, 401
