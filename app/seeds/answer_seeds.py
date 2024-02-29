@@ -125,7 +125,7 @@ answers = [
         "detail": "To get started with machine learning, begin by familiarizing yourself with essential concepts such as supervised learning, unsupervised learning, and neural networks. Online courses like Andrew Ng's Machine Learning on Coursera or fast.ai's Practical Deep Learning for Coders provide excellent introductions to machine learning concepts and implementation using popular libraries like TensorFlow and PyTorch.",
         "author_id": 2,
         "question_id": 11,
-        "topic_id": 3
+        "topic_id": 4
     },
     {
         "detail": "Start with the basics: stats, linear algebra, and some coding chops. Then, hit up libraries like scikit-learn and TensorFlow. Trust me, you'll be training models in no time!",

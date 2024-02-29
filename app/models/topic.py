@@ -10,7 +10,7 @@ class Topic(db.Model):
         __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(50), nullable=False)
+    name = db.Column(db.String(50), nullable=False, unique=True)
     description = db.Column(db.String(255), nullable=False)
     creator_id = db.Column(db.Integer, ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
     cover_img = db.Column(db.String)
