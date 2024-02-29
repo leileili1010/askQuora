@@ -4,6 +4,7 @@ from .topics import seed_topics, undo_topics
 from .questions import seed_questions, undo_questions
 from .answers import seed_answers, undo_answers
 from .comments import seed_comments, undo_comments
+from .question_invites import undo_question_invites
 from app.models import seed_space_contributors, undo_space_contributors
 
 from app.models.db import db, environment, SCHEMA
@@ -21,6 +22,7 @@ def seed():
         # the schema name (see comment in users.py undo_users function).
         # Make sure to add all your other model's undo functions below
         undo_space_contributors()
+        undo_question_invites()
         undo_comments()
         undo_answers()
         undo_questions()
@@ -39,6 +41,7 @@ def seed():
 @seed_commands.command('undo')
 def undo():
     undo_space_contributors()
+    undo_question_invites()
     undo_comments()
     undo_answers()
     undo_questions()

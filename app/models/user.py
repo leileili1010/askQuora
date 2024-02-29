@@ -28,6 +28,7 @@ class User(db.Model, UserMixin):
     answers = db.relationship('Answer', back_populates = 'author', cascade = 'all, delete-orphan')
     comments = db.relationship('Comment', back_populates = 'author', cascade = 'all, delete-orphan')
     spaces = db.relationship('Topic', secondary=space_contributors,  back_populates = 'contributors')
+    invites = db.relationship('QuestionInvite', back_populates = 'receiver', cascade = 'all, delete-orphan')
 
     @property
     def password(self):
