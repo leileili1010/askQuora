@@ -9,7 +9,7 @@ def seed_answers():
             author_id = answer['author_id'],
             question_id =  answer['question_id'],
             topic_id =  answer['topic_id'],
-            cover_img = answer['cover_img'] 
+            # cover_img = answer['cover_img'] 
         ))
     db.session.commit()
 
