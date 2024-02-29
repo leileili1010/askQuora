@@ -1,4 +1,4 @@
-from .db import db, environment, SCHEMA
+from .db import db, environment, SCHEMA, add_prefix_for_prod
 from sqlalchemy import ForeignKey
 
 space_contributors = db.Table(
@@ -6,13 +6,13 @@ space_contributors = db.Table(
     db.Column(
         "contributor_id", 
         db.Integer, 
-        db.ForeignKey("users.id"), 
+        db.ForeignKey(add_prefix_for_prod("users.id")), 
         primary_key=True
     ),
     db.Column(
         "space_id", 
         db.Integer, 
-        db.ForeignKey("topics.id"), 
+        db.ForeignKey(add_prefix_for_prod("topics.id")), 
         primary_key=True
     )
 )
