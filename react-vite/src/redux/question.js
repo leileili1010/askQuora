@@ -108,7 +108,6 @@ function questionReducer(state = initialState, action) {
         return newState
       }
       case GET_QUESTION: {
-        const newState = {...state}
         return { ...state, [action.question.id]: action.question };
       }
       case CREATE_QUESTION: {

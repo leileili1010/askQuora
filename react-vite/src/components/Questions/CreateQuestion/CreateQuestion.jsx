@@ -3,15 +3,17 @@ import { useModal } from "../../../context/Modal"
 import { useEffect, useState } from "react";
 import { thunkGetTopics, returnInitial} from "../../../redux/topic";
 import {thunkCreateQuestion} from "../../../redux/question";
+import { useNavigate } from "react-router-dom";
 
 
 const CreateQuestionModal = () => {
     const dispatch = useDispatch()
+    const navigate = useNavigate();
     const { closeModal } = useModal()
     const [title, setTitle] = useState("")
     const [errors, setErrors] = useState({});
-    const topicsObj = useSelector(state => state.topics)
-    const topics = Object.values(topicsObj);
+    // const topicsObj = useSelector(state => state.topics)
+    // const topics = Object.values(topicsObj);
     const user = useSelector((state) => state.session.user);
 
     const shuffleAndSelect = (arr) => {
@@ -19,20 +21,20 @@ const CreateQuestionModal = () => {
         return shuffled.slice(0, 6); 
     };
 
-    useEffect(() => {
-        dispatch(thunkGetTopics())
-        return () => {
-            dispatch(returnInitial());
-        };
-    }, [dispatch])
+    // useEffect(() => {
+    //     dispatch(thunkGetTopics())
+    //     return () => {
+    //         dispatch(returnInitial());
+    //     };
+    // }, [dispatch])
 
     if (!user) {
         return <h2>You must be logged in to add a question</h2>;
     } // need to update later on
 
-    if (topicsObj.length == 0) return null;
+    // if (topicsObj.length == 0) return null;
 
-    const selectedTopics = shuffleAndSelect(topics);
+    // const selectedTopics = shuffleAndSelect(topics);
     
     const handleQuestionSubmit = async (e) => {
         e.preventDefault();
@@ -48,8 +50,9 @@ const CreateQuestionModal = () => {
             formData.append("title", title);
             
             await dispatch(thunkCreateQuestion(formData))
-            .then(() => {
+            .then((createdQuestion) => {
                 closeModal()
+                navigate(`/questions/${createdQuestion.id}`)
             })
             .catch(async (res) => {
               console.log("Inside errors catch =>", res);
