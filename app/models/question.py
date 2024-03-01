@@ -24,7 +24,7 @@ class Question(db.Model):
     invites = db.relationship('QuestionInvite', back_populates = 'question', cascade = 'all, delete-orphan')
 
     def to_dict(self):
-        if topic:
+        if self.topic:
             topic = self.topic.to_dict()
         else:
             topic = self.topic

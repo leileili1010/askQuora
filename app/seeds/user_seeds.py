@@ -3,7 +3,7 @@ users = [
         "username":'Demo',
         "first_name": "Demo",
         "last_name": "Lition",
-        "profile_img": "https://askcora.s3.us-west-1.amazonaws.com/1_DemoUser.png",
+        "profile_img": "https://askcora.s3.us-west-1.amazonaws.com/profile_img/1_DemoUser.png",
         "email":'demo@aa.io', 
         "password":'password',
         'position': "Junior software engineer",

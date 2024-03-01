@@ -2,6 +2,8 @@ import { createBrowserRouter } from 'react-router-dom';
 import LoginFormPage from '../components/LoginFormPage';
 import SignupFormPage from '../components/SignupFormPage';
 import Layout from './Layout';
+import QuestionList from '../components/Questions/QuestionList/QuestionList';
+
 
 export const router = createBrowserRouter([
   {
@@ -21,7 +23,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "questions",
-        element: <h1>Question Componet</h1>,
+        element: <QuestionList />,
       },
     ],
   },

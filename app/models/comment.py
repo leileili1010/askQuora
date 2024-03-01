@@ -22,12 +22,12 @@ class Comment(db.Model):
     answer = db.relationship('Answer', back_populates = 'comments')
 
     def to_dict(self):
-        if question:
+        if self.question:
             question = self.question.to_dict()
         else:
             question = self.question
 
-        if answer:
+        if self.answer:
             answer = self.answer.to_dict()
         else:
             answer = self.answer
