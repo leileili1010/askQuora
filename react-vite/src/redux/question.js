@@ -13,12 +13,10 @@ export const returnInitial = () => ({
     type: RETURN_INITIAL
 });
 
-
 const getQuestions = (questions) => ({
       type: GET_QUESTIONS,
       questions
   });
-
 
 const getTopicQuestions = (questions) => ({
     type: GET_TOPIC_QUESTIONS,

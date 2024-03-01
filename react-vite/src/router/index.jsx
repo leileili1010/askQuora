@@ -5,6 +5,8 @@ import Layout from './Layout';
 import QuestionList from '../components/Questions/QuestionList/QuestionList';
 import QuestionDetail from '../components/Questions/QuestionDetail/QuestionDetail';
 import UserQuestions from '../components/Questions/UserQuestions/UserQuestions';
+import TopicAnswers from '../components/Answers/TopicAnswers/TopicAnswers';
+import UserAnswers from '../components/Answers/UserAnswers/UserAnswers';
 
 export const router = createBrowserRouter([
   {
@@ -39,6 +41,10 @@ export const router = createBrowserRouter([
           {
             path: 'questions',
             element: <UserQuestions />
+          },
+          {
+            path: 'answers',
+            element: <UserAnswers />
           }
         ]
       },
@@ -56,7 +62,7 @@ export const router = createBrowserRouter([
           },
           {
             path: ':topicId/answers',
-            element: <h1>topic Answers</h1>
+            element: <TopicAnswers />
           }
         ]
       },
