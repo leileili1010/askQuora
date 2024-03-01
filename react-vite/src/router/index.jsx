@@ -7,6 +7,7 @@ import QuestionDetail from '../components/Questions/QuestionDetail/QuestionDetai
 import UserQuestions from '../components/Questions/UserQuestions/UserQuestions';
 import TopicAnswers from '../components/Answers/TopicAnswers/TopicAnswers';
 import UserAnswers from '../components/Answers/UserAnswers/UserAnswers';
+import HomePage from '../components/HomePage/HomePage';
 
 export const router = createBrowserRouter([
   {
@@ -54,7 +55,7 @@ export const router = createBrowserRouter([
         children: [
           {
             index: true,
-            element: <h1>Welcome!</h1>
+            element: <HomePage />
           }, 
           {
             path: ':topicId/questions',
