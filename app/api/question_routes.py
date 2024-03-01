@@ -34,11 +34,21 @@ def get_user_questions():
         return [question.to_dict() for question in questions]
     else:
         return []
+    
+# Get question by id   
+@login_required
+@question_routes.route('/<int:question_id>')
+def get_question(question_id):
+    question = Question.query.get(question_id)
+    if question:
+        return question.to_dict()
+    else:
+        return []
 
 # post a new question
 @login_required    
 @question_routes.route('/new', methods=["POST"])
-def new_project(): 
+def new_question(): 
     form = QuestionForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     

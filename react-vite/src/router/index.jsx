@@ -23,7 +23,13 @@ export const router = createBrowserRouter([
       },
       {
         path: "questions",
-        element: <h1>Welcome</h1>,
+        element: <Outlet />,
+        children: [
+          {
+            path: ':questionId',
+            element: <QuestionList />
+          }
+        ]
       },
       {
         path: "topics",
