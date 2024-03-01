@@ -14,17 +14,18 @@ const QuestionDetail = () => {
     useEffect(() => {
         dispatch(thunkGetQuestion(questionId))
     }, [dispatch, questionId])
+
+    if (!question) return null
     
     return (
         <div>
             <p>{question?.title}</p>
-            
             <div>
                 <i className="fa-regular fa-pen-to-square"></i> <span>Answer</span>
             </div>
             {isOwner && (
                 <div className = "operation-button">
-                    <OperationButton/>
+                    <OperationButton question={question}/>
                 </div>
             )}
         </div>

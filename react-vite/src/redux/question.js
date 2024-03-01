@@ -3,8 +3,9 @@ const RETURN_INITIAL = "questions/RETURN_INITIAL";
 const GET_QUESTIONS = "questions/GET_QUESTIONS";
 const GET_TOPIC_QUESTIONS = "questions/GET_TOPIC_QUESTIONS";
 const GET_QUESTION = "questions/GET_QUESTION";
+const GET_USER_QUESTIONS = "questions/GET_USER_QUESTION";
 const CREATE_QUESTION = "questions/CREATE_QUESTION";
-
+const DELETE_QUESTION = "questions/DELETE_QUESTION";
 
 // action creator
 export const returnInitial = () => ({
@@ -28,9 +29,20 @@ const getQuestion = (question) => ({
   question
 });
 
+
+const getUserQuestions = (questions) => ({
+  type: GET_USER_QUESTIONS,
+  questions
+});
+
 const createQuestion = (question) => ({
   type: CREATE_QUESTION,
   question
+});
+
+const deleteQuestion = (questionId) => ({
+  type: DELETE_QUESTION,
+  questionId
 });
   
 
@@ -71,6 +83,20 @@ export const thunkGetQuestion = (questionId) => async (dispatch) => {
    }
 }
 
+// get user's all questions
+export const thunkGetUserQuestions = () => async dispatch => {
+  const res = await fetch('/api/questions/posted-questions')
+
+  if (res.ok) {
+    const questions = await res.json()
+    dispatch(getUserQuestions(questions))
+  } else {
+    const errs = await res.json()
+    return errs;
+  }
+}
+
+
 // create question
 export const thunkCreateQuestion = (formData) => async (dispatch) => {
   const res = await fetch(`/api/questions/new`, {
@@ -87,6 +113,24 @@ export const thunkCreateQuestion = (formData) => async (dispatch) => {
     return errs;
   }
 }
+
+
+
+// delete a question
+export const thunkDeleteQuestion = (questionId) => async (dispatch) => {
+  const res = await fetch(`/api/questions/${questionId}/delete`, {
+    method: 'DELETE',
+  })
+
+  if(res.ok) {
+    dispatch(deleteQuestion(questionId));
+    return questionId;
+  } else {
+    const errs = await res.json();
+    return errs;
+  }
+}
+
 
 // question reducer
 const initialState = {};
@@ -110,9 +154,21 @@ function questionReducer(state = initialState, action) {
       case GET_QUESTION: {
         return { ...state, [action.question.id]: action.question };
       }
+      case GET_USER_QUESTIONS: {
+          const newState = {...state}
+          action.questions.forEach(question => {
+            newState[question.id] = question
+          })
+          return newState
+      }
       case CREATE_QUESTION: {
         const newState = {...state}
         newState[action.question.id] = action.question
+        return newState
+      }
+      case DELETE_QUESTION: {
+        const newState = {...state}
+        delete newState[action.questionId]
         return newState
       }
       case RETURN_INITIAL: {

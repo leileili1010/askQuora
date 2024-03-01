@@ -8,10 +8,9 @@ const QuestionListItem = ({question}) => {
     const isOwner = user?.id == question?.owner.id
 
     let answer;
-    if (question.numOfAnswers < 1) answer = "No answers yet"
-    if (question.numOfAnswers == 1) answer = `${question.numOfAnswers} answer`
-    else answer = `${question.numOfAnswers} answers`
-
+    if (question.numOfAnswers > 1) answer =  `${question.numOfAnswers} answers`
+    else if (question.numOfAnswers == 1) answer = `${question.numOfAnswers} answer`
+    else answer = "No answers yet"
     return (
         <li className="question-container">
             <p>{question.title}</p>
@@ -23,7 +22,7 @@ const QuestionListItem = ({question}) => {
             </div>
             {isOwner && (
                 <div className = "operation-button">
-                    <OperationButton/>
+                    <OperationButton question={question}/>
                 </div>
             )}
             
