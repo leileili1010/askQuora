@@ -10,10 +10,8 @@ class Question(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.Text, nullable=False)
-    description = db.Column(db.Text, nullable=False)
     owner_id = db.Column(db.Integer, ForeignKey(add_prefix_for_prod("users.id")), nullable=False)
     topic_id = db.Column(db.Integer, ForeignKey(add_prefix_for_prod("topics.id")))
-    cover_img = db.Column(db.String)
     created_at = db.Column(db.DateTime, default=datetime.now)
     updated_at = db.Column(db.DateTime, default=datetime.now, onupdate=datetime.now)
    
@@ -32,10 +30,9 @@ class Question(db.Model):
         return {
             "id": self.id,
             "title": self.title,
-            "description": self.description,
             "owner": self.owner.to_dict(),
             "topic": topic,
-            "cover_img": self.cover_img,
+            "numOfAnswers": len(self.answers),
             'createdAt': self.created_at,
             'updatedAt': self.updated_at
         }

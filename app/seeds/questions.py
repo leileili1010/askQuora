@@ -6,10 +6,8 @@ def seed_questions():
     for question in questions:
         db.session.add(Question(
             title = question['title'],
-            description = question['description'],  
             owner_id = question['owner_id'],
             topic_id =  question['topic_id'],
-            # cover_img = question['cover_img'] 
         ))
     db.session.commit()
 

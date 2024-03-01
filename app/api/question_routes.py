@@ -17,16 +17,15 @@ def all_questions():
 
 # get all questions under certain topic
 @login_required
-@question_routes.route('/<topic>')
-def get_topic_questions(topic):
-    questions = Question.query.all()
+@question_routes.route('/topics/<int:topic_id>')
+def get_topic_questions(topic_id):
+    questions = Question.query.filter(Question.topic_id == topic_id).all()
     if not questions:
         return []
     else: 
-        questions_dict = [question.to_dict() for question in questions]
-        return [question for question in questions_dict if question["topic"].lower() == topic.lower()]
+        return [question.to_dict() for question in questions]
 
-# Get projects posted by current user   
+# Get questions posted by current user   
 @login_required
 @question_routes.route('/posted-questions')
 def get_user_questions():
@@ -46,9 +45,7 @@ def new_project():
     if form.validate_on_submit():
         new_question = Question(
             title = form.data["title"],
-            description = form.data["description"],
             owner_id = current_user.id,
-            cover_image = form.data["cover_image"],
         )
 
         db.session.add(new_question)
