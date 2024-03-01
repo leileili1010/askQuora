@@ -72,6 +72,8 @@ const CreateQuestionModal = () => {
                     <textarea
                         name = 'title' 
                         type="text" 
+                        cols="60" 
+                        rows="10"
                         value = {title}
                         onChange={(e) => setTitle(e.target.value)}
                         placeholder='Start your question with "what", "How", "Why", etc.'

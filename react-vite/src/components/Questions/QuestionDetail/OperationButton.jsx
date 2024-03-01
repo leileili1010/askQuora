@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import OpenModalButton from "../../OpenModalButton/OpenModalButton";
 import DeleteQuestionModal from './DeleteQuestionModal'
+import EditQuestionModal from "./EditQuestionModal";
 
 const OperationButton = ({question}) => {
     const [showMenu, setShowMenu] = useState(false);
@@ -38,7 +39,10 @@ const OperationButton = ({question}) => {
                       buttonText="Delete Question"
                       modalComponent={<DeleteQuestionModal question={question} />}
                     />
-                    <button>Edit Question</button>
+                    <OpenModalButton
+                      buttonText="Edit Question"
+                      modalComponent={<EditQuestionModal question={question} />}
+                    />
                 </ul>
             )}
         </div>

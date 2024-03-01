@@ -47,8 +47,16 @@ export const router = createBrowserRouter([
         element: <Outlet />,
         children: [
           {
-            path: ':topicId',
+            index: true,
+            element: <h1>Welcome!</h1>
+          }, 
+          {
+            path: ':topicId/questions',
             element: <QuestionList />
+          },
+          {
+            path: ':topicId/answers',
+            element: <h1>topic Answers</h1>
           }
         ]
       },

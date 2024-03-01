@@ -6,6 +6,7 @@ const GET_QUESTION = "questions/GET_QUESTION";
 const GET_USER_QUESTIONS = "questions/GET_USER_QUESTION";
 const CREATE_QUESTION = "questions/CREATE_QUESTION";
 const DELETE_QUESTION = "questions/DELETE_QUESTION";
+const EDIT_QUESTION = "questions/EDIT_QUESTION";
 
 // action creator
 export const returnInitial = () => ({
@@ -43,6 +44,11 @@ const createQuestion = (question) => ({
 const deleteQuestion = (questionId) => ({
   type: DELETE_QUESTION,
   questionId
+});
+
+const editQuestion = (question) => ({
+  type: EDIT_QUESTION,
+  question
 });
   
 
@@ -114,8 +120,6 @@ export const thunkCreateQuestion = (formData) => async (dispatch) => {
   }
 }
 
-
-
 // delete a question
 export const thunkDeleteQuestion = (questionId) => async (dispatch) => {
   const res = await fetch(`/api/questions/${questionId}/delete`, {
@@ -131,6 +135,22 @@ export const thunkDeleteQuestion = (questionId) => async (dispatch) => {
   }
 }
 
+// edit a question
+export const thunkEditQuestion = (formData, questionId) => async (dispatch) => {
+  const res = await fetch(`/api/questions/${questionId}/edit`, {
+    method: "PUT",
+    body: formData,
+  })
+
+ if (res.ok) {
+    const question = await res.json();
+    dispatch(editQuestion(question));
+    return question;
+  } else {
+    const errs = await res.json();
+    return errs;
+  }
+}
 
 // question reducer
 const initialState = {};
@@ -169,6 +189,11 @@ function questionReducer(state = initialState, action) {
       case DELETE_QUESTION: {
         const newState = {...state}
         delete newState[action.questionId]
+        return newState
+      }
+      case EDIT_QUESTION: {
+        const newState = {...state}
+        newState[action.question.id] = action.question
         return newState
       }
       case RETURN_INITIAL: {
