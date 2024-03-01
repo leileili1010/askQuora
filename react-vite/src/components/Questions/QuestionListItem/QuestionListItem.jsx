@@ -2,6 +2,8 @@
 import { Link} from "react-router-dom";
 import { useSelector } from "react-redux/es/hooks/useSelector";
 import OperationButton from "../QuestionDetail/OperationButton";
+import OpenModalButton from "../../OpenModalButton/OpenModalButton";
+import CreateAnswerModal from "../../Answers/CreateAnswer/CreateAnswer";
 
 const QuestionListItem = ({question}) => {
     const user = useSelector(state => state.session.user)
@@ -17,8 +19,13 @@ const QuestionListItem = ({question}) => {
             <Link> 
                 {answer}
             </Link> 
-            <div>
-                <i className="fa-regular fa-pen-to-square"></i> <span>Answer</span>
+            <div className="create-answer-button">
+                <i className="fa-regular fa-pen-to-square"></i> 
+                <OpenModalButton
+                    buttonText="Answer"
+                    modalComponent={CreateAnswerModal}
+                    question = {question}
+                />
             </div>
             {isOwner && (
                 <div className = "operation-button">
