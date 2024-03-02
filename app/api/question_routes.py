@@ -112,7 +112,7 @@ def get_question_answers(question_id):
     if not question:
         return {"errors": {"message": "Question not found"}}, 404
     
-    answers = Answer.query.filter(Answer.question_id == question_id).all()
+    answers = Answer.query.filter(Answer.question_id == question_id).order_by(Answer.created_at.desc()).all()
     if not answers:
         return []
     else:
@@ -122,7 +122,7 @@ def get_question_answers(question_id):
 @login_required
 @question_routes.route('/currrent/answers')
 def get_author_answers():
-    answers = Answer.query.filter(Answer.author_id == current_user.id).all()
+    answers = Answer.query.filter(Answer.author_id == current_user.id).order_by(Answer.created_at.desc()).all()
     if not answers:
         return []
     else:

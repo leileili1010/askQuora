@@ -3,6 +3,8 @@ import {thunkGetQuestion} from '../../../redux/question'
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import OperationButton from "./OperationButton";
+import { thunkGetQuestionAnswers } from "../../../redux/answer";
+import AnswerList from "../../Answers/AnswerList/AnswerList";
 
 const QuestionDetail = () => {
     const {questionId} = useParams();
@@ -10,13 +12,21 @@ const QuestionDetail = () => {
     const question = useSelector(state => state.questions[questionId])
     const user = useSelector(state => state.session.user)
     const isOwner = user?.id == question?.owner.id
+    const answersObj = useSelector(state => state.answers)
     
     useEffect(() => {
         dispatch(thunkGetQuestion(questionId))
     }, [dispatch, questionId])
 
+    useEffect(() => {
+        dispatch(thunkGetQuestionAnswers(questionId))
+    }, [dispatch])
+
     if (!question) return null
-    
+    if (answersObj.length == 0) return null
+
+    const answers = Object.values(answersObj)
+
     return (
         <div>
             <p>{question?.title}</p>
@@ -28,6 +38,9 @@ const QuestionDetail = () => {
                     <OperationButton question={question}/>
                 </div>
             )}
+            <div className="answers-container">
+                <AnswerList answers = {answers}/>
+            </div>
         </div>
     )
 }
