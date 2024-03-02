@@ -2,7 +2,7 @@
 import { Link} from "react-router-dom";
 import { useSelector } from "react-redux/es/hooks/useSelector";
 import OperationButton from "../QuestionDetail/OperationButton";
-import OpenModalButton from "../../OpenModalButton/OpenModalButton";
+import OpenModalButtonProps from "../../OpenModalButton/OpenModalButtonProps";
 import CreateAnswerModal from "../../Answers/CreateAnswer/CreateAnswer";
 
 const QuestionListItem = ({question}) => {
@@ -21,10 +21,10 @@ const QuestionListItem = ({question}) => {
             </Link> 
             <div className="create-answer-button">
                 <i className="fa-regular fa-pen-to-square"></i> 
-                <OpenModalButton
+                <OpenModalButtonProps
                     buttonText="Answer"
-                    modalComponent={CreateAnswerModal}
-                    question = {question}
+                    modalComponent={props => <CreateAnswerModal {...props} />}
+                    modalProps={{ question }}
                 />
             </div>
             {isOwner && (

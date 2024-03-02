@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import OperationButton from "./OperationButton";
 import { thunkGetQuestionAnswers } from "../../../redux/answer";
 import AnswerList from "../../Answers/AnswerList/AnswerList";
-import OpenModalButton from "../../OpenModalButton/OpenModalButton";
+import OpenModalButtonProps from "../../OpenModalButton/OpenModalButtonProps";
 import CreateAnswerModal from "../../Answers/CreateAnswer/CreateAnswer";
 
 const QuestionDetail = () => {
@@ -34,9 +34,10 @@ const QuestionDetail = () => {
             <p>{question?.title}</p>
             <div className="create-answer-button">
                 <i className="fa-regular fa-pen-to-square"></i> 
-                <OpenModalButton
+                <OpenModalButtonProps 
                     buttonText="Answer"
-                    modalComponent={CreateAnswerModal}
+                    modalComponent={props => <CreateAnswerModal {...props} />}
+                    modalProps={{ question }}
                 />
             </div>
             {isOwner && (

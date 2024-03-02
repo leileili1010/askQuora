@@ -1,0 +1,31 @@
+.autor-image {
+    border-radius: 50%;
+    width: 40px;
+}
+
+.create-answer {
+    width: 700px;
+    height: 600px;
+    position: relative;
+} 
+
+.editor-container {
+    width: 100%; 
+    height: 400px; 
+    position: relative;
+    overflow-y: auto;
+}
+
+.editor {
+    height: 100%;
+    height: 350px;
+    padding: 20px; 
+}
+
+.create-answer form img {
+    width: 500px;
+    max-height: 400px;
+    object-fit: cover;
+} 
+
+
