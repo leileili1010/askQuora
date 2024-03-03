@@ -24,7 +24,7 @@ class Answer(db.Model):
     
     
     def to_dict(self):
-        if topic:
+        if self.topic:
             topic = self.topic.to_dict()
         else:
             topic = self.topic

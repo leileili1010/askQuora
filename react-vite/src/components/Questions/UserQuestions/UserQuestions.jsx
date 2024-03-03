@@ -1,23 +1,19 @@
-import { useSelector, useDispatch } from "react-redux";
-import { useEffect} from "react";
-import { thunkGetTopicQuestions, thunkGetQuestions } from "../../../redux/question";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { thunkGetUserQuestions } from "../../../redux/question";
 import QuestionListItem from "../QuestionListItem/QuestionListItem";
-import { useParams } from "react-router-dom";
 
-const QuestionList = () => {
-    const dispatch = useDispatch();
+
+const UserQuestions = () => {
+    const dispatch = useDispatch()
+    const user = useSelector(state => state.session.user)
     const questionObj = useSelector(state => state.questions)
     const questions = Object.values(questionObj)
-    const {topicId} = useParams()
-    
+
     useEffect(() => {
-        if (topicId) {
-            dispatch(thunkGetTopicQuestions(topicId))
-        } else {
-            dispatch(thunkGetQuestions())
-        }
+       dispatch(thunkGetUserQuestions())
     }, [dispatch])
-    
+
     if (questions.length == 0) return null
 
     return (
@@ -31,4 +27,4 @@ const QuestionList = () => {
     )
 }
 
-export default QuestionList;
+export default UserQuestions;
