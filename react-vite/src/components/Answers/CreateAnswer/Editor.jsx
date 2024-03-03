@@ -5,15 +5,26 @@ import ReactQuill from 'react-quill';
 const Editor = ({ value, onValueChange }) => {
     const quillRef = useRef(null);
     
-    // Simulate image upload process
     const uploadImage = async (file) => {
-        // You would typically upload the image to your server or an external storage service here
-        // This is a placeholder for the upload logic
-        // For demonstration, return a URL from a placeholder service
-        return 'https://via.placeholder.com/150';
-    };
+      const formData = new FormData();
+      formData.append('image', file);
+  
+      try {
+          const response = await fetch('/api/images/upload-image', {
+              method: 'POST',
+              body: formData
+          });
+          if (!response.ok) {
+              const errorData = await response.json();
+              throw new Error(`Error in uploading image: ${errorData.errors}`);
+          }
+          const data = await response.json();
+          return data.url;
+      } catch (error) {
+          console.error('Error:', error.message);
+      }
+  };
      
-    // Function to handle image upload
      const imageHandler = () => {
         if (!quillRef.current) return;
         const input = document.createElement('input');
@@ -22,41 +33,27 @@ const Editor = ({ value, onValueChange }) => {
         input.click();
         input.onchange = async () => {
             const file = input.files[0];
-            // Call function to upload image, get URL
             const imageUrl = await uploadImage(file);
-            // Insert image URL into editor
             const editor = quillRef.current.getEditor();
             const range = editor.getSelection();
             editor.insertEmbed(range.index, 'image', imageUrl);
         };
     };
 
-    // function imageHandler() {
-    //   if (!quillRef.current) return;
-  
-    //   const editor = quillRef.current.getEditor();
-    //   const range = editor.getSelection();
-    //   const value = prompt("Please enter the image URL");
-  
-    //   if (value && range) {
-    //     editor.insertEmbed(range.index, "image", value, "user");
-    //   }
-    // }
-
     const modules = useMemo(
       () => ({
         toolbar: {
           container: [
-            [{ header: [2, 3, 4, 5, false] }],
-            ["bold", "italic", "underline", "strike", "blockquote"],
+            [{ header: [2, 3, 4, false] }],
             [{ color: [] }],
+            ["bold", "italic", "underline", "blockquote", "code-block"],
             [
               { list: "ordered" },
               { list: "bullet" },
               { indent: "-1" },
               { indent: "+1" },
             ],
-            ["link", "image", "code-block"],
+            ["link", "image"],
             ["clean"],
           ],
           handlers: {
@@ -70,12 +67,13 @@ const Editor = ({ value, onValueChange }) => {
   
     return (
       <ReactQuill
+        className="editor"
         ref={quillRef}
         theme="snow"
         onChange={onValueChange}
         modules={modules}
         value={value}
-        placeholder="Details about your question..."
+        placeholder="Write your answer..."
       />
     );
   };

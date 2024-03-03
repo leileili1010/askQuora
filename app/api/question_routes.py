@@ -48,7 +48,7 @@ def get_question(question_id):
     else:
         return {"errors": {"message": "Question not found"}}, 404
     
-# post a new question
+# Create a new question
 @login_required    
 @question_routes.route('/new', methods=["POST"])
 def new_question(): 
