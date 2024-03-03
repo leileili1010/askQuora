@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Navigate, useNavigate, Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { thunkSignup } from "../../redux/session";
 import './SignupForm.css'
 
 function SignupFormPage() {
+  // background image
   useEffect(() => {
     document.body.style.backgroundImage = "url('https://askcora.s3.us-west-1.amazonaws.com/topics_image/background.png')";
     document.body.style.backgroundSize = "cover";
@@ -27,6 +28,7 @@ function SignupFormPage() {
     };
 }, []);
 
+const sessionUser = useSelector((state) => state.session.user);
 const dispatch = useDispatch();
 const navigate = useNavigate()
 const [email, setEmail] = useState("");
@@ -41,10 +43,17 @@ const [field, setField] = useState("");
 const [yearsOfExperience, setYearsOfExperience] = useState("");
 const [errors, setErrors] = useState({});
 
+useEffect(() => {
+  if (sessionUser) navigate("/topics");
+}, [sessionUser, navigate]);
+
+
 const handleSubmit = async (e) => {
   e.preventDefault();
   setErrors({});
 
+
+  // validation of input
   const validRegex =
     /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
   const validationErrors = {};
@@ -60,6 +69,10 @@ const handleSubmit = async (e) => {
   if (password !== confirmPassword)
     validationErrors.confirmPassword =
       "Confirm Password field must be the same as the Password field";
+  if (!field) validationErrors.field = "Your field/major/specialy/rearch area is required"
+  if (!position) validationErrors.position = "Your job position or education background is required"
+  if (!yearsOfExperience) validationErrors.yearsOfExperience = "Years of experience is required"
+
 
   if (Object.values(validationErrors).length) {
     setErrors(validationErrors);
@@ -71,6 +84,12 @@ const handleSubmit = async (e) => {
     formData.append("email", email);
     formData.append("password", password);
     formData.append("profile_img", profileImg);
+    formData.append("field", field);
+    formData.append("years_of_experience", yearsOfExperience);
+    formData.append("position", position);
+    console.log("🚀 ~ handleSubmit ~ formData:", formData.username)
+
+
 
     const serverResponse = await dispatch(thunkSignup(formData));
 
@@ -91,7 +110,7 @@ return (
       <form className="login-signup-form" onSubmit={handleSubmit}>
         
         <div className="basic-credential">
-          <div className ="basic-info">
+          <div className="basic-info">
             <p>Basic Information</p>
             <label>
               <input
@@ -157,10 +176,18 @@ return (
             {errors.confirmPassword && (
               <p className="input-errors">{errors.confirmPassword}</p>
             )}
+            <label>
+              <p className="profile-img">Profile Image (Optional)</p>
+              <input
+                type="file"
+                accept="image/*"
+                onChange={(e) => setProfileImg(e.target.files[0])}
+                id="image-upload"
+              />
+            </label>
           </div>
-          <div className="seperator">
-
-          </div>
+          
+          <div className="seperator"></div>
 
           <div className="credential">
               <p>Credential</p>
@@ -173,6 +200,7 @@ return (
                   placeholder="Field / Major / Specialty / Research Area"
                 />
               </label>
+              {errors.field && <p className="input-errors">{errors.field}</p>}
               <label>
                 <input
                   type="text"
@@ -182,30 +210,26 @@ return (
                   placeholder="Job Position or Education Background"
                 />
               </label>
+              {errors.position && <p className="input-errors">{errors.position}</p>}
               <label>
                 <input
                   type="number"
-                  value={position}
-                  onChange={(e) => setPosition(e.target.value)}
+                  value={yearsOfExperience}
+                  onChange={(e) => setYearsOfExperience(e.target.value)}
                   required
                   placeholder="Years of Experience"
                 />
               </label>
-            <p>Already have an account?</p>
+              {errors.yearsOfExperience && <p className="input-errors">{errors.password}</p>}
+              <button type="submit" className="signup-button">
+                 Sign Up
+              </button>
+            <p className = "have-account">Already have an account?</p>
             <Link to="/">Sign In</Link>
           </div>
         </div>
-        <label>
-            <p className="profile-img">Profile Image (Optional)</p>
-              <input
-                type="file"
-                accept="image/*"
-                onChange={(e) => setProfileImg(e.target.files[0])}
-              />
-        </label>
-        <button type="submit" className="signup-button">
-          Sign Up
-        </button>
+        
+        
       </form>
     </div>
   </div>

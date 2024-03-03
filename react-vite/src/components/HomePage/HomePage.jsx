@@ -11,7 +11,10 @@ const HomePage = () => {
     const navigate = useNavigate()
     const answersObj = useSelector(state => state.answers)
     const user = useSelector(state => state.session.user)
-    if (!user) navigate("/")
+    
+    useEffect(() => {
+        if (!user) navigate("/");
+      }, [user, navigate]);
 
     useEffect(() => {
         dispatch(thunkGetAllAnswers())

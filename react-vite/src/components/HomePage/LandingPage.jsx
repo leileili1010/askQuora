@@ -37,7 +37,9 @@ function LandingPage() {
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState({});
 
-  if (sessionUser) return <Navigate to="/topics" replace={true} />;
+  useEffect(() => {
+    if (sessionUser) navigate("/topics");
+  }, [sessionUser, navigate]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();

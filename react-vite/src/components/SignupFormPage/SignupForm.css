@@ -39,6 +39,7 @@
     color: #a82723;
     font-size: 36px;
     margin: 0px;
+    margin-top: 40px;
 }
 
 #sign-up-container .slogan {
@@ -99,4 +100,55 @@
 
 #sign-up-container .profile-img {
     margin: 20px 0 10px;
+}
+
+#sign-up-container #image-upload {
+    border: none;
+    padding: 0px
+}
+
+
+#sign-up-container .profile-img {
+    text-align: left;
+    margin-top: 0px;
+    font-size: 13px;
+    font-weight: normal;
+}
+
+#sign-up-container .signup-button {
+    margin: 10px 0;
+    margin-bottom: 60px;
+    padding: 12px
+}
+
+#sign-up-container a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+#sign-up-container a:hover {
+    text-decoration: underline;
+}
+
+#sign-up-container .have-account {
+    color:#333;
+    margin-bottom: 12px;
+    font-weight: normal;
+    text-align: center;
+}
+
+#sign-up-container input:focus {
+    border: 1px solid #007bff;
+    outline: none; 
+}
+
+.credential p,
+.basic-info p {
+    text-align: left;
+    font-weight: bold;
+}
+
+#sign-up-container .input-errors {
+    font-weight: normal;
+    font-size: 12px;
 }
