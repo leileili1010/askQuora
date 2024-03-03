@@ -5,7 +5,6 @@ import ReactQuill from 'react-quill';
 const Editor = ({ value, onValueChange }) => {
     const quillRef = useRef(null);
     
-    // Simulate image upload process
     const uploadImage = async (file) => {
       const formData = new FormData();
       formData.append('image', file);
@@ -26,7 +25,6 @@ const Editor = ({ value, onValueChange }) => {
       }
   };
      
-    // Function to handle image upload
      const imageHandler = () => {
         if (!quillRef.current) return;
         const input = document.createElement('input');
@@ -35,9 +33,7 @@ const Editor = ({ value, onValueChange }) => {
         input.click();
         input.onchange = async () => {
             const file = input.files[0];
-            // Call function to upload image, get URL
             const imageUrl = await uploadImage(file);
-            // Insert image URL into editor
             const editor = quillRef.current.getEditor();
             const range = editor.getSelection();
             editor.insertEmbed(range.index, 'image', imageUrl);
