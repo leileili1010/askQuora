@@ -3,6 +3,7 @@ import { thunkGetTopicAnswers } from "../../../redux/answer";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import AnswerList from "../AnswerList/AnswerList";
+import Navigation from "../../Navigation/Navigation";
 
 const TopicAnswers = () => {
     const dispatch = useDispatch()
@@ -18,6 +19,9 @@ const TopicAnswers = () => {
 
     return (
         <div>
+            <div>
+                <Navigation />
+            </div>
             <AnswerList answers = {answers}/>
         </div>
     )
