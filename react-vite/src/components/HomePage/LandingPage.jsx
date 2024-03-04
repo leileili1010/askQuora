@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { thunkLogin } from "../../redux/session";
 import { useDispatch, useSelector } from "react-redux";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import './LandingPage.css'
 import { Link } from "react-router-dom";
 
@@ -69,7 +69,6 @@ function LandingPage() {
     if (serverResponse) {
       setErrors(serverResponse);
     } else {
-      dispatch(setLoader(true));
       navigate("/topics");
     }
   };

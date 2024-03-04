@@ -19,16 +19,16 @@
     gap: 35px
 }
 
+.basic-info,
 .credential {
     display: flex;
     flex-direction: column;
     width: 300px
 }
 
-.basic-info {
-    display: flex;
-    flex-direction: column;
-    width: 300px
+.credential>:first-child, 
+.basic-info>:first-child {
+    margin-bottom: 15px;
 }
 
 .seperator {
@@ -39,7 +39,10 @@
     color: #a82723;
     font-size: 36px;
     margin: 0px;
-    margin-top: 40px;
+    margin-top: 15px;
+    font-family: "Literata", serif;
+    font-weight: bold;
+    margin-bottom: 8px;
 }
 
 #sign-up-container .slogan {

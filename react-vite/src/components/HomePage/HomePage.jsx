@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import AnswerList from "../Answers/AnswerList/AnswerList";
 import Navigation from "../Navigation/Navigation";
 import { useNavigate } from "react-router-dom";
-
+import "./HomePage.css"
 
 const HomePage = () => {
     const dispatch = useDispatch()
@@ -25,11 +25,23 @@ const HomePage = () => {
     
     return (
         <div>
-            <h1>home page</h1>
             <div>
                 <Navigation />
             </div>
-            <AnswerList answers={answers}/>
+            <div className="topics">
+                <div className="spaces-container">
+
+                </div>
+                <div className="topic-answers">
+                    <div className="ask-answer">
+                        
+                    </div>
+                    <AnswerList answers={answers}/>
+                </div>
+                <div className="relevant-spaces-container">
+
+                </div>
+            </div>
         </div>
     )
 }

@@ -87,9 +87,6 @@ const handleSubmit = async (e) => {
     formData.append("field", field);
     formData.append("years_of_experience", yearsOfExperience);
     formData.append("position", position);
-    console.log("🚀 ~ handleSubmit ~ formData:", formData.username)
-
-
 
     const serverResponse = await dispatch(thunkSignup(formData));
 
