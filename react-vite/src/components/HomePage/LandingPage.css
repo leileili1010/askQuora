@@ -1,0 +1,137 @@
+.landing-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 700px;
+    width: 500px;
+    text-align: center;
+    background-color: white;
+    border-radius: 4px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.landing-page h1 {
+    color: #a82723;
+    font-size: 36px;
+    margin: 0px;
+    font-family: "Literata", serif;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.slogan {
+    margin-bottom: 40px;
+}
+
+.login-signup {
+    width:70%; 
+}
+
+.login-signup p {
+    margin-bottom: 20px;
+    color: lightgrey; 
+} 
+
+.login-signup input {
+    width: calc(100% - 20px);
+    padding: 14px;
+    margin: 16px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.login-signup button  {
+    width: calc(100% - 20px);
+    padding: 13px 0;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1em;
+}
+
+.login-button {
+    margin-top: 20px;
+}
+
+.login-signup button:hover {
+    background-color: #0056b3;
+}
+
+.login-signup .sign-up-container {
+    text-align: center;
+}
+
+.login-signup .sign-up-container p {
+    margin: 10px 0;
+}
+
+.login-signup .google-sign-in {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.login-signup .error-message {
+    color: red;
+    margin: 2px 0;
+    font-size: 12px;
+}
+
+.input-error-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0 5px
+}
+
+.login-signup .input-error {
+    color: red;
+    font-size: 12px;
+    margin: 0;
+    text-align: left;
+    width: calc(100% - 20px);
+}
+
+.login-signup a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.login-signup a:hover {
+    text-decoration: underline;
+}
+
+
+#google-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    padding: 10px;
+    border: 1px solid #ccc;
+    color: #333;
+    gap: 10px;
+    margin-bottom: 30px
+}
+
+#google-button:hover {
+    background-color: rgb(248, 247, 247);
+}
+
+.create-account p {
+    color: #333
+}
+
+.login-signup input:focus {
+    border: 1px solid #007bff;
+    outline: none; 
+}

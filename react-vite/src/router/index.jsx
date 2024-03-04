@@ -8,6 +8,7 @@ import UserQuestions from '../components/Questions/UserQuestions/UserQuestions';
 import TopicAnswers from '../components/Answers/TopicAnswers/TopicAnswers';
 import UserAnswers from '../components/Answers/UserAnswers/UserAnswers';
 import HomePage from '../components/HomePage/HomePage';
+import LandingPage from '../components/HomePage/LandingPage';
 
 export const router = createBrowserRouter([
   {
@@ -15,11 +16,7 @@ export const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <h1>Welcome!</h1>,
-      },
-      {
-        path: "login",
-        element: <LoginFormPage />,
+        element: <LandingPage/>,
       },
       {
         path: "signup",

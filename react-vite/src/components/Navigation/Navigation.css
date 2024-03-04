@@ -1,3 +1,136 @@
 .profile-dropdown {
   position: absolute;
 }
+
+.nav-bar-container {
+  height: 60px;
+  background-color: white;
+  border-bottom: 1px solid #e2e2e2;
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.1);
+  position: fixed; 
+  width: 100%;
+  z-index: 100; 
+}
+
+.navigation {
+  height: 100%;
+  width: 1100px;
+  display: flex;
+  margin: auto;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-bar {
+  display: flex;
+  align-items: center;
+}
+
+.profile-addQ {
+  display: flex
+}
+
+.nav-bar i {
+  font-size: 28px;
+  padding: 7.5px 16px 
+}
+
+.nav-bar div, .nav-bar form {
+  margin-right: 20px; 
+}
+
+.nav-bar a {
+  text-decoration: none;
+  color: #a82723; 
+  font-weight: bold;
+  font-size: 31px;
+  font-family: "Literata", serif;
+}
+
+.nav-bar a:hover {
+  color: #d26f6a;
+}
+
+.nav-bar i {
+  color: #626466; 
+  cursor: pointer; 
+}
+
+.nav-bar i:hover {
+  background-color: #f1f2f2; 
+}
+
+#home-sign {
+  color:  #a82723
+}
+
+#home-sign:hover{
+  color: #d26f6a;
+}
+
+/* Search box */
+.nav-bar form {
+  display: flex;
+  align-items: center;
+  background-color: white;
+  border: 1px solid #e2e2e2;
+  border-radius: 4px;
+  padding: 5px 10px;
+  margin-left: 20px;
+  width: 360px;
+}
+
+.nav-bar input {
+  border: none;
+  outline: none;
+  margin-right: 10px;
+  width:100%;
+}
+
+.nav-bar form:focus-within {
+  border: 1px solid #007bff;
+}
+
+.nav-bar button {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  padding: 5px 10px;
+  color: #626466;
+}
+
+.nav-bar button:hover {
+  color: #a82723;
+}
+
+/* Profile and Add Question*/
+.profile-addQ {
+  display: flex;
+  align-items: center;
+}
+
+.pledge-detail {
+  margin-left: 20px;
+}
+
+.pledge-detail button {
+  border: none;
+  background-color: #a82723;
+  color: white;
+  padding: 7px 20px;
+  border-radius: 22px;
+}
+
+.pledge-detail button:hover{
+  cursor: pointer;
+}
+
+.profile-dropdown {
+  position: absolute;
+  right: 0;
+  background-color: white;
+  border: 1px solid #e2e2e2;
+  border-radius: 4px;
+  padding: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}

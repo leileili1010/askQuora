@@ -1,0 +1,157 @@
+ #sign-up-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 700px;
+    width: 800px;
+    text-align: center;
+    background-color: white;
+    border-radius: 4px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.basic-credential {
+    display: flex;
+    gap: 35px
+}
+
+.basic-info,
+.credential {
+    display: flex;
+    flex-direction: column;
+    width: 300px
+}
+
+.credential>:first-child, 
+.basic-info>:first-child {
+    margin-bottom: 15px;
+}
+
+.seperator {
+    border: 0.5px solid #ccc;;
+} 
+
+#sign-up-container h1 {
+    color: #a82723;
+    font-size: 36px;
+    margin: 0px;
+    margin-top: 15px;
+    font-family: "Literata", serif;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+#sign-up-container .slogan {
+    margin-bottom: 35px;
+}
+
+#sign-up-container .input-error {
+    color: red;
+    margin: 5px 0;
+}
+
+#sign-up-container .signup .login-signup-form {
+    width: 100%;
+}
+
+#sign-up-container .basic-credential, .credential {
+    margin-bottom: 20px;
+}
+
+#sign-up-container label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+#sign-up-container input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+#sign-up-container .input-errors {
+    color: red;
+    margin-top: -10px;
+    margin-bottom: 10px;
+}
+
+#sign-up-container .seperator {
+    border-top: 1px solid #eee;
+    margin: 20px 0;
+}
+
+#sign-up-container .signup-button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+}
+
+#sign-up-container .signup-button:hover {
+    background-color: #0056b3;
+}
+
+#sign-up-container .profile-img {
+    margin: 20px 0 10px;
+}
+
+#sign-up-container #image-upload {
+    border: none;
+    padding: 0px
+}
+
+
+#sign-up-container .profile-img {
+    text-align: left;
+    margin-top: 0px;
+    font-size: 13px;
+    font-weight: normal;
+}
+
+#sign-up-container .signup-button {
+    margin: 10px 0;
+    margin-bottom: 60px;
+    padding: 12px
+}
+
+#sign-up-container a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+#sign-up-container a:hover {
+    text-decoration: underline;
+}
+
+#sign-up-container .have-account {
+    color:#333;
+    margin-bottom: 12px;
+    font-weight: normal;
+    text-align: center;
+}
+
+#sign-up-container input:focus {
+    border: 1px solid #007bff;
+    outline: none; 
+}
+
+.credential p,
+.basic-info p {
+    text-align: left;
+    font-weight: bold;
+}
+
+#sign-up-container .input-errors {
+    font-weight: normal;
+    font-size: 12px;
+}
