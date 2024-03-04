@@ -44,7 +44,7 @@ function ProfileButton() {
     <>
       {hasProfileImg ? (
         <img
-          className="profile-image"
+          className="nav-profile-img"
           src={user?.profile_img}
           alt="Profile Image"
           onClick={toggleMenu}

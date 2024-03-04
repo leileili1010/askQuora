@@ -24,9 +24,7 @@ function Navigation() {
         </div>
 
         <div className="profile-addQ">
-          <div>
-            <ProfileButton />
-          </div>
+          <ProfileButton />
           <div className="pledge-detail">
             <OpenModalButton
               buttonText="Add question"

@@ -1,9 +1,122 @@
+.homepage {
+    display: flex;
+    flex-direction: column;
+}
+
+.home-nav-bar {
+    position: fixed; 
+    width: 100%;
+    z-index: 100; 
+}
+
 .topics {
     background-color: #f1f2f2;
 }
 
+/* need to update margin later */
 .topic-answers {
-    padding-top: 80px;
     width:600px;
-    margin: auto
+    margin: auto; 
+    display: flex;
+    flex-direction: column;
+    margin-top: 80px;
+}
+
+.answer-question-nav {
+    display: flex;
+    font-size: 12px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid lightgray; 
+}
+
+
+.answer-question-nav p {
+    padding: 12px 8px;
+    color: grey;
+}
+
+.answer-question-nav p:hover {
+    background-color: #E9EAEA;
+}
+
+/* .answer-question-nav p {
+    border-bottom: 3px solid #f1f2f2; 
+} */
+
+.answer-question-nav p.active {
+    color: #a82723;
+    font-weight: bold;
+    border-bottom: 3px solid #a82723; 
+}
+
+.ask-answer {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #e2e2e2; 
+    background-color: white;
+    padding: 10px;
+    padding-bottom: 5px;
+    border-radius: 3px;
+    margin-bottom: 10px;
+}
+
+.profile-question {
+    display: flex;
+    align-items: center;
+    gap: 10px
+}
+
+.profile-question button {
+    padding: 6px 12px;
+    width: 100%;
+    text-align: left;
+    border-radius: 24px;
+    border: 1px solid ; 
+    color: gray;
+    background-color: #f7f7f7;
+    border: 1px solid #e2e2e2; 
+}
+
+.profile-question button:hover {
+    background-color: #f1f2f2 ;
+}
+
+.ask-anwser-link {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-top: 2px;
+    font-size: 12px;
+    padding: 0 6px;
+    color: #333;
+    gap: 10px;
+}
+
+.ask-anwser-link div {
+    padding: 5px;
+    border: 1px solid white; 
+    width: 170px;
+    text-align: center;
+    border-radius: 10px;
+}
+
+.ask-anwser-link div:hover {
+    background-color: #f1f2f2;
+    color: black
+}
+
+.ask-anwser-link div i {
+    margin-right: 4px;
+}
+
+.ask-button button {
+    border: none;    
+    background-color: transparent;
+    color: #333;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.ask-anwser-link span{
+    cursor: pointer;
 }

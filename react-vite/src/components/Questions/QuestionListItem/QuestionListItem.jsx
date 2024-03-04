@@ -4,6 +4,8 @@ import { useSelector } from "react-redux/es/hooks/useSelector";
 import OperationButton from "../QuestionDetail/OperationButton";
 import OpenModalButtonProps from "../../OpenModalButton/OpenModalButtonProps";
 import CreateAnswerModal from "../../Answers/CreateAnswer/CreateAnswer";
+import "./QuestionListItem.css"
+
 
 const QuestionListItem = ({question}) => {
     const user = useSelector(state => state.session.user)
@@ -13,6 +15,7 @@ const QuestionListItem = ({question}) => {
     if (question.numOfAnswers > 1) answer =  `${question.numOfAnswers} answers`
     else if (question.numOfAnswers == 1) answer = `${question.numOfAnswers} answer`
     else answer = "No answers yet"
+    
     return (
         <li className="question-container">
             <p>{question.title}</p>
