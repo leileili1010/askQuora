@@ -11,7 +11,9 @@
 
 .topics {
     background-color: #f1f2f2;
+    min-height: 100vh;
 }
+
 
 /* need to update margin later */
 .topic-answers {
@@ -118,5 +120,9 @@
 }
 
 .ask-anwser-link span{
+    cursor: pointer;
+}
+
+.answer-question-nav p{
     cursor: pointer;
 }
