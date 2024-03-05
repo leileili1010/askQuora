@@ -1,0 +1,96 @@
+.question-container {
+    display: flex;
+    flex-direction: column;
+    background-color: white; 
+    border-radius: 4px;
+    list-style-type: none; 
+    padding: 0px 15px;
+    border-bottom: 1px solid #ccc;
+}
+
+
+/* Style for each question container */
+.question-container>:first-child {
+    color: #333; 
+    text-decoration: none; 
+    font-weight: bold; 
+    margin-bottom: 8px;
+    margin-top: 6px;
+    
+}
+
+.question-container a:hover {
+    text-decoration: underline;
+}
+
+.question-container a {
+    font-weight:bold;
+}
+
+.button-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Style for the create answer button */
+.create-answer-button {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.answer-modal {
+    display: flex;
+    gap: 5px;
+    padding: 8px 11px;
+    border: 1px solid #ccc;
+    border-radius: 24px;
+    cursor: pointer;
+    margin-bottom:7px;
+    margin-top: 12px;
+}
+
+.answer-modal:hover {
+    background-color: #f1f2f2;
+}
+
+.answer-modal button {
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.answers-link {
+    font-size: 12px;
+    color: grey;
+    margin-top: 3px
+}
+
+.more {
+    font-size: 13px;
+    color: #333;
+    text-align: center;
+    cursor: pointer;
+    align-items: center;
+    padding: 12px;
+}
+
+.three-dots {
+    display: flex;
+    
+    width: 30px;
+    height: 30px;
+    
+    align-items: center;
+    justify-content: center;
+}
+
+.three-dots:hover {
+    border: 1px solid  #f1f2f2;
+    border-radius: 50%;
+    background-color:  #f1f2f2;
+} 
+
+
+

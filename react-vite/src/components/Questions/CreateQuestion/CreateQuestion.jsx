@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useModal } from "../../../context/Modal"
 import { useEffect, useState } from "react";
-import { thunkGetTopics, returnInitial} from "../../../redux/topic";
+import { thunkGetTopics, returnTopicInitial} from "../../../redux/topic";
 import {thunkCreateQuestion} from "../../../redux/question";
 import { useNavigate } from "react-router-dom";
 

@@ -30,7 +30,7 @@ const OperationButton = ({question}) => {
 
     return (
         <div>
-            <div onClick={toggleMenu}>
+            <div className="three-dots" onClick={toggleMenu}>
                 <i className="fa-solid fa-ellipsis"></i>
             </div>
             {showMenu && (

@@ -58,5 +58,11 @@ topics = [
         'description': 'Exploring the daily adventures and challenges of programmers,',
         'creator_id': 4,
         'cover_img': "https://askcora.s3.us-west-1.amazonaws.com/topics_image/10_programmer+life.jpg"
+    },
+    {
+        'name': 'More Questions',
+        'description': 'Everything considered here',
+        'creator_id': 11,
+        'cover_img': "https://askcora.s3.us-west-1.amazonaws.com/topics_image/question-mark.jpg"
     }
 ]

@@ -3,12 +3,13 @@ import { thunkGetAllAnswers, returnInitial } from "../../redux/answer";
 import { useEffect, useState } from "react";
 import AnswerList from "../Answers/AnswerList/AnswerList";
 import Navigation from "../Navigation/Navigation";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate} from "react-router-dom";
 import "./HomePage.css"
 import CreateQuestionModal from '../Questions/CreateQuestion/CreateQuestion'
 import OpenModalButton from '../OpenModalButton/OpenModalButton'
-import {thunkGetQuestions, returnInitialQuestionState} from "../../redux/question" 
-import QuestionList from "../Questions/QuestionList/QuestionList"
+// import {thunkGetQuestions, returnInitialQuestionState} from "../../redux/question" 
+import { thunkGetTopicsQuestions, returnTopicInitial } from "../../redux/topic";
+import TopicsQuestionsList from "../Topics/TopicsQuestion/TopicsQuestionsList";
 
 const HomePage = () => {
     const dispatch = useDispatch()
@@ -18,8 +19,9 @@ const HomePage = () => {
     const user = useSelector(state => state.session.user)
     const profile_img = user?.profile_img
     const [activeTab, setActiveTab] = useState('answers');
+    const topicsObj =  useSelector(state => state.topics)
+    const topics = Object.values(topicsObj)
 
-    
     useEffect(() => {
         if (!user) navigate("/");
       }, [user, navigate]);
@@ -32,11 +34,18 @@ const HomePage = () => {
     }, [dispatch])
 
     useEffect(() => {
-        dispatch(thunkGetQuestions());
+        dispatch(thunkGetTopicsQuestions());
         return () => {
-            dispatch(returnInitialQuestionState());
+            dispatch(returnTopicInitial());
           };
     }, [dispatch])
+
+    // useEffect(() => {
+    //     dispatch(thunkGetQuestions());
+    //     return () => {
+    //         dispatch(returnInitialQuestionState());
+    //       };
+    // }, [dispatch])
 
     const handleTabClick = (tab) => {
         setActiveTab(tab);
@@ -85,7 +94,7 @@ const HomePage = () => {
                         <p className={activeTab === 'questions' ? 'active' : ''} onClick={() => handleTabClick('questions')}>Questions</p>
                     </div> 
                     {activeTab === 'answers' && <AnswerList answers={answers}/>}
-                    {activeTab === 'questions' && <QuestionList questions={questions}/>}
+                    {activeTab === 'questions' && <TopicsQuestionsList topics={topics}/>}
                 </div>
                
                <div className="relevant-spaces-container"></div>
