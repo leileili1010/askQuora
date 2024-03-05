@@ -2,6 +2,10 @@
   position: absolute;
 }
 
+.hidden {
+  display: none;
+}
+
 .nav-bar-container {
   height: 60px;
   background-color: white;

@@ -1,7 +1,12 @@
 import { Link } from "react-router-dom";
+import AnswerOperationButton from "./AnswerOpertionButton";
+import { useSelector } from "react-redux/es/hooks/useSelector";
 import './AnswerListItem.css'
 
  const AnswerListItem = ({answer}) => {
+    const user = useSelector(state => state.session.user)
+    const isOwner = user?.id == answer?.author.id
+
     return (
             <div className="answer">
                 <div className="author-profile">
@@ -18,6 +23,11 @@ import './AnswerListItem.css'
                 <div>
                     <i className="fa-regular fa-comment comment"></i>
                 </div>
+                {isOwner && (
+                <div className = "operation-button">
+                    <AnswerOperationButton answer={answer}/>
+                </div>
+                )}
             </div>
     )
 }

@@ -22,7 +22,7 @@ const QuestionDetail = () => {
     const answersObj = useSelector(state => state.answers)
     
     useEffect(() => {
-        if (!user) navigate("/topics");
+        if (!user) navigate("/");
       }, [user, navigate]);
     
     useEffect(() => {

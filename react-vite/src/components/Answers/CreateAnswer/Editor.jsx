@@ -46,7 +46,7 @@ const Editor = ({ value, onValueChange }) => {
           container: [
             [{ header: [2, 3, 4, false] }],
             [{ color: [] }],
-            ["bold", "italic", "underline", "blockquote", "code-block"],
+            ["bold", "underline", "blockquote", "code-block"],
             [
               { list: "ordered" },
               { list: "bullet" },
