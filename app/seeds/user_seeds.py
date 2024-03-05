@@ -109,4 +109,15 @@ users = [
         'field': 'Risk modelling',
         'years_of_experience': 2
       },
+      {
+        "username":'adminUSer',
+        "first_name": "Fiona",
+        "last_name": "Li",
+        "profile_img": "https://askcora.s3.us-west-1.amazonaws.com/profile_img/admin-user.png",
+        "email":'adminuser@aa.io', 
+        "password":'password',
+        'position': "admin user of askQuora",
+        'field': 'Website Admin',
+        'years_of_experience': 3
+      }
 ]

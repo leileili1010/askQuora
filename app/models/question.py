@@ -11,7 +11,7 @@ class Question(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.Text, nullable=False)
     owner_id = db.Column(db.Integer, ForeignKey(add_prefix_for_prod("users.id")), nullable=False)
-    topic_id = db.Column(db.Integer, ForeignKey(add_prefix_for_prod("topics.id")))
+    topic_id = db.Column(db.Integer, ForeignKey(add_prefix_for_prod("topics.id")), default=11)
     created_at = db.Column(db.DateTime, default=datetime.now)
     updated_at = db.Column(db.DateTime, default=datetime.now, onupdate=datetime.now)
    

@@ -1,51 +1,43 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useModal } from "../../../context/Modal"
 import { useNavigate } from "react-router-dom";
-import Editor from "./Editor";
-import './CreateAnswer.css'
+import Editor from "../CreateAnswer/Editor"
 import { useState } from "react";
-import { thunkCreateAnswer } from "../../../redux/answer";
 
-const CreateAnswerModal = ({question}) => {
+
+const EditAnswerModal = ({answer}) => {
+    console.log("🚀 ~ EditAnswerModal ~ answer:", answer)
+    
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const { closeModal } = useModal()
-    const author = useSelector(state => state.session.user)
-    const [detail, setDetail] = useState("")
+    const user = useSelector(state => state.session.user)
+    const author = answer.author
+    const question = answer.question
+    const [detail, setDetail] = useState(answer.detail)
     const [errors, setErrors] = useState({});
-    const questionId = question.id
     
+
+    if (user.id !== author?.id) {
+        return <h1>Not Authorized</h1>
+    }
+
+    const handleCancel = (e) => {
+        e.preventDefault()
+        closeModal()
+    }
+
     const handleAnswerSubmit = async (e) => {
         e.preventDefault();
         setErrors({})
         const validationErrors = {};
-        
         if (!detail) validationErrors.detail = "Answer is required";
-        
-        if (Object.values(validationErrors).length) {
-            setErrors(validationErrors);
-        } else {
-            const topic_id = question.topic?.id 
-            const answer = {
-                detail,
-                question_id: questionId,
-                topic_id,
-            }
-            
-            await dispatch(thunkCreateAnswer(answer))
-            .then(() => {
-                closeModal()
-                navigate(`/questions/${questionId}`)
-            })
-            .catch(async (res) => {
-                console.log("Inside errors catch =>", res);
-              });
-          }
-        
+
+
     }
 
     return (
-        <div className="create-answer">
+         <div className="create-answer">
             <div className="author-container">
                 <img className="autor-image" src={author?.profile_img} alt="profile image" />
                 <div className="author">
@@ -61,9 +53,10 @@ const CreateAnswerModal = ({question}) => {
                     {"detail" in errors && <p >{errors.tdetail}</p>}
                     <button type="submit">Post</button>
                 </form>
+                    <button onClick={handleCancel}>Cancel</button>
             </div>
         </div>
     )
 }
 
-export default CreateAnswerModal;
+export default EditAnswerModal;

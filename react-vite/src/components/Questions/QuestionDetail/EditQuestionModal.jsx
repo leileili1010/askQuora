@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { thunkEditQuestion } from "../../../redux/question";
 
 const EditQuestionModal = ({question}) => {
-    console.log("🚀 ~ EditQuestionModal ~ question:", question)
     const dispatch = useDispatch()
     const questionId = question.id
     const { closeModal } = useModal()

@@ -9,7 +9,7 @@ const DELETE_QUESTION = "questions/DELETE_QUESTION";
 const EDIT_QUESTION = "questions/EDIT_QUESTION";
 
 // action creator
-export const returnInitial = () => ({
+export const returnInitialQuestionState = () => ({
     type: RETURN_INITIAL
 });
 

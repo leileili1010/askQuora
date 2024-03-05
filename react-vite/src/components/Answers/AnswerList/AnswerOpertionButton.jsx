@@ -1,9 +1,9 @@
 import { useState, useEffect, useRef } from "react";
-import DeleteQuestionModal from './DeleteQuestionModal'
-import EditQuestionModal from "./EditQuestionModal";
 import OpenModalMenuItem from "../../Navigation/OpenModalMenuItem";
+import DeleteAnswerModal from '../AnswerOperations/DeleteAnswerModal';
+import EditAnswerModal from "../AnswerOperations/EditAnswerModal";
 
-const OperationButton = ({question}) => {
+const AnswerOperationButton = ({answer}) => {
     const [showMenu, setShowMenu] = useState(false);
     const ulRef = useRef();
 
@@ -38,14 +38,14 @@ const OperationButton = ({question}) => {
             {showMenu && (
                 <ul className={ulClassName} ref={ulRef}>
                     <OpenModalMenuItem
-                      itemText="Delete Question"
+                      itemText="Edit Answer"
                       onItemClick={closeMenu}
-                      modalComponent={<DeleteQuestionModal question={question} />}
+                      modalComponent={<EditAnswerModal answer={answer} />}
                     />
                     <OpenModalMenuItem
-                      itemText="Edit Question"
+                      itemText="Delete Answer"
                       onItemClick={closeMenu}
-                      modalComponent={<EditQuestionModal question={question} />}
+                      modalComponent={<DeleteAnswerModal answer={answer}  />}
                     />
                 </ul>
             )}
@@ -53,4 +53,4 @@ const OperationButton = ({question}) => {
     )
 }
 
-export default OperationButton;
+export default AnswerOperationButton;

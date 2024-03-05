@@ -15,7 +15,7 @@ answers = [
     },
     # Q2
     {
-        "detail": "To improve problem-solving skills as a programmer, consider practicing algorithmic challenges on platforms like LeetCode, HackerRank, or CodeSignal. Additionally, try breaking down complex problems into smaller, manageable tasks, and approach them systematically. Collaborating with peers or joining coding communities can provide fresh perspectives and insights into different problem-solving techniques.",
+        "detail": "<p>To improve problem-solving skills as a programmer, consider practicing algorithmic challenges on platforms like LeetCode, HackerRank, or CodeSignal.</p> <p>Additionally, try breaking down complex problems into smaller, manageable tasks, and approach them systematically. Collaborating with peers or joining coding communities can provide fresh perspectives and insights into different problem-solving techniques.</p>",
         "author_id": 3,
         "question_id": 2,
         "topic_id": 1

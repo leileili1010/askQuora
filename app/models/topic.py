@@ -30,5 +30,5 @@ class Topic(db.Model):
             'creator': self.creator.to_dict(),
             'cover_img': self.cover_img,
             'created_at': self.created_at,
-            'updated_at': self.updated_at
+            'updated_at': self.updated_at,
         }
