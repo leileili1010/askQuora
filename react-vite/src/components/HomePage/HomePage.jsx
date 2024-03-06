@@ -81,7 +81,7 @@ const HomePage = () => {
                     </div>
                     <div className="answer-question-nav">
                         <p className={activeTab == 'answers' ? 'active' : ''} onClick={() => handleTabClick('answers')}>Answers</p>
-                        <p className={activeTab === 'uestions' ? 'active' : ''} onClick={() => handleTabClick('questions')}>Questions</p>
+                        <p className={activeTab === 'questions' ? 'active' : ''} onClick={() => handleTabClick('questions')}>Questions</p>
                     </div> 
                     {activeTab === 'answers' && <AnswerList answers={answers}/>}
                     {activeTab === 'questions' && <TopicsQuestionsList topics={topics}/>}
