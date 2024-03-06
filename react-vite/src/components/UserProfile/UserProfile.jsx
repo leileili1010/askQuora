@@ -23,8 +23,6 @@ const UserProfile = () => {
     const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
     const formattedDate = `${monthNames[date.getMonth()]} ${date.getFullYear()}`;
  
-    console.log("🚀 ~ UserProfile ~ formattedDate:", formattedDate)
-
     const handleTabClick = (tab) => {
         setActiveTab(tab);
     };
@@ -45,7 +43,7 @@ const UserProfile = () => {
         <div className="User-profile-page">
             <Navigation/>
 
-            <div className="background">
+            <div className={activeTab == 'answers' ? 'background-answer' : 'background-Qs'}>
                 <div className="profile-container">
                     {/*part 1: user info  */}
                     <div className="profile">

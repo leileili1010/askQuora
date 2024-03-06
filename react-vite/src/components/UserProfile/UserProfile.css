@@ -1,7 +1,14 @@
-.background {
+
+.background-answer {
     background-color: white;
     padding-bottom: 30px;
     height: 100%;
+}
+
+.background-Qs {
+    background-color: white;
+    padding-bottom: 30px;
+    height: 100vh;
 }
 
 .profile-container {
