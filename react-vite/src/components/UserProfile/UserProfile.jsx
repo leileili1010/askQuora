@@ -17,7 +17,13 @@ const UserProfile = () => {
     const questionsObj = useSelector(state => state.questions)
     const answerTitle = Object.keys(answersObj).length>1? `${Object.keys(answersObj).length} Answers`: `${Object.keys(answersObj).length} Answer`
     const questionTitle = Object.keys(answersObj).length>1? `${Object.keys(questionsObj).length} Questions`: `${Object.keys(questionsObj).length} Questions`
+
+    const dateString = user.created_at;
+    const date = new Date(dateString);
+    const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    const formattedDate = `${monthNames[date.getMonth()]} ${date.getFullYear()}`;
  
+    console.log("🚀 ~ UserProfile ~ formattedDate:", formattedDate)
 
     const handleTabClick = (tab) => {
         setActiveTab(tab);
@@ -63,9 +69,45 @@ const UserProfile = () => {
                     </div>
 
                     {/*part 2: credential and subscription */}
-                    <div className="credentials">
-                        <p>Credentials & Highlights</p>
+                    <div className="credentials-highlights">
+                        <div className="credentials">
+                            <p className="credentials-title" >Credentials & Highlights</p>
+                           
+                           <div className="credentials-details">
+                                <div>
+                                    <i className="fa-solid fa-briefcase"></i>
+                                </div>
+                                <p>{user.position}</p>
+                            </div>
+
+                            <div className="credentials-details">
+                                <div>
+                                    <i className="fa-regular fa-clock"></i>
+                                </div>
+                                <p>{user.years_of_experience}-yr of experience</p>
+                            </div>
+
+                            <div className="credentials-details">
+                                <div>
+                                    <i className="fa-solid fa-laptop"></i>
+                                </div>
+                                <p>{user.field}</p>
+                            </div>
+
+                            <div className="credentials-details">
+                                <div>
+                                    <i className="fa-regular fa-calendar"></i>
+                                </div>
+                                <p>Joined {formattedDate}</p>
+                            </div>
+                        </div>
+
+                        <div className="subscriptions">
+                            <p className="credentials-title" >Subscriptions</p>
+                            <p className="credentials-details">Currently no supscriptions</p>
+                        </div>
                     </div>
+                    
                 </div>
             </div>
 

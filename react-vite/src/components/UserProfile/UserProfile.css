@@ -8,18 +8,15 @@
     display: flex;
     margin: 0 auto;
     padding-top: 95px;
+    padding-bottom: 50px;
     width: 1024px;
     justify-content: center;
     gap: 100px;
+    background-color: white;
 }
 
 .profile {
     width: 572px;
-}
-
-.credentials {
-    width: 356px;
-    border: 1px solid #e2e2e2;
 }
 
 .profile-img {
@@ -48,8 +45,45 @@
 }
 
 .Q-A-title {
-    font-size: 14px;
+    font-size: 13px;
     padding-bottom: 12px;
     color: black;
     border-bottom: 1px solid #e2e2e2;
+}
+
+.credentials-highlights {
+    width: 356px;
+    display: flex;
+    flex-direction: column;
+    gap: 36px;
+    background-color: white;
+}
+
+
+.credentials-title {
+    font-size: 13px;
+    padding-bottom: 12px;
+    color: black;
+    border-bottom: 1px solid #e2e2e2;
+    margin-bottom: 8px;
+}
+
+.credentials-details {
+    font-size: 13px;
+    padding: 4px 0;
+    color: #333;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.credentials-details div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #e2e2e2;
+    height: 20px;
+    width: 20px;
+    padding: 12px;
+    border-radius: 50%;
 }

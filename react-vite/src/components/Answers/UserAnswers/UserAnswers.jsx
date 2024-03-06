@@ -9,7 +9,7 @@ const UserAnswers = ({answersObj, answerTitle}) => {
     const answers = Object.values(answersObj)
     
     return (
-        <div>
+        <div id="user-answers">
             <p className="Q-A-title">{answerTitle}</p>
             <AnswerList answers = {answers}/>
         </div>

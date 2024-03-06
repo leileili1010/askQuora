@@ -7,7 +7,7 @@ users = [
         "email":'demo@aa.io', 
         "password":'password',
         'position': "Junior software engineer",
-        'field': 'frontend',
+        'field': 'Frontend',
         'years_of_experience': 1
       },
       {
