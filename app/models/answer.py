@@ -13,7 +13,6 @@ class Answer(db.Model):
     author_id = db.Column(db.Integer, ForeignKey(add_prefix_for_prod("users.id")), nullable=False)
     question_id = db.Column(db.Integer, ForeignKey(add_prefix_for_prod("questions.id")), nullable=False)
     topic_id = db.Column(db.Integer, ForeignKey(add_prefix_for_prod("topics.id")))
-    cover_img = db.Column(db.String)
     created_at = db.Column(db.DateTime, default=datetime.now)
     updated_at = db.Column(db.DateTime, default=datetime.now, onupdate=datetime.now)
    
@@ -35,7 +34,6 @@ class Answer(db.Model):
             "author": self.author.to_dict(),
             "question": self.question.to_dict(),
             "topic": topic,
-            "cover_img": self.cover_img,
             'created_At': self.created_at,
             'updated_At': self.updated_at
         }
