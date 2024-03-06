@@ -1,8 +1,8 @@
 import { useParams, Link } from "react-router-dom";
-import {thunkGetQuestion} from '../../../redux/question'
+import {thunkGetQuestion, returnInitialQuestionState} from '../../../redux/question'
 import { useEffect} from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { thunkGetQuestionAnswers } from "../../../redux/answer";
+import { thunkGetQuestionAnswers, returnInitial } from "../../../redux/answer";
 import AnswerList from "../../Answers/AnswerList/AnswerList";
 import Navigation from "../../Navigation/Navigation"
 import { useNavigate} from "react-router-dom";
@@ -39,7 +39,16 @@ const QuestionDetail = () => {
     
     useEffect(() => {
         dispatch(thunkGetQuestion(questionId))
+        return () => {
+            dispatch(returnInitialQuestionState());
+          };
+    }, [dispatch, questionId])
+
+    useEffect(() => {
         dispatch(thunkGetQuestionAnswers(questionId))
+        return () => {
+            dispatch(returnInitial());
+          };
     }, [dispatch, questionId])
 
 
