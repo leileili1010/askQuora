@@ -85,6 +85,9 @@ export const thunkGetAllAnswers = () => async dispatch => {
     const res = await fetch(`/api/topics/answers`)
     if (res.ok) {
         const answers = await res.json();
+       //here to loop
+       answers.forEach(answer => {
+    });
         dispatch(getAllAnswers(answers));
     } else {
         const errs = await res.json()
@@ -109,6 +112,23 @@ export const thunkCreateAnswer = (answer) => async dispatch => {
         return errs;
       }
 }
+
+// edit answer
+export const thunkEditAnswer = (formData, answerId) => async dispatch => {
+    const res = await fetch(`/api/answers/${answerId}/edit`, {
+        method: "PUT",
+        body: formData
+    })
+
+    if (res.ok) {
+        const answer= await res.json();
+        dispatch(createAnswer(answer));
+        return answer;
+      } else {
+        const errs = await res.json();
+        return errs;
+      }
+} 
 
 // delete a answer
 export const thunkDeleteAnswer = (answerId) => async (dispatch) => {

@@ -36,6 +36,6 @@ class Answer(db.Model):
             "question": self.question.to_dict(),
             "topic": topic,
             "cover_img": self.cover_img,
-            'createdAt': self.created_at,
-            'updatedAt': self.updated_at
+            'created_At': self.created_at,
+            'updated_At': self.updated_at
         }

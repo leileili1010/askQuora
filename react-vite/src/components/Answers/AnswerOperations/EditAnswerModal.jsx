@@ -3,17 +3,16 @@ import { useModal } from "../../../context/Modal"
 import { useNavigate } from "react-router-dom";
 import Editor from "../CreateAnswer/Editor"
 import { useState } from "react";
+import { thunkEditAnswer } from "../../../redux/answer";
 
 
-const EditAnswerModal = ({answer}) => {
-    console.log("🚀 ~ EditAnswerModal ~ answer:", answer)
-    
+const EditAnswerModal = ({answer}) => {    
     const dispatch = useDispatch();
-    const navigate = useNavigate();
     const { closeModal } = useModal()
     const user = useSelector(state => state.session.user)
     const author = answer.author
     const question = answer.question
+    const answerId = answer.id
     const [detail, setDetail] = useState(answer.detail)
     const [errors, setErrors] = useState({});
     
@@ -32,7 +31,18 @@ const EditAnswerModal = ({answer}) => {
         setErrors({})
         const validationErrors = {};
         if (!detail) validationErrors.detail = "Answer is required";
+        else {
+            const formData = new FormData();
+            formData.append("detail", detail);
 
+            await dispatch(thunkEditAnswer(formData, answerId))
+            .then(() => {
+                closeModal()
+            })
+            .catch(async (res) => {
+              console.log("Inside errors catch =>", res);
+            });
+        }
 
     }
 
