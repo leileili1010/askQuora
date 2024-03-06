@@ -35,7 +35,7 @@ def get_topic_answers(topic_id):
 @login_required
 @topic_routes.route('/answers')
 def get_all_answers():
-    answers = Answer.query.all()
+    answers = Answer.query.order_by(Answer.updated_at.desc()).all()
 
     if not answers:
         return []

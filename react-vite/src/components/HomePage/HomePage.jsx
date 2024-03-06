@@ -15,7 +15,7 @@ const HomePage = () => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const answersObj = useSelector(state => state.answers)
-    const questionsObj = useSelector(state => state.questions)
+    // const questionsObj = useSelector(state => state.questions)
     const user = useSelector(state => state.session.user)
     const profile_img = user?.profile_img
     const [activeTab, setActiveTab] = useState('answers');
@@ -54,8 +54,8 @@ const HomePage = () => {
     if (answersObj.length == 0 && activeTab == 'answers') return null
     const answers = Object.values(answersObj)
 
-    if (questionsObj.length == 0 && activeTab == 'questions') return null
-    const questions = Object.values(questionsObj)
+    // if (questionsObj.length == 0 && activeTab == 'questions') return null
+    // const questions = Object.values(questionsObj)
     
     return (
         <div className="homepage">
