@@ -1,14 +1,14 @@
 .background {
     background-color: white;
-    padding-bottom: 50px;
-    height: 100vh;
+    padding-bottom: 30px;
+    height: 100%;
 }
 
 .profile-container {
     display: flex;
     margin: 0 auto;
     padding-top: 95px;
-    padding-bottom: 50px;
+    padding-bottom: 20px;
     width: 1024px;
     justify-content: center;
     gap: 100px;
@@ -42,6 +42,10 @@
 #user-Q-A .answer {
     border: none;
     border-bottom: 1px solid #e2e2e2;
+}
+
+#user-Q-A .answer-list-component {
+    background-color: white;
 }
 
 .Q-A-title {

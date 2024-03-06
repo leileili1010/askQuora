@@ -13,7 +13,7 @@ const AnswerList = ({answers}) => {
       }, [user, navigate]);
 
     return (
-        <div>
+        <div className="answer-list-component">
             {answersReversed.map(answer =>
                <AnswerListItem answer={answer} key={answer.id} />    
             )}
