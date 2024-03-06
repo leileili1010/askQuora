@@ -4,7 +4,7 @@ import { useNavigate} from "react-router-dom";
 import { useEffect, useState} from "react";
 import UserAnswers from "../Answers/UserAnswers/UserAnswers";
 import UserQuestions from "../Questions/UserQuestions/UserQuestions";
-
+import "./UserProfile.css"
 
 const UserProfile = () => {
     const dispatch = useDispatch()
@@ -21,36 +21,40 @@ const UserProfile = () => {
       }, [user, navigate]);
 
     return (
-        <div>
+        <div className="User-profile-page">
             <Navigation/>
 
-            <div className="profile-container">
-                {/*part 1: user info  */}
-                <div className="profile">
-                    <div className="user-info">
-                        <img src={user.profile_img} alt="profile image" className="profile-img"/>
-                        <div>
-                            <p>{user.first_name} {user.last_name}</p>
-                            <p>{user.position} · {user.years_of_experience}yr, {user.field}</p>
+            <div className="background">
+                <div className="profile-container">
+                    {/*part 1: user info  */}
+                    <div className="profile">
+                        <div className="user-info">
+                            <img src={user.profile_img} alt="profile image" className="profile-img"/>
+                            <div>
+                                <h1>{user.first_name} {user.last_name}</h1>
+                                <p>{user.position} · {user.years_of_experience}yr, {user.field}</p>
+                            </div>
+                        </div>
+
+                        <div id="user-Q-A">
+                            <div className="answer-question-nav">
+                                <p className={activeTab == 'answers' ? 'active' : ''} onClick={() => handleTabClick('answers')}>Answers</p>
+                                <p className={activeTab === 'questions' ? 'active' : ''} onClick={() => handleTabClick('questions')}>Questions</p>
+                            </div> 
+                            {activeTab === 'answers' && <UserAnswers />}
+                            {activeTab === 'questions' && <UserQuestions/>}
+
                         </div>
                     </div>
 
-                    <div className="Q-A">
-                        <div className="answer-question-nav">
-                            <p className={activeTab == 'answers' ? 'active' : ''} onClick={() => handleTabClick('answers')}>Answers</p>
-                            <p className={activeTab === 'uestions' ? 'active' : ''} onClick={() => handleTabClick('questions')}>Questions</p>
-                        </div> 
-                        {activeTab === 'answers' && <UserAnswers />}
-                        {activeTab === 'questions' && <UserQuestions/>}
-
+                    {/*part 2: credential and subscription */}
+                    <div className="credentials">
+                        <p>Credentials & Highlights</p>
                     </div>
                 </div>
-
-                {/*part 2: credential and subscription */}
-                <div className="credentials">
-
-                </div>
             </div>
+
+           
 
         </div>
 

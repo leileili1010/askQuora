@@ -45,7 +45,7 @@
     border-bottom: 3px solid #f1f2f2; 
 } */
 
-.answer-question-nav p.active {
+.answer-question-nav .active {
     color: #a82723;
     font-weight: bold;
     border-bottom: 3px solid #a82723; 
@@ -126,3 +126,7 @@
 .answer-question-nav p{
     cursor: pointer;
 }
+
+/* #user-Q-A .user-answers {
+    bor
+} */

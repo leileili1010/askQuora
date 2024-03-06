@@ -17,7 +17,6 @@ const UserAnswers = () => {
     
     return (
         <div>
-            <h1>Manage Your Anssers</h1>
             <AnswerList answers = {answers}/>
         </div>
     )

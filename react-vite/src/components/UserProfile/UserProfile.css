@@ -1,0 +1,43 @@
+.background {
+    background-color: white;
+    padding-bottom: 50px;
+}
+
+.profile-container {
+    display: flex;
+    margin: 0 auto;
+    padding-top: 95px;
+    width: 1024px;
+    justify-content: center;
+    gap: 100px;
+}
+
+.profile {
+    width: 572px;
+}
+
+.credentials {
+    width: 356px;
+    border: 1px solid #e2e2e2;;
+}
+
+.profile-img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+
+.user-info {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 25px;
+    margin-bottom: 50px;
+}
+
+.user-info p{
+    font-size: 13px;
+    color: darkgray;
+    margin-top: 10px;
+}
+

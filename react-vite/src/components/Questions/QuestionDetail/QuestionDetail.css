@@ -10,14 +10,6 @@ body {
     z-index: 1000; 
 }
 
-.question-answers-container {
-    width:600px;
-    margin: auto; 
-    display: flex;
-    flex-direction: column;
-
-}
-
 .question-detail {
     display: flex;
     margin: 0 auto;
@@ -27,6 +19,14 @@ body {
     gap: 35px;
     margin-bottom: 50px;
 }
+.question-answers-container {
+    width:600px;
+    margin: auto; 
+    display: flex;
+    flex-direction: column;
+
+}
+
 
 .answers-container {
     margin-top: 15px
