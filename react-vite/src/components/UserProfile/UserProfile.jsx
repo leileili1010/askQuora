@@ -4,6 +4,8 @@ import { useNavigate} from "react-router-dom";
 import { useEffect, useState} from "react";
 import UserAnswers from "../Answers/UserAnswers/UserAnswers";
 import UserQuestions from "../Questions/UserQuestions/UserQuestions";
+import { thunkGetAuthorAnswers } from "../../redux/answer";
+import { thunkGetUserQuestions } from "../../redux/question";
 import "./UserProfile.css"
 
 const UserProfile = () => {
@@ -11,7 +13,16 @@ const UserProfile = () => {
     const navigate = useNavigate()
     const user = useSelector(state => state.session.user)
     const [activeTab, setActiveTab] = useState('answers');
+    const answersObj = useSelector(state => state.answers)
+    const questionsObj = useSelector(state => state.questions)
+    const answerTitle = Object.keys(answersObj).length>1? `${Object.keys(answersObj).length} Answers`: `${Object.keys(answersObj).length} Answer`
+    const questionTitle = Object.keys(answersObj).length>1? `${Object.keys(questionsObj).length} Questions`: `${Object.keys(questionsObj).length} Questions`
 
+    const dateString = user.created_at;
+    const date = new Date(dateString);
+    const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    const formattedDate = `${monthNames[date.getMonth()]} ${date.getFullYear()}`;
+ 
     const handleTabClick = (tab) => {
         setActiveTab(tab);
     };
@@ -20,11 +31,19 @@ const UserProfile = () => {
         if (!user) navigate("/");
       }, [user, navigate]);
 
+      useEffect(() => {
+        dispatch(thunkGetAuthorAnswers())
+    }, [dispatch])
+
+    useEffect(() => {
+        dispatch(thunkGetUserQuestions())
+     }, [dispatch])
+
     return (
         <div className="User-profile-page">
             <Navigation/>
 
-            <div className="background">
+            <div className={activeTab == 'answers' ? 'background-answer' : 'background-Qs'}>
                 <div className="profile-container">
                     {/*part 1: user info  */}
                     <div className="profile">
@@ -38,19 +57,55 @@ const UserProfile = () => {
 
                         <div id="user-Q-A">
                             <div className="answer-question-nav">
-                                <p className={activeTab == 'answers' ? 'active' : ''} onClick={() => handleTabClick('answers')}>Answers</p>
-                                <p className={activeTab === 'questions' ? 'active' : ''} onClick={() => handleTabClick('questions')}>Questions</p>
+                                <p className={activeTab == 'answers' ? 'active' : ''} onClick={() => handleTabClick('answers')}>{answerTitle}</p>
+                                <p className={activeTab === 'questions' ? 'active' : ''} onClick={() => handleTabClick('questions')}>{questionTitle}</p>
                             </div> 
-                            {activeTab === 'answers' && <UserAnswers />}
-                            {activeTab === 'questions' && <UserQuestions/>}
+                            {activeTab === 'answers' && <UserAnswers answersObj={answersObj} answerTitle={answerTitle}/>}
+                            {activeTab === 'questions' && <UserQuestions questionsObj={questionsObj} questionTitle={questionTitle}/>}
 
                         </div>
                     </div>
 
                     {/*part 2: credential and subscription */}
-                    <div className="credentials">
-                        <p>Credentials & Highlights</p>
+                    <div className="credentials-highlights">
+                        <div className="credentials">
+                            <p className="credentials-title" >Credentials & Highlights</p>
+                           
+                           <div className="credentials-details">
+                                <div>
+                                    <i className="fa-solid fa-briefcase"></i>
+                                </div>
+                                <p>{user.position}</p>
+                            </div>
+
+                            <div className="credentials-details">
+                                <div>
+                                    <i className="fa-regular fa-clock"></i>
+                                </div>
+                                <p>{user.years_of_experience}-yr of experience</p>
+                            </div>
+
+                            <div className="credentials-details">
+                                <div>
+                                    <i className="fa-solid fa-laptop"></i>
+                                </div>
+                                <p>{user.field}</p>
+                            </div>
+
+                            <div className="credentials-details">
+                                <div>
+                                    <i className="fa-regular fa-calendar"></i>
+                                </div>
+                                <p>Joined {formattedDate}</p>
+                            </div>
+                        </div>
+
+                        <div className="subscriptions">
+                            <p className="credentials-title" >Subscriptions</p>
+                            <p className="credentials-details">Currently no supscriptions</p>
+                        </div>
                     </div>
+                    
                 </div>
             </div>
 

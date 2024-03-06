@@ -1,22 +1,16 @@
-import { useDispatch, useSelector } from "react-redux";
-import { thunkGetAuthorAnswers } from "../../../redux/answer";
-import { useEffect } from "react";
+import { useDispatch} from "react-redux";
 import AnswerList from "../AnswerList/AnswerList";
 
 
-const UserAnswers = () => {
+const UserAnswers = ({answersObj, answerTitle}) => {
     const dispatch = useDispatch()
-    const answersObj = useSelector(state => state.answers)
-
-    useEffect(() => {
-        dispatch(thunkGetAuthorAnswers())
-    }, [dispatch])
 
     if (answersObj.length == 0) return null
     const answers = Object.values(answersObj)
     
     return (
-        <div>
+        <div id="user-answers">
+            <p className="Q-A-title">{answerTitle}</p>
             <AnswerList answers = {answers}/>
         </div>
     )
