@@ -25,11 +25,24 @@ def get_topic_answers(topic_id):
 
     if topic.answers:
         return [answer.to_dict() for answer in topic.answers]
-    # answers = Answer.query.filter(Answer.topic_id == topic_id).order_by(Answer.created_at.desc()).all()
-    # if not answers:
-    #     return []
     else:
         return []
+    
+# Get a topic with all its questions
+@login_required
+@topic_routes.route('/<int:topic_id>/questions')
+def get_topic(topic_id): 
+    topic = Topic.query.get(topic_id)
+    if not topic:
+        return {"errors": {"message": "Topic not found"}}, 404
+
+    topic_dict = topic.to_dict()
+
+    topic_dict["questions"] = [question.to_dict() for question in topic.questions]
+
+    print("===========================================", topic_dict)
+    return topic_dict
+    
     
 # Get answers for all topics
 @login_required
@@ -57,3 +70,4 @@ def get_topics_answers():
           topics_dict[topic.id]["questions"] = [question.to_dict() for question in topic.questions]
      
     return topics_dict
+
