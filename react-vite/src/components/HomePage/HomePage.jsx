@@ -7,7 +7,6 @@ import { useNavigate} from "react-router-dom";
 import "./HomePage.css"
 import CreateQuestionModal from '../Questions/CreateQuestion/CreateQuestion'
 import OpenModalButton from '../OpenModalButton/OpenModalButton'
-// import {thunkGetQuestions, returnInitialQuestionState} from "../../redux/question" 
 import { thunkGetTopicsQuestions, returnTopicInitial } from "../../redux/topic";
 import TopicsQuestionsList from "../Topics/TopicsQuestion/TopicsQuestionsList";
 
@@ -15,7 +14,6 @@ const HomePage = () => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const answersObj = useSelector(state => state.answers)
-    // const questionsObj = useSelector(state => state.questions)
     const user = useSelector(state => state.session.user)
     const profile_img = user?.profile_img
     const [activeTab, setActiveTab] = useState('answers');
@@ -40,22 +38,12 @@ const HomePage = () => {
           };
     }, [dispatch])
 
-    // useEffect(() => {
-    //     dispatch(thunkGetQuestions());
-    //     return () => {
-    //         dispatch(returnInitialQuestionState());
-    //       };
-    // }, [dispatch])
-
     const handleTabClick = (tab) => {
         setActiveTab(tab);
     };
 
     if (answersObj.length == 0 && activeTab == 'answers') return null
     const answers = Object.values(answersObj)
-
-    // if (questionsObj.length == 0 && activeTab == 'questions') return null
-    // const questions = Object.values(questionsObj)
     
     return (
         <div className="homepage">
@@ -64,8 +52,10 @@ const HomePage = () => {
             </div>
 
             <div className="topics">
+                {/* spaces and topics*/}
                 <div className="spaces-container"></div>
 
+                 {/* spaces and topics*/}
                 <div className="topic-answers">
                     <div className="ask-answer">
                         <div className="profile-question">
@@ -91,7 +81,7 @@ const HomePage = () => {
                     </div>
                     <div className="answer-question-nav">
                         <p className={activeTab == 'answers' ? 'active' : ''} onClick={() => handleTabClick('answers')}>Answers</p>
-                        <p className={activeTab === 'questions' ? 'active' : ''} onClick={() => handleTabClick('questions')}>Questions</p>
+                        <p className={activeTab === 'uestions' ? 'active' : ''} onClick={() => handleTabClick('questions')}>Questions</p>
                     </div> 
                     {activeTab === 'answers' && <AnswerList answers={answers}/>}
                     {activeTab === 'questions' && <TopicsQuestionsList topics={topics}/>}

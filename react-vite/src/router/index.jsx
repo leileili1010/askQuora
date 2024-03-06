@@ -3,11 +3,10 @@ import SignupFormPage from '../components/SignupFormPage';
 import Layout from './Layout';
 import QuestionList from '../components/Questions/QuestionList/QuestionList';
 import QuestionDetail from '../components/Questions/QuestionDetail/QuestionDetail';
-import UserQuestions from '../components/Questions/UserQuestions/UserQuestions';
 import TopicAnswers from '../components/Answers/TopicAnswers/TopicAnswers';
-import UserAnswers from '../components/Answers/UserAnswers/UserAnswers';
 import HomePage from '../components/HomePage/HomePage';
 import LandingPage from '../components/HomePage/LandingPage';
+import UserProfile from '../components/UserProfile/UserProfile';
 
 export const router = createBrowserRouter([
   {
@@ -33,17 +32,17 @@ export const router = createBrowserRouter([
       },
       {
         path: "user-profile/:userId",
-        element: <Outlet />,
-        children: [
-          {
-            path: 'questions',
-            element: <UserQuestions />
-          },
-          {
-            path: 'answers',
-            element: <UserAnswers />
-          }
-        ]
+        element: <UserProfile />,
+        // children: [
+        //   {
+        //     path: 'questions',
+        //     element: <UserQuestions />
+        //   },
+        //   {
+        //     path: 'answers',
+        //     element: <UserAnswers />
+        //   }
+        // ]
       },
       {
         path: "topics",
@@ -65,7 +64,7 @@ export const router = createBrowserRouter([
       },
       {
         path: '/*',
-        element: <h1>Welcome!</h1>
+        element: <HomePage />
       }
 
     ],

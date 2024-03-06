@@ -1,6 +1,7 @@
 const RETURN_INITIAL = "topics/RETURN_INITIAL";
 const GET_TOPICS = "topics/GET_TOPICS";
 const GET_TOPICS_Questions = "topics/GET_TOPICS_Questions";
+const GET_TOPIC = "topics/GET_TOPIC";
 
 // action creator
 export const returnTopicInitial = () => ({
@@ -17,6 +18,12 @@ const getTopicsQuestins = (topic_dict) => ({
   type: GET_TOPICS_Questions,
   topic_dict
 })
+
+const getTopic = (topic) => ({
+  type: GET_TOPIC,
+  topic
+})
+
 
 
 // thunk
@@ -44,6 +51,20 @@ export const thunkGetTopicsQuestions = () => async (dispatch) => {
   }
 }
 
+// get a topic with all its questions
+export const thunkGetTopic = (topicId) => async(dispatch) => {
+  const res = await fetch(`/api/topics/${topicId}/questions`)
+  
+  if (res.ok) {
+    const topic = await res.json()
+    dispatch(getTopic(topic))
+  } else {
+    const errs = await res.json()
+    return errs;
+  }
+  
+}
+ 
 // topics reducer
 const initialState = {};
 
@@ -55,6 +76,9 @@ function topicReducer(state = initialState, action) {
           newState[topic.id] = topic
         })
         return newState
+      }
+      case GET_TOPIC: {
+        return action.topic;
       }
       case RETURN_INITIAL: {
         return initialState;
