@@ -1,6 +1,7 @@
 .background {
     background-color: white;
     padding-bottom: 50px;
+    height: 100vh;
 }
 
 .profile-container {
@@ -18,7 +19,7 @@
 
 .credentials {
     width: 356px;
-    border: 1px solid #e2e2e2;;
+    border: 1px solid #e2e2e2;
 }
 
 .profile-img {
@@ -41,3 +42,14 @@
     margin-top: 10px;
 }
 
+#user-Q-A .answer {
+    border: none;
+    border-bottom: 1px solid #e2e2e2;
+}
+
+.Q-A-title {
+    font-size: 14px;
+    padding-bottom: 12px;
+    color: black;
+    border-bottom: 1px solid #e2e2e2;
+}

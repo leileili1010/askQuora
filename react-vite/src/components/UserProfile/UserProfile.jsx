@@ -4,6 +4,8 @@ import { useNavigate} from "react-router-dom";
 import { useEffect, useState} from "react";
 import UserAnswers from "../Answers/UserAnswers/UserAnswers";
 import UserQuestions from "../Questions/UserQuestions/UserQuestions";
+import { thunkGetAuthorAnswers } from "../../redux/answer";
+import { thunkGetUserQuestions } from "../../redux/question";
 import "./UserProfile.css"
 
 const UserProfile = () => {
@@ -11,6 +13,11 @@ const UserProfile = () => {
     const navigate = useNavigate()
     const user = useSelector(state => state.session.user)
     const [activeTab, setActiveTab] = useState('answers');
+    const answersObj = useSelector(state => state.answers)
+    const questionsObj = useSelector(state => state.questions)
+    const answerTitle = Object.keys(answersObj).length>1? `${Object.keys(answersObj).length} Answers`: `${Object.keys(answersObj).length} Answer`
+    const questionTitle = Object.keys(answersObj).length>1? `${Object.keys(questionsObj).length} Questions`: `${Object.keys(questionsObj).length} Questions`
+ 
 
     const handleTabClick = (tab) => {
         setActiveTab(tab);
@@ -19,6 +26,14 @@ const UserProfile = () => {
     useEffect(() => {
         if (!user) navigate("/");
       }, [user, navigate]);
+
+      useEffect(() => {
+        dispatch(thunkGetAuthorAnswers())
+    }, [dispatch])
+
+    useEffect(() => {
+        dispatch(thunkGetUserQuestions())
+     }, [dispatch])
 
     return (
         <div className="User-profile-page">
@@ -38,11 +53,11 @@ const UserProfile = () => {
 
                         <div id="user-Q-A">
                             <div className="answer-question-nav">
-                                <p className={activeTab == 'answers' ? 'active' : ''} onClick={() => handleTabClick('answers')}>Answers</p>
-                                <p className={activeTab === 'questions' ? 'active' : ''} onClick={() => handleTabClick('questions')}>Questions</p>
+                                <p className={activeTab == 'answers' ? 'active' : ''} onClick={() => handleTabClick('answers')}>{answerTitle}</p>
+                                <p className={activeTab === 'questions' ? 'active' : ''} onClick={() => handleTabClick('questions')}>{questionTitle}</p>
                             </div> 
-                            {activeTab === 'answers' && <UserAnswers />}
-                            {activeTab === 'questions' && <UserQuestions/>}
+                            {activeTab === 'answers' && <UserAnswers answersObj={answersObj} answerTitle={answerTitle}/>}
+                            {activeTab === 'questions' && <UserQuestions questionsObj={questionsObj} questionTitle={questionTitle}/>}
 
                         </div>
                     </div>

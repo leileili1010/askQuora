@@ -8,7 +8,7 @@ import "./HomePage.css"
 import CreateQuestionModal from '../Questions/CreateQuestion/CreateQuestion'
 import OpenModalButton from '../OpenModalButton/OpenModalButton'
 import { thunkGetTopicsQuestions, returnTopicInitial } from "../../redux/topic";
-import TopicsQuestionsList from "../Topics/TopicsQuestion/TopicsQuestionsList";
+import TopicsQuestionsList from "../Topics/TopicsQuestion/TopicsQuestionsList"
 
 const HomePage = () => {
     const dispatch = useDispatch()
