@@ -20,8 +20,11 @@ const HomePage = () => {
     const [activeTab, setActiveTab] = useState('answers');
     const [deleteQ, setDeleteQ] = useState(0);
     const [editQ, setEditQ] = useState(0);
+    const [deleteA, setDeleteA] = useState(0)
+    const [editA, setEditA] = useState(0)
     const topicsObj =  useSelector(state => state.topics)
     const topics = Object.values(topicsObj)
+    console.log("🚀 ~ HomePage ~ before effect deleteA:", deleteA)
 
     useEffect(() => {
         if (!user) navigate("/");
@@ -29,14 +32,14 @@ const HomePage = () => {
 
     useEffect(() => {
         dispatch(thunkSetUserAnswers())
-    }, [dispatch])
+    }, [dispatch, editA, deleteA])
 
     useEffect(() => {
         dispatch(thunkGetAllAnswers());
         return () => {
             dispatch(returnInitial());
           };
-    }, [dispatch])
+    }, [dispatch, editA, deleteA])
 
     useEffect(() => {
         dispatch(thunkGetTopicsQuestions());
@@ -44,6 +47,8 @@ const HomePage = () => {
             dispatch(returnTopicInitial());
           };
     }, [dispatch,deleteQ, editQ])
+
+    console.log("🚀 ~ HomePage ~ after effect deleteA:", deleteA)
 
     const handleTabClick = (tab) => {
         setActiveTab(tab);
@@ -90,7 +95,7 @@ const HomePage = () => {
                         <p className={activeTab == 'answers' ? 'active' : ''} onClick={() => handleTabClick('answers')}>Answers</p>
                         <p className={activeTab === 'questions' ? 'active' : ''} onClick={() => handleTabClick('questions')}>Questions</p>
                     </div> 
-                    {activeTab === 'answers' && <AnswerList answers={answers}/>}
+                    {activeTab === 'answers' && <AnswerList answers={answers} setDeleteA={setDeleteA} setEditA={setEditA}/>}
                     {activeTab === 'questions' && <TopicsQuestionsList topics={topics} setDeleteQ={setDeleteQ} setEditQ={setEditQ}/>}
                 </div>
                

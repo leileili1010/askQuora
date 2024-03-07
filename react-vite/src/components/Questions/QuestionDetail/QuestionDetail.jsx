@@ -23,6 +23,8 @@ const QuestionDetail = () => {
     const questions = topic?.questions;
     const [deleteQ, setDeleteQ] = useState(0)
     const [editQ, setEditQ] = useState(0)
+    const [deleteA, setDeleteA] = useState(0)
+    const [editA, setEditA] = useState(0)
     let relevantQs
 
     if (questions?.length > 1)
@@ -51,7 +53,7 @@ const QuestionDetail = () => {
         return () => {
             dispatch(returnInitial());
           };
-    }, [dispatch, questionId])
+    }, [dispatch, questionId, editA, deleteA])
 
     if (answersObj.length == 0) return null
     
@@ -78,7 +80,7 @@ const QuestionDetail = () => {
                     <QuestionListItem question={question} setDeleteQ={setDeleteQ} setEditQ={setEditQ}/>
                     {/*answers list*/}
                     <div className="answers-container">
-                        <AnswerList answers = {answers}/>
+                        <AnswerList answers = {answers} setDeleteA={setDeleteA} seEditA={setEditA}/>
                     </div>
                 </div>
                 

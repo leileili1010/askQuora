@@ -5,7 +5,7 @@ import {useState} from "react"
 import './AnswerListItem.css'
 
 
- const AnswerListItem = ({answer}) => {
+ const AnswerListItem = ({answer, setDeleteA, setEditA}) => {
     const user = useSelector(state => state.session.user)
     const isOwner = user?.id == answer?.author.id
     const answer_s = answer.question.numOfAnswers > 1? `1 of ${answer.question.numOfAnswers} answers`: "Currently 1 answer"
@@ -94,7 +94,7 @@ import './AnswerListItem.css'
             </div>
             {isOwner && (
                 <div className="operation-button">
-                    <AnswerOperationButton answer={answer} />
+                    <AnswerOperationButton answer={answer} setDeleteA={setDeleteA} seEditA={setEditA} />
                 </div>
             )}
         </div>

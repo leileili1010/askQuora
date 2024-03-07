@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useModal } from "../../../context/Modal";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch} from "react-redux";
 import { thunkEditQuestion } from "../../../redux/question";
 
 const EditQuestionModal = ({question, setEditQ}) => {

@@ -1,12 +1,11 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useModal } from "../../../context/Modal"
-import { useNavigate } from "react-router-dom";
 import Editor from "../CreateAnswer/Editor"
 import { useState } from "react";
 import { thunkEditAnswer } from "../../../redux/answer";
 
 
-const EditAnswerModal = ({answer}) => {    
+const EditAnswerModal = ({answer, setEditA}) => {    
     const dispatch = useDispatch();
     const { closeModal } = useModal()
     const user = useSelector(state => state.session.user)
@@ -38,6 +37,7 @@ const EditAnswerModal = ({answer}) => {
             await dispatch(thunkEditAnswer(formData, answerId))
             .then(() => {
                 closeModal()
+                setEditA(prev => prev + 1)
             })
             .catch(async (res) => {
               console.log("Inside errors catch =>", res);

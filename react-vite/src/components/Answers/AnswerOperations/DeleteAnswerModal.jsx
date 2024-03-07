@@ -1,12 +1,10 @@
 import { useModal } from "../../../context/Modal";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate, } from "react-router-dom";
 import { thunkDeleteAnswer } from "../../../redux/answer";
 
 
-const DeleteAnswerModal = ({answer}) => {
+const DeleteAnswerModal = ({answer, setDeleteA}) => {
     const dispatch = useDispatch()
-    const navigate = useNavigate()
     const answerId = answer.id
     const { closeModal } = useModal()
     const user = useSelector(state => state.session.user)
@@ -23,9 +21,9 @@ const DeleteAnswerModal = ({answer}) => {
     const handleDelete = async (e) => {
         e.preventDefault()
         await dispatch(thunkDeleteAnswer(answerId))
-       
+        setDeleteA(prev => prev + 1)
         closeModal()
-        navigate(`/user-profile/${user.id}/answers`)
+        // navigate(`/user-profile/${user.id}`)
     }
 
     return (

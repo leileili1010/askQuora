@@ -24,6 +24,8 @@ const UserProfile = () => {
     const formattedDate = `${monthNames[date.getMonth()]} ${date.getFullYear()}`;
     const [deleteQ, setDeleteQ] = useState(0)
     const [editQ, setEditQ] = useState(0)
+    const [deleteA, setDeleteA] = useState(0)
+    const [editA, setEditA] = useState(0)
 
     const handleTabClick = (tab) => {
         setActiveTab(tab);
@@ -35,7 +37,7 @@ const UserProfile = () => {
 
       useEffect(() => {
         dispatch(thunkGetAuthorAnswers())
-    }, [dispatch])
+    }, [dispatch, editA, deleteA])
 
     useEffect(() => {
         dispatch(thunkGetUserQuestions())
@@ -62,7 +64,7 @@ const UserProfile = () => {
                                 <p className={activeTab == 'answers' ? 'active' : ''} onClick={() => handleTabClick('answers')}>{answerTitle}</p>
                                 <p className={activeTab === 'questions' ? 'active' : ''} onClick={() => handleTabClick('questions')}>{questionTitle}</p>
                             </div> 
-                            {activeTab === 'answers' && <UserAnswers answersObj={answersObj} answerTitle={answerTitle}/>}
+                            {activeTab === 'answers' && <UserAnswers answersObj={answersObj} answerTitle={answerTitle} setDeleteA={setDeleteA} seEditA={setEditA}/>}
                             {activeTab === 'questions' && <UserQuestions questionsObj={questionsObj} setDeleteQ={setDeleteQ} setEditQ={setEditQ} questionTitle={questionTitle}/>}
 
                         </div>

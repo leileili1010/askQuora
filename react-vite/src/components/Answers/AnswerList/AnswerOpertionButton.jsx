@@ -3,7 +3,7 @@ import OpenModalMenuItem from "../../Navigation/OpenModalMenuItem";
 import DeleteAnswerModal from '../AnswerOperations/DeleteAnswerModal';
 import EditAnswerModal from "../AnswerOperations/EditAnswerModal";
 
-const AnswerOperationButton = ({answer}) => {
+const AnswerOperationButton = ({answer,setDeleteA, setEditA}) => {
     const [showMenu, setShowMenu] = useState(false);
     const ulRef = useRef();
 
@@ -40,12 +40,12 @@ const AnswerOperationButton = ({answer}) => {
                     <OpenModalMenuItem
                       itemText="Edit Answer"
                       onItemClick={closeMenu}
-                      modalComponent={<EditAnswerModal answer={answer} />}
+                      modalComponent={<EditAnswerModal answer={answer} seEditA={setEditA}/>}
                     />
                     <OpenModalMenuItem
                       itemText="Delete Answer"
                       onItemClick={closeMenu}
-                      modalComponent={<DeleteAnswerModal answer={answer}  />}
+                      modalComponent={<DeleteAnswerModal answer={answer} setDeleteA={setDeleteA} />}
                     />
                 </ul>
             )}
