@@ -9,6 +9,7 @@ import CreateQuestionModal from '../Questions/CreateQuestion/CreateQuestion'
 import OpenModalButton from '../OpenModalButton/OpenModalButton'
 import { thunkGetTopicsQuestions, returnTopicInitial } from "../../redux/topic";
 import TopicsQuestionsList from "../Topics/TopicsQuestion/TopicsQuestionsList"
+import { thunkSetUserAnswers } from "../../redux/session";
 
 const HomePage = () => {
     const dispatch = useDispatch()
@@ -20,9 +21,16 @@ const HomePage = () => {
     const topicsObj =  useSelector(state => state.topics)
     const topics = Object.values(topicsObj)
 
+    //testing
+    const [deleteQ, setDeleteQ] = useState(0);
+
     useEffect(() => {
         if (!user) navigate("/");
       }, [user, navigate]);
+
+    useEffect(() => {
+        dispatch(thunkSetUserAnswers())
+    }, [dispatch])
 
     useEffect(() => {
         dispatch(thunkGetAllAnswers());
@@ -36,7 +44,7 @@ const HomePage = () => {
         return () => {
             dispatch(returnTopicInitial());
           };
-    }, [dispatch])
+    }, [dispatch,deleteQ])
 
     const handleTabClick = (tab) => {
         setActiveTab(tab);
@@ -84,7 +92,7 @@ const HomePage = () => {
                         <p className={activeTab === 'questions' ? 'active' : ''} onClick={() => handleTabClick('questions')}>Questions</p>
                     </div> 
                     {activeTab === 'answers' && <AnswerList answers={answers}/>}
-                    {activeTab === 'questions' && <TopicsQuestionsList topics={topics}/>}
+                    {activeTab === 'questions' && <TopicsQuestionsList topics={topics} setDeleteQ={setDeleteQ}/>}
                 </div>
                
                <div className="relevant-spaces-container"></div>

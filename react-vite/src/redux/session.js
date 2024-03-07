@@ -1,5 +1,6 @@
 const SET_USER = 'session/setUser';
 const REMOVE_USER = 'session/removeUser';
+const SET_USER_ANSWERS = 'session/setUserAnswers';
 
 const setUser = (user) => ({
   type: SET_USER,
@@ -9,6 +10,22 @@ const setUser = (user) => ({
 const removeUser = () => ({
   type: REMOVE_USER
 });
+
+const setUserAnswers = (answers) => ({
+  type: SET_USER_ANSWERS,
+  answers
+})
+
+export const thunkSetUserAnswers = () => async (dispatch) => {
+  const res = await fetch(`/api/questions/currrent/answers`)
+  if (res.ok) {
+      const answers = await res.json();
+      dispatch(setUserAnswers(answers));
+  } else {
+      const errs = await res.json()
+      return errs;
+  }
+}
 
 export const thunkAuthenticate = () => async (dispatch) => {
 	const response = await fetch("/api/auth/");
@@ -70,6 +87,11 @@ function sessionReducer(state = initialState, action) {
       return { ...state, user: action.payload };
     case REMOVE_USER:
       return { ...state, user: null };
+    case SET_USER_ANSWERS: {
+      const newState = {...state}
+      newState["userAnswers"] = action.answers
+      return newState;
+    }
     default:
       return state;
   }

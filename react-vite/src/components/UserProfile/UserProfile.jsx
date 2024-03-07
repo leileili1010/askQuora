@@ -22,7 +22,8 @@ const UserProfile = () => {
     const date = new Date(dateString);
     const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
     const formattedDate = `${monthNames[date.getMonth()]} ${date.getFullYear()}`;
- 
+    const [deleteQ, setDeleteQ] = useState(0)
+
     const handleTabClick = (tab) => {
         setActiveTab(tab);
     };
@@ -37,7 +38,7 @@ const UserProfile = () => {
 
     useEffect(() => {
         dispatch(thunkGetUserQuestions())
-     }, [dispatch])
+     }, [dispatch, deleteQ])
 
     return (
         <div className="User-profile-page">
@@ -61,7 +62,7 @@ const UserProfile = () => {
                                 <p className={activeTab === 'questions' ? 'active' : ''} onClick={() => handleTabClick('questions')}>{questionTitle}</p>
                             </div> 
                             {activeTab === 'answers' && <UserAnswers answersObj={answersObj} answerTitle={answerTitle}/>}
-                            {activeTab === 'questions' && <UserQuestions questionsObj={questionsObj} questionTitle={questionTitle}/>}
+                            {activeTab === 'questions' && <UserQuestions questionsObj={questionsObj} setDeleteQ={setDeleteQ} questionTitle={questionTitle}/>}
 
                         </div>
                     </div>

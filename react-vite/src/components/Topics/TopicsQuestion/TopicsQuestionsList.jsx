@@ -1,7 +1,7 @@
 import QuestionListItem from "../../Questions/QuestionListItem/QuestionListItem";
 import './TopicsQuestionsList.css'
 
-const TopicsQuestionsList = ({topics}) => {
+const TopicsQuestionsList = ({topics, setDeleteQ}) => {
     if(topics.length == 0) return null;
 
  return (
@@ -18,7 +18,7 @@ const TopicsQuestionsList = ({topics}) => {
                         </div>
                         
                         {topic.questions.map(question => (
-                            <QuestionListItem question={question} key={question.id} />
+                            <QuestionListItem question={question} setDeleteQ={setDeleteQ} key={question.id} />
                         ))}
                         <div className="more">
                             More <i className="fa-solid fa-arrow-down"></i>

@@ -7,9 +7,20 @@ import CreateAnswerModal from "../../Answers/CreateAnswer/CreateAnswer";
 import "./QuestionListItem.css"
 
 
-const QuestionListItem = ({question}) => {
+const QuestionListItem = ({question, setDeleteQ}) => {
     const user = useSelector(state => state.session.user)
     const isOwner = user?.id == question?.owner.id
+    const userAnswers = useSelector(state => state.session.userAnswers)
+    const questionId = question.id;
+    let ifAnswered = false;
+
+    if (userAnswers?.length > 0) {
+        for (let userAnswer of userAnswers)
+            if (userAnswer.question.id === questionId) {
+                ifAnswered = true;
+                return;
+            } 
+    }
 
     let answer;
     if (question.numOfAnswers > 1) answer =  `${question.numOfAnswers} answers`
@@ -24,30 +35,36 @@ const QuestionListItem = ({question}) => {
             <div className="button-link">
                 
                 <div className="create-answer-button">
-                    {isOwner?
-                        (
-                            <Link className="answers-link" to={`/questions/${question.id}`}>Currently {answer} for your question </Link>
-                        ):
-                        (
-                            <>
-                                <div className="answer-modal">
-                                <i className="fa-regular fa-pen-to-square"></i> 
-                                <OpenModalButtonProps
-                                buttonText="Answer"
-                                modalComponent={props => <CreateAnswerModal {...props} />}
-                                modalProps={{ question }}
-                                />
-                                </div>
-                                <Link className="answers-link" to={`/questions/${question.id}`}> {answer}</Link> 
-                            </>
-                        )
+                    {isOwner &&
+                        <Link className="answers-link" to={`/questions/${question.id}`}>Currently {answer} for your question </Link>
                     }
+
+                    {!isOwner && !ifAnswered &&
+                        <>
+                            <div className="answer-modal">
+                            <i className="fa-regular fa-pen-to-square"></i> 
+                            <OpenModalButtonProps
+                            buttonText="Answer"
+                            modalComponent={props => <CreateAnswerModal {...props} />}
+                            modalProps={{ question }}
+                            />
+                            </div>
+                            <Link className="answers-link" to={`/questions/${question.id}`}> {answer}</Link> 
+                        </>
+                    }
+
+                    {!isOwner && ifAnswered &&
+                        <>
+                            <p className="already-answered">You already answerd the question</p>
+                            <Link className="answers-link already-answered" to={`/questions/${question.id}`}> {answer}</Link> 
+                        </>
+                    }   
                    
                 </div>
                 
                 {isOwner && (
                 <div className = "operation-button">
-                        <OperationButton question={question}/>
+                        <OperationButton question={question} setDeleteQ={setDeleteQ}/>
                 </div>
                 )}
 
