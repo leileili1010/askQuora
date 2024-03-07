@@ -64,7 +64,7 @@ const UserProfile = () => {
                                 <p className={activeTab == 'answers' ? 'active' : ''} onClick={() => handleTabClick('answers')}>{answerTitle}</p>
                                 <p className={activeTab === 'questions' ? 'active' : ''} onClick={() => handleTabClick('questions')}>{questionTitle}</p>
                             </div> 
-                            {activeTab === 'answers' && <UserAnswers answersObj={answersObj} answerTitle={answerTitle} setDeleteA={setDeleteA} seEditA={setEditA}/>}
+                            {activeTab === 'answers' && <UserAnswers answersObj={answersObj} answerTitle={answerTitle} setDeleteA={setDeleteA} setEditA={setEditA}/>}
                             {activeTab === 'questions' && <UserQuestions questionsObj={questionsObj} setDeleteQ={setDeleteQ} setEditQ={setEditQ} questionTitle={questionTitle}/>}
 
                         </div>

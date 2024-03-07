@@ -46,7 +46,7 @@ const QuestionDetail = () => {
         return () => {
             dispatch(returnInitialQuestionState());
           };
-    }, [dispatch, questionId, deleteQ, editQ])
+    }, [dispatch, questionId, deleteQ, editQ, editA, deleteA])
 
     useEffect(() => {
         dispatch(thunkGetQuestionAnswers(questionId))
@@ -80,7 +80,7 @@ const QuestionDetail = () => {
                     <QuestionListItem question={question} setDeleteQ={setDeleteQ} setEditQ={setEditQ}/>
                     {/*answers list*/}
                     <div className="answers-container">
-                        <AnswerList answers = {answers} setDeleteA={setDeleteA} seEditA={setEditA}/>
+                        <AnswerList answers = {answers} setDeleteA={setDeleteA} setEditA={setEditA}/>
                     </div>
                 </div>
                 

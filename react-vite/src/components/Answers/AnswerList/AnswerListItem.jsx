@@ -94,7 +94,7 @@ import './AnswerListItem.css'
             </div>
             {isOwner && (
                 <div className="operation-button">
-                    <AnswerOperationButton answer={answer} setDeleteA={setDeleteA} seEditA={setEditA} />
+                    <AnswerOperationButton answer={answer} setDeleteA={setDeleteA} setEditA={setEditA} />
                 </div>
             )}
         </div>

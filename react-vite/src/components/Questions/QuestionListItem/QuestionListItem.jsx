@@ -15,11 +15,7 @@ const QuestionListItem = ({question, setDeleteQ, setEditQ}) => {
     let ifAnswered = false;
 
     if (userAnswers?.length > 0) {
-        for (let userAnswer of userAnswers)
-            if (userAnswer.question.id === questionId) {
-                ifAnswered = true;
-                return;
-            } 
+        ifAnswered = userAnswers.some(userAnswer => userAnswer.question.id === questionId);
     }
 
     let answer;

@@ -8,7 +8,7 @@ const UserAnswers = ({answersObj, answerTitle, setDeleteA, setEditA}) => {
     return (
         <div id="user-answers">
             <p className="Q-A-title">{answerTitle}</p>
-            <AnswerList answers = {answers} setDeleteA={setDeleteA} seEditA={setEditA}/>
+            <AnswerList answers = {answers} setDeleteA={setDeleteA} setEditA={setEditA}/>
         </div>
     )
 }

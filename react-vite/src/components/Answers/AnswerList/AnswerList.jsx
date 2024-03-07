@@ -15,7 +15,7 @@ const AnswerList = ({answers, setDeleteA, setEditA}) => {
     return (
         <div className="answer-list-component">
             {answersReversed.map(answer =>
-               <AnswerListItem answer={answer} setDeleteA={setDeleteA} seEditA={setEditA} key={answer.id} />    
+               <AnswerListItem answer={answer} setDeleteA={setDeleteA} setEditA={setEditA} key={answer.id} />    
             )}
         </div>
     )

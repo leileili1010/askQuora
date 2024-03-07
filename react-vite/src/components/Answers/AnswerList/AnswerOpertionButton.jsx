@@ -40,7 +40,7 @@ const AnswerOperationButton = ({answer,setDeleteA, setEditA}) => {
                     <OpenModalMenuItem
                       itemText="Edit Answer"
                       onItemClick={closeMenu}
-                      modalComponent={<EditAnswerModal answer={answer} seEditA={setEditA}/>}
+                      modalComponent={<EditAnswerModal answer={answer} setEditA={setEditA}/>}
                     />
                     <OpenModalMenuItem
                       itemText="Delete Answer"

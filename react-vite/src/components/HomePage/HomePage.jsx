@@ -18,13 +18,12 @@ const HomePage = () => {
     const user = useSelector(state => state.session.user)
     const profile_img = user?.profile_img
     const [activeTab, setActiveTab] = useState('answers');
-    const [deleteQ, setDeleteQ] = useState(0);
-    const [editQ, setEditQ] = useState(0);
+    // const [deleteQ, setDeleteQ] = useState(0);
+    // const [editQ, setEditQ] = useState(0);
     const [deleteA, setDeleteA] = useState(0)
     const [editA, setEditA] = useState(0)
-    const topicsObj =  useSelector(state => state.topics)
-    const topics = Object.values(topicsObj)
-    console.log("🚀 ~ HomePage ~ before effect deleteA:", deleteA)
+    // const topicsObj =  useSelector(state => state.topics)
+    // const topics = Object.values(topicsObj)
 
     useEffect(() => {
         if (!user) navigate("/");
@@ -41,14 +40,13 @@ const HomePage = () => {
           };
     }, [dispatch, editA, deleteA])
 
-    useEffect(() => {
-        dispatch(thunkGetTopicsQuestions());
-        return () => {
-            dispatch(returnTopicInitial());
-          };
-    }, [dispatch,deleteQ, editQ])
+    // useEffect(() => {
+    //     dispatch(thunkGetTopicsQuestions());
+    //     return () => {
+    //         dispatch(returnTopicInitial());
+    //       };
+    // }, [dispatch,deleteQ, editQ])
 
-    console.log("🚀 ~ HomePage ~ after effect deleteA:", deleteA)
 
     const handleTabClick = (tab) => {
         setActiveTab(tab);
@@ -96,7 +94,7 @@ const HomePage = () => {
                         <p className={activeTab === 'questions' ? 'active' : ''} onClick={() => handleTabClick('questions')}>Questions</p>
                     </div> 
                     {activeTab === 'answers' && <AnswerList answers={answers} setDeleteA={setDeleteA} setEditA={setEditA}/>}
-                    {activeTab === 'questions' && <TopicsQuestionsList topics={topics} setDeleteQ={setDeleteQ} setEditQ={setEditQ}/>}
+                    {activeTab === 'questions' && <TopicsQuestionsList />}
                 </div>
                
                <div className="relevant-spaces-container"></div>
