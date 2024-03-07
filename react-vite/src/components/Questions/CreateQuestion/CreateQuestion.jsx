@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { thunkGetTopics, returnTopicInitial} from "../../../redux/topic";
 import {thunkCreateQuestion} from "../../../redux/question";
 import { useNavigate } from "react-router-dom";
+import "./CreateQuestion.css"
 
 
 const CreateQuestionModal = () => {
@@ -66,9 +67,24 @@ const CreateQuestionModal = () => {
       }
 
     return (
-        <div>
-            <form onSubmit={handleQuestionSubmit}>
+        <div id="create-q-modal">
+            <form className="create-q-form" onSubmit={handleQuestionSubmit}>
+                <div className="cancel-icon" onClick={handleCancel}> <i class="fa-regular fa-circle-xmark"></i></div>
+              
+                <div className="user-add-q">
+                    <div>
+                        <img className="prfile-img" src={user.profile_img} />
+                    </div>
+                    <div>
+                        <i class="fa-solid fa-play"></i>
+                    </div>
+                    <div className="add-question">
+                        <p>Add Question</p>
+                    </div>
+                </div>
+                
                 <label htmlFor="title">
+                    
                     <textarea
                         name = 'title' 
                         type="text" 
@@ -82,12 +98,15 @@ const CreateQuestionModal = () => {
                 <div className="question-errors">
                     {"title" in errors && <p >{errors.title}</p>}
                 </div>
-                 <button type="submit">
-                    Add Question
-                </button>
-                <button onClick={handleCancel}>
-                    Cancel
-                </button>
+                <div className="create-q-button-container">
+                    <button id="question-cancel" onClick={handleCancel}>
+                        Cancel
+                    </button>
+                    <button id="question-submit" type="submit">
+                        Add Question
+                    </button>
+                </div>      
+               
             </form>
         </div>
     );

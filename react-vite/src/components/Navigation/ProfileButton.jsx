@@ -39,7 +39,7 @@ function ProfileButton() {
   };
 
   return (
-    <>
+    <div className="profile-button-container">
       {hasProfileImg ? (
         <img
           className="nav-profile-img"
@@ -68,7 +68,7 @@ function ProfileButton() {
             </> 
         </ul>
       )}
-    </>
+    </div>
   );
 }
 

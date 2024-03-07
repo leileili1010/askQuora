@@ -59,6 +59,7 @@ const CreateAnswerModal = ({question}) => {
                     value={detail}
                     />
                     {"detail" in errors && <p >{errors.tdetail}</p>}
+                    <button type="submit">Cancel</button>
                     <button type="submit">Post</button>
                 </form>
             </div>

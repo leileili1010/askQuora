@@ -1,5 +1,38 @@
+.profile-button-container {
+  position: relative;
+  display: inline-block;
+}
+
 .profile-dropdown {
   position: absolute;
+  top: 120%; 
+  right: 50%; 
+  transform: translateX(33%); 
+  margin-top: 8px; 
+  border: 1px solid #ddd;
+  background-color: white;
+}
+
+.profile-dropdown::before {
+  content: "";
+  position: absolute;
+  top: -9px; 
+  left: 50%;
+  transform: translateX(-50%); 
+  border-left: 9px solid transparent;
+  border-right: 9px solid transparent;
+  border-bottom: 9px solid #ddd; 
+}
+
+.profile-dropdown::after {
+  content: "";
+  position: absolute;
+  top: -8px;
+  left: 50%; 
+  transform: translateX(-50%); 
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-bottom: 8px solid white; 
 }
 
 .hidden {
