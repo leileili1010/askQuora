@@ -122,7 +122,7 @@ answers = [
     },
     # Q11
     {
-        "detail": "<p>To get started with machine learning, begin by familiarizing yourself with essential concepts such as supervised learning, unsupervised learning, and neural networks. Online courses like Andrew Ng's Machine Learning on Coursera or fast.ai's Practical Deep Learning for Coders provide excellent introductions to machine learning concepts and implementation using popular libraries like TensorFlow and PyTorch.</p><br><p><img src='https://askcora.s3.us-west-1.amazonaws.com/Answer_img/ml.pngg'></p><br>",
+        "detail": "<p>To get started with machine learning, begin by familiarizing yourself with essential concepts such as supervised learning, unsupervised learning, and neural networks. Online courses like Andrew Ng's Machine Learning on Coursera or fast.ai's Practical Deep Learning for Coders provide excellent introductions to machine learning concepts and implementation using popular libraries like TensorFlow and PyTorch.</p><br><p><img src='https://askcora.s3.us-west-1.amazonaws.com/Answer_img/ml.png'></p><br>",
         "author_id": 2,
         "question_id": 11,
         "topic_id": 4

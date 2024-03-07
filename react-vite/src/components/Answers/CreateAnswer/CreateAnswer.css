@@ -36,6 +36,38 @@
     border-radius: 8px;
     border: 1px solid #ddd;
     padding: 20px;
+    max-width: 700px; 
+    margin: auto;
+}
+
+.author-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.autor-image {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.author {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.author p {
+    margin: 0;
+    padding: 5px 0;
+}
+
+.create-answer {
+    background-color: white;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    padding: 20px;
     max-width: 700px; /* Adjust as needed */
     margin: auto;
 }
@@ -62,4 +94,12 @@
     margin: 0;
     padding: 5px 0;
 }
+
+/* Style for the question title */
+.create-answer > div > p {
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+
 

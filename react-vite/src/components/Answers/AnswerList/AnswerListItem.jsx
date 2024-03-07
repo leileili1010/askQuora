@@ -10,14 +10,14 @@ import './AnswerListItem.css'
     const isOwner = user?.id == answer?.author.id
     const answer_s = answer.question.numOfAnswers > 1? `1 of ${answer.question.numOfAnswers} answers`: "Currently 1 answer"
 
-    // test
+    // set truncated answer.details
     const [isTruncated, setIsTruncated] = useState(true);
 
     const toggleTruncation = () => {
     setIsTruncated(!isTruncated);
     };
-  
-
+    
+    // get url of the 1st image if there is any
     const getFirstImageUrl = (htmlContent) => {
         const parser = new DOMParser();
         const doc = parser.parseFromString(htmlContent, 'text/html');
@@ -26,46 +26,78 @@ import './AnswerListItem.css'
     };
 
     const firstImageUrl = getFirstImageUrl(answer.detail);
+
+    // remove all images from answer.detail 
+    const truncateDetail = (htmlContent) => {
+        const doc = new DOMParser().parseFromString(htmlContent, 'text/html');
+        const images = doc.querySelectorAll('img');
+        images.forEach(img => img.remove()); 
+        return doc.body.innerHTML;
+    };
+    const truncatedDetail = truncateDetail(answer.detail);
+    const contentToShow = isTruncated ? truncatedDetail : answer.detail;
+
+    // lines
+    // const contentRef = useRef(null);
+//     const [applyClamp, setApplyClamp] = useState(false);
+
+//    useEffect(() => {
+//         if (contentRef.current) {
+//             const lineHeight = parseInt(window.getComputedStyle(contentRef.current).lineHeight, 10);
+//             const contentHeight = contentRef.current.scrollHeight;
+//             const isContentLongerThanThreeLines = contentHeight > lineHeight * 3;
+//             setApplyClamp(isContentLongerThanThreeLines);
+//         }
+//     }, [answer.detail]);
+
+//     const contentStyle = applyClamp && isTruncated ? {
+//         display: '-webkit-box',
+//         WebkitLineClamp: 3,
+//         WebkitBoxOrient: 'vertical',
+//         overflow: 'hidden',
+//     } : {};
     
     return (
-            <div className="answer">
-                <div className="author-profile">
-                    <img className="profile-image" src={answer.author.profile_img} alt="Profile image" />
-                    <div className="author">
-                        <p className="author-name">{answer.author.first_name} {answer.author.last_name}</p>
-                        <p>{answer.author.position} · {answer.author.years_of_experience}yr, {answer.author.field}</p>
-                    </div>
+        <div className="answer">
+            <div className="author-profile">
+                <img className="profile-image" src={answer.author.profile_img} alt="Profile image" />
+                <div className="author">
+                    <p className="author-name">{answer.author.first_name} {answer.author.last_name}</p>
+                    <p>{answer.author.position} · {answer.author.years_of_experience}yr, {answer.author.field}</p>
                 </div>
-                
-                <Link to={`/questions/${answer.question.id}`}>{answer.question.title}</Link>
-                {/* <p>{answer.detail}</p> */}
+            </div>
 
-                <div className={isTruncated ? "truncated-text rendered-content-class" : "rendered-content-class"} dangerouslySetInnerHTML={{ __html: answer.detail }} />
-                {isTruncated && (
+            <Link to={`/questions/${answer.question.id}`}>{answer.question.title}</Link>
+
+            <div 
+                // ref={contentRef}
+                // style={contentStyle}
+                className={isTruncated ? "truncated-text rendered-content-class" : "rendered-content-class"} 
+                dangerouslySetInnerHTML={{ __html: contentToShow }} 
+            />
+
+            {isTruncated && (
                 <span className="more-link" onClick={toggleTruncation}>
                     (more)
                 </span>
-                )}
+            )}
 
-                {isTruncated && firstImageUrl && 
-                    
-                    <img className="rendered-content-class" src={firstImageUrl} alt="" />
+            {isTruncated && firstImageUrl &&
+                <img className="rendered-content-class" src={firstImageUrl} alt="" />
+            }
 
-                }
-                
-                
-                <div>
-                    <i className="fa-regular fa-comment comment"></i>
-                </div>
-                <div>
-                    <Link to={`/questions/${answer.question.id}`}>{answer_s}</Link>
-                </div>
-                {isOwner && (
-                <div className = "operation-button">
-                    <AnswerOperationButton answer={answer}/>
-                </div>
-                )}
+            <div>
+                <i className="fa-regular fa-comment comment"></i>
             </div>
+            <div>
+                <Link to={`/questions/${answer.question.id}`}>{answer_s}</Link>
+            </div>
+            {isOwner && (
+                <div className="operation-button">
+                    <AnswerOperationButton answer={answer} />
+                </div>
+            )}
+        </div>
     )
 }
 

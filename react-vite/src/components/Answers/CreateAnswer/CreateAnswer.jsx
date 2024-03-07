@@ -44,8 +44,13 @@ const CreateAnswerModal = ({question}) => {
         
     }
 
+    // const handleCancel = (e) => {
+    //     e.preventDefault()
+    //     closeModal()
+    //   }
+
     return (
-        <div className="create-answer">
+        <div className="create-answer"  >
             <div className="author-container">
                 <img className="autor-image" src={author?.profile_img} alt="profile image" />
                 <div className="author">
@@ -53,13 +58,13 @@ const CreateAnswerModal = ({question}) => {
                     <p>{author.position}, {author.years_of_experience}yr of experience</p>
                 </div>
                 <p>{question.title}</p>
-                <form onSubmit={handleAnswerSubmit}>
+                <form onSubmit={handleAnswerSubmit} >
                     <Editor 
                     onValueChange={(value) => setDetail(value)}
                     value={detail}
                     />
                     {"detail" in errors && <p >{errors.tdetail}</p>}
-                    <button type="submit">Cancel</button>
+                    {/* <button onClick={handleCancel}>Cancel</button> */}
                     <button type="submit">Post</button>
                 </form>
             </div>

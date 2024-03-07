@@ -24,15 +24,25 @@ const QuestionListItem = ({question}) => {
             <div className="button-link">
                 
                 <div className="create-answer-button">
-                    <div className="answer-modal">
-                        <i className="fa-regular fa-pen-to-square"></i> 
-                        <OpenModalButtonProps
-                            buttonText="Answer"
-                            modalComponent={props => <CreateAnswerModal {...props} />}
-                            modalProps={{ question }}
-                        />
-                    </div>
-                    <Link className="answers-link" to={`/questions/${question.id}`}> {answer}</Link> 
+                    {isOwner?
+                        (
+                            <Link className="answers-link" to={`/questions/${question.id}`}>Currently {answer} for your question </Link>
+                        ):
+                        (
+                            <>
+                                <div className="answer-modal">
+                                <i className="fa-regular fa-pen-to-square"></i> 
+                                <OpenModalButtonProps
+                                buttonText="Answer"
+                                modalComponent={props => <CreateAnswerModal {...props} />}
+                                modalProps={{ question }}
+                                />
+                                </div>
+                                <Link className="answers-link" to={`/questions/${question.id}`}> {answer}</Link> 
+                            </>
+                        )
+                    }
+                   
                 </div>
                 
                 {isOwner && (
