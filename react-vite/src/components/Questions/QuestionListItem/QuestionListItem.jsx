@@ -7,7 +7,7 @@ import CreateAnswerModal from "../../Answers/CreateAnswer/CreateAnswer";
 import "./QuestionListItem.css"
 
 
-const QuestionListItem = ({question, setDeleteQ}) => {
+const QuestionListItem = ({question, setDeleteQ, setEditQ}) => {
     const user = useSelector(state => state.session.user)
     const isOwner = user?.id == question?.owner.id
     const userAnswers = useSelector(state => state.session.userAnswers)
@@ -64,7 +64,7 @@ const QuestionListItem = ({question, setDeleteQ}) => {
                 
                 {isOwner && (
                 <div className = "operation-button">
-                        <OperationButton question={question} setDeleteQ={setDeleteQ}/>
+                        <OperationButton question={question} setDeleteQ={setDeleteQ} setEditQ={setEditQ}/>
                 </div>
                 )}
 

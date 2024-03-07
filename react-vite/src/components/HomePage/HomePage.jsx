@@ -18,11 +18,10 @@ const HomePage = () => {
     const user = useSelector(state => state.session.user)
     const profile_img = user?.profile_img
     const [activeTab, setActiveTab] = useState('answers');
+    const [deleteQ, setDeleteQ] = useState(0);
+    const [editQ, setEditQ] = useState(0);
     const topicsObj =  useSelector(state => state.topics)
     const topics = Object.values(topicsObj)
-
-    //testing
-    const [deleteQ, setDeleteQ] = useState(0);
 
     useEffect(() => {
         if (!user) navigate("/");
@@ -44,7 +43,7 @@ const HomePage = () => {
         return () => {
             dispatch(returnTopicInitial());
           };
-    }, [dispatch,deleteQ])
+    }, [dispatch,deleteQ, editQ])
 
     const handleTabClick = (tab) => {
         setActiveTab(tab);
@@ -92,7 +91,7 @@ const HomePage = () => {
                         <p className={activeTab === 'questions' ? 'active' : ''} onClick={() => handleTabClick('questions')}>Questions</p>
                     </div> 
                     {activeTab === 'answers' && <AnswerList answers={answers}/>}
-                    {activeTab === 'questions' && <TopicsQuestionsList topics={topics} setDeleteQ={setDeleteQ}/>}
+                    {activeTab === 'questions' && <TopicsQuestionsList topics={topics} setDeleteQ={setDeleteQ} setEditQ={setEditQ}/>}
                 </div>
                
                <div className="relevant-spaces-container"></div>
