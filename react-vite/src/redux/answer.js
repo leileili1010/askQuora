@@ -85,10 +85,8 @@ export const thunkGetAllAnswers = () => async dispatch => {
     const res = await fetch(`/api/topics/answers`)
     if (res.ok) {
         const answers = await res.json();
-       //here to loop
-       answers.forEach(answer => {
-    });
         dispatch(getAllAnswers(answers));
+        return answers;
     } else {
         const errs = await res.json()
         return errs;

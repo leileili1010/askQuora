@@ -3,9 +3,26 @@ import ProfileButton from "./ProfileButton";
 import "./Navigation.css";
 import OpenModalButton from '../OpenModalButton/OpenModalButton'
 import CreateQuestionModal from "../Questions/CreateQuestion/CreateQuestion";
+import { useState } from "react";
 
-function Navigation() {
+function Navigation({answers, searchInput, setSearchInput, currentAnswers, setCurrentAnswers}) {
   const navigate = useNavigate();
+ 
+
+
+
+  const handleInputChange = (e) => {
+      setSearchInput(e.target.value)
+
+      if (!e.target.value.length) {
+        setCurrentAnswers([...answers])
+      } else {
+        const newAnswers = answers.filter(answer => answer.detail.toLowerCase().includes(searchInput.toLowerCase()))
+        setCurrentAnswers(newAnswers)
+      }
+    
+  }
+
   return (
     <div className="nav-bar-container">
       
@@ -18,8 +35,8 @@ function Navigation() {
           <i className="fa-regular fa-pen-to-square" style={{ color: "#626466" }}></i>
           <i className="fa-solid fa-users" style={{ color: "#626466" }}></i>
           <form action="/search" method="get">
-            <input type="text" name="query" placeholder="Search questions..." />
-            <button type="submit">Search</button>
+            <input type="text" name="query" placeholder="Search answers..." value={searchInput} onChange={handleInputChange} />
+            {/* <button type="submit">Search</button> */}
           </form>
         </div>
 

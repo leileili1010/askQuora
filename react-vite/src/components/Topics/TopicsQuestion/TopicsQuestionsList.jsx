@@ -19,11 +19,10 @@ const TopicsQuestionsList = () => {
     }, [dispatch,deleteQ, editQ])
     
     if(topics.length == 0) return null;
-    console.log("🚀 ~ TopicsQuestionsList ~ topics:", topics[0].questions)
 
  return (
         <div>
-            <div className="topics-questions-list">
+            <div id="topics-qlist" className="topics-questions-list">
                 {topics.map(topic => (
                     <div key={topic.id} className="topics-qs">
                         <div className="topic-container">

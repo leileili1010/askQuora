@@ -24,7 +24,13 @@ const HomePage = () => {
     const [editA, setEditA] = useState(0)
     // const topicsObj =  useSelector(state => state.topics)
     // const topics = Object.values(topicsObj)
+    const [searchInput, setSearchInput] = useState("")
+    
+    if (answersObj.length == 0 && activeTab == 'answers') return null
+    const answers = Object.values(answersObj)
 
+    const [currentAnswers, setCurrentAnswers] = useState([...answers]);
+    
     useEffect(() => {
         if (!user) navigate("/");
       }, [user, navigate]);
@@ -34,11 +40,20 @@ const HomePage = () => {
     }, [dispatch, editA, deleteA])
 
     useEffect(() => {
-        dispatch(thunkGetAllAnswers());
+        const loadInfo = async () =>{
+          const data = await dispatch(thunkGetAllAnswers());
+           setCurrentAnswers([...data])
+        }
+        loadInfo()
         return () => {
             dispatch(returnInitial());
           };
     }, [dispatch, editA, deleteA])
+
+
+    // useEffect(() => {
+    //     setCurrentAnswers([...answers])
+    // }, [])
 
     // useEffect(() => {
     //     dispatch(thunkGetTopicsQuestions());
@@ -52,13 +67,11 @@ const HomePage = () => {
         setActiveTab(tab);
     };
 
-    if (answersObj.length == 0 && activeTab == 'answers') return null
-    const answers = Object.values(answersObj)
     
     return (
         <div className="homepage">
             <div className="home-nav-bar">
-                <Navigation />
+                <Navigation answers={answers} searchInput={searchInput} setSearchInput={setSearchInput} currentAnswers={currentAnswers} setCurrentAnswers={setCurrentAnswers}/>
             </div>
 
             <div className="topics">
@@ -93,7 +106,7 @@ const HomePage = () => {
                         <p className={activeTab == 'answers' ? 'active' : ''} onClick={() => handleTabClick('answers')}>Answers</p>
                         <p className={activeTab === 'questions' ? 'active' : ''} onClick={() => handleTabClick('questions')}>Questions</p>
                     </div> 
-                    {activeTab === 'answers' && <AnswerList answers={answers} setDeleteA={setDeleteA} setEditA={setEditA}/>}
+                    {activeTab === 'answers' && <AnswerList answers={currentAnswers} setDeleteA={setDeleteA} setEditA={setEditA}/>}
                     {activeTab === 'questions' && <TopicsQuestionsList />}
                 </div>
                
