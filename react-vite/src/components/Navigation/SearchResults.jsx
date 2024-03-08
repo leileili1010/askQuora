@@ -1,18 +1,20 @@
 import { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 
-function SearchResultsModal({ isOpen, onClose, questions, searchInput }) {
+function SearchResultsModal({ isOpen, onClose, questions, searchInput, setIsTyping}) {
   const modalRef = useRef();
 
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (modalRef.current && !modalRef.current.contains(event.target)) {
         onClose();
+        setIsTyping(false)
       }
     };
 
     if (isOpen) {
       document.addEventListener("mousedown", handleClickOutside);
+      setIsTyping(true)
     }
     
     return () => {
