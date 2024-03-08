@@ -72,7 +72,6 @@ const QuestionDetail = () => {
     return (
         <div className="question-details-page">  
             <Navigation />
-
             <div className="question-detail">
                 {/*part 1: question detail*/}
                 <div  className="question-answers-container">

@@ -2,12 +2,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { thunkGetAllAnswers, returnInitial } from "../../redux/answer";  
 import { useEffect, useState } from "react";
 import AnswerList from "../Answers/AnswerList/AnswerList";
+import NavigationHome from "../Navigation/NavigationHome";
 import Navigation from "../Navigation/Navigation";
 import { useNavigate} from "react-router-dom";
 import "./HomePage.css"
 import CreateQuestionModal from '../Questions/CreateQuestion/CreateQuestion'
 import OpenModalButton from '../OpenModalButton/OpenModalButton'
-import { thunkGetTopicsQuestions, returnTopicInitial } from "../../redux/topic";
 import TopicsQuestionsList from "../Topics/TopicsQuestion/TopicsQuestionsList"
 import { thunkSetUserAnswers } from "../../redux/session";
 
@@ -18,12 +18,8 @@ const HomePage = () => {
     const user = useSelector(state => state.session.user)
     const profile_img = user?.profile_img
     const [activeTab, setActiveTab] = useState('answers');
-    // const [deleteQ, setDeleteQ] = useState(0);
-    // const [editQ, setEditQ] = useState(0);
     const [deleteA, setDeleteA] = useState(0)
     const [editA, setEditA] = useState(0)
-    // const topicsObj =  useSelector(state => state.topics)
-    // const topics = Object.values(topicsObj)
     const [searchInput, setSearchInput] = useState("")
     
     if (answersObj.length == 0 && activeTab == 'answers') return null
@@ -50,19 +46,6 @@ const HomePage = () => {
           };
     }, [dispatch, editA, deleteA])
 
-
-    // useEffect(() => {
-    //     setCurrentAnswers([...answers])
-    // }, [])
-
-    // useEffect(() => {
-    //     dispatch(thunkGetTopicsQuestions());
-    //     return () => {
-    //         dispatch(returnTopicInitial());
-    //       };
-    // }, [dispatch,deleteQ, editQ])
-
-
     const handleTabClick = (tab) => {
         setActiveTab(tab);
     };
@@ -71,7 +54,12 @@ const HomePage = () => {
     return (
         <div className="homepage">
             <div className="home-nav-bar">
-                <Navigation answers={answers} searchInput={searchInput} setSearchInput={setSearchInput} currentAnswers={currentAnswers} setCurrentAnswers={setCurrentAnswers}/>
+                {
+                    activeTab === "answers"?
+                    (<NavigationHome answers={answers} searchInput={searchInput} setSearchInput={setSearchInput} currentAnswers={currentAnswers} setCurrentAnswers={setCurrentAnswers}/>):
+                    <Navigation/>
+                }
+                
             </div>
 
             <div className="topics">

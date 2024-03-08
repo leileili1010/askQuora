@@ -3,25 +3,52 @@ import ProfileButton from "./ProfileButton";
 import "./Navigation.css";
 import OpenModalButton from '../OpenModalButton/OpenModalButton'
 import CreateQuestionModal from "../Questions/CreateQuestion/CreateQuestion";
-import { useState } from "react";
+import { thunkSearchQuestions } from "../../redux/search";
+import { useEffect, useState} from "react";
+import { useDispatch, useSelector } from "react-redux";
+import SearchResultsModal from "./SearchResults";
+import "./Navigation.css";
 
-function Navigation({answers, searchInput, setSearchInput, currentAnswers, setCurrentAnswers}) {
+function Navigation() {
   const navigate = useNavigate();
- 
-
-
-
-  const handleInputChange = (e) => {
-      setSearchInput(e.target.value)
-
-      if (!e.target.value.length) {
-        setCurrentAnswers([...answers])
-      } else {
-        const newAnswers = answers.filter(answer => answer.detail.toLowerCase().includes(searchInput.toLowerCase()))
-        setCurrentAnswers(newAnswers)
-      }
-    
+  const dispatch = useDispatch();
+  const questions = useSelector(state => state.search.questions)
+  const [searchInput, setSearchInput] = useState("");
+  const [currentQuestions, setCurrentQuestions] = useState([])
+  const [modalOpen, setModalOpen] = useState(false);
+  const [isTyping, setIsTyping] = useState(false);
+  const noResultQ = {
+    title: "No question found"
   }
+  
+  useEffect(() => {
+    dispatch(thunkSearchQuestions())
+  }, [dispatch])
+  
+  const handleSearch = (e) => {
+    setSearchInput(e.target.value)
+    setIsTyping(e.target.value.length > 0)
+    if(!e.target.value.length) {
+      setCurrentQuestions([])
+      setModalOpen(false)
+    } else {
+      const newQuestions= questions.filter(question => question.title.toLowerCase().includes(searchInput.toLocaleLowerCase()))
+      if (!newQuestions.length) setCurrentQuestions([noResultQ])
+      else setCurrentQuestions(newQuestions.slice(0,6))
+      setModalOpen(true)
+    } 
+  }
+
+useEffect(() => {
+  if (searchInput) setModalOpen(true);
+  else setModalOpen(false);
+}, [searchInput]);
+
+
+const handleCloseModal = () => {
+  setModalOpen(false);
+  setSearchInput(""); 
+};
 
   return (
     <div className="nav-bar-container">
@@ -34,14 +61,18 @@ function Navigation({answers, searchInput, setSearchInput, currentAnswers, setCu
           <i id="home-sign" onClick={() => navigate("/topics")} className="fa-solid fa-house" ></i>
           <i className="fa-regular fa-pen-to-square" style={{ color: "#626466" }}></i>
           <i className="fa-solid fa-users" style={{ color: "#626466" }}></i>
-          <form action="/search" method="get">
-            <input type="text" name="query" placeholder="Search answers..." value={searchInput} onChange={handleInputChange} />
-            {/* <button type="submit">Search</button> */}
-          </form>
+          <div className="search-container">
+            <form style={{ width: isTyping? '500px' : '360px' }}action="/search" method="get">
+              <input type="text" name="query" placeholder="Search questions..." value={searchInput} onChange={handleSearch} />
+            </form>
+              <SearchResultsModal isOpen={modalOpen} onClose={handleCloseModal} questions={currentQuestions} searchInput={searchInput}/>
+          </div>
+          
         </div>
-
+        
         <div className="profile-addQ">
-          <ProfileButton />
+          {!isTyping && <ProfileButton />}
+          
           <div className="pledge-detail">
             <OpenModalButton
               buttonText="Add question"
