@@ -1,14 +1,16 @@
 import { useModal } from "../../../context/Modal";
-import { useDispatch} from "react-redux";
+import { useDispatch, useSelector} from "react-redux";
 import { thunkDeleteQuestion } from "../../../redux/question";
-import { useNavigate, } from "react-router-dom";
+import { useNavigate, useParams, } from "react-router-dom";
 
 const DeleteQuestionModal = ({question, setDeleteQ}) => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
-    const questionId = question.id
+    const question_Id = question.id
     const { closeModal } = useModal()
-    // const user = useSelector(state => state.session.user)
+    const {questionId} = useParams()
+    const user = useSelector(state => state.session.user)
+
 
     const handleCancel = (e) => {
         e.preventDefault()
@@ -17,8 +19,9 @@ const DeleteQuestionModal = ({question, setDeleteQ}) => {
 
     const handleDelete = async (e) => {
         e.preventDefault()
-        await dispatch(thunkDeleteQuestion(questionId))
+        await dispatch(thunkDeleteQuestion(question_Id))
         setDeleteQ(prev => prev + 1);
+        if(questionId) navigate(`/user-profile/${user?.id}`)
         closeModal()
     }
     

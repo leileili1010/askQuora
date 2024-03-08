@@ -16,9 +16,9 @@ const UserProfile = () => {
     const answersObj = useSelector(state => state.answers)
     const questionsObj = useSelector(state => state.questions)
     const answerTitle = Object.keys(answersObj).length>1? `${Object.keys(answersObj).length} Answers`: `${Object.keys(answersObj).length} Answer`
-    const questionTitle = Object.keys(answersObj).length>1? `${Object.keys(questionsObj).length} Questions`: `${Object.keys(questionsObj).length} Questions`
+    const questionTitle = Object.keys(answersObj).length>1? `${Object.keys(questionsObj).length} Questions`: `${Object.keys(questionsObj).length} Question`
 
-    const dateString = user.created_at;
+    const dateString = user?.created_at;
     const date = new Date(dateString);
     const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
     const formattedDate = `${monthNames[date.getMonth()]} ${date.getFullYear()}`;
@@ -52,10 +52,10 @@ const UserProfile = () => {
                     {/*part 1: user info  */}
                     <div className="profile">
                         <div className="user-info">
-                            <img src={user.profile_img} alt="profile image" className="profile-img"/>
+                            <img src={user?.profile_img} alt="profile image" className="profile-img"/>
                             <div>
-                                <h1>{user.first_name} {user.last_name}</h1>
-                                <p>{user.position} · {user.years_of_experience}yr, {user.field}</p>
+                                <h1>{user?.first_name} {user?.last_name}</h1>
+                                <p>{user?.position} · {user?.years_of_experience}yr, {user?.field}</p>
                             </div>
                         </div>
 
@@ -79,21 +79,21 @@ const UserProfile = () => {
                                 <div>
                                     <i className="fa-solid fa-briefcase"></i>
                                 </div>
-                                <p>{user.position}</p>
+                                <p>{user?.position}</p>
                             </div>
 
                             <div className="credentials-details">
                                 <div>
                                     <i className="fa-regular fa-clock"></i>
                                 </div>
-                                <p>{user.years_of_experience}-yr of experience</p>
+                                <p>{user?.years_of_experience}-yr of experience</p>
                             </div>
 
                             <div className="credentials-details">
                                 <div>
                                     <i className="fa-solid fa-laptop"></i>
                                 </div>
-                                <p>{user.field}</p>
+                                <p>{user?.field}</p>
                             </div>
 
                             <div className="credentials-details">

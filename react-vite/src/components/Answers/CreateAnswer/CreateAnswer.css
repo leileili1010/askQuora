@@ -1,16 +1,18 @@
-
 .autor-image {
     border-radius: 50%;
     width: 40px;
 }
 
 .create-answer {
-    width: 700px;
-    height: 600px;
+    background-color: white;
+    border: 1px solid #ddd;
+    padding: 20px;
+    width: 700px; 
+    margin: auto;
     position: relative;
     display: flex;
     flex-direction: column;
-} 
+}
 
 .editor-container {
     width: 100%; 
@@ -23,6 +25,7 @@
     height: 100%;
     height: 350px;
     padding: 20px; 
+    width: 100%;
 }
 
 .create-answer form img {
@@ -31,26 +34,6 @@
     object-fit: cover;
 } 
 
-.create-answer {
-    background-color: white;
-    border-radius: 8px;
-    border: 1px solid #ddd;
-    padding: 20px;
-    max-width: 700px; 
-    margin: auto;
-}
-
-.author-container {
-    display: flex;
-    flex-direction: column;
-}
-
-.autor-image {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    margin-right: 10px;
-}
 
 .author {
     display: flex;
@@ -63,18 +46,11 @@
     padding: 5px 0;
 }
 
-.create-answer {
-    background-color: white;
-    border-radius: 8px;
-    border: 1px solid #ddd;
-    padding: 20px;
-    max-width: 700px; /* Adjust as needed */
-    margin: auto;
-}
 
 .author-container {
     display: flex;
-    flex-direction: column;
+    align-items: center;
+    margin-bottom: 15px;
 }
 
 .autor-image {
@@ -90,6 +66,11 @@
     margin-bottom: 20px;
 }
 
+.autho-name {
+    font-weight: bold;
+    font-size: 16px;
+    margin-bottom: 0px;
+}
 .author p {
     margin: 0;
     padding: 5px 0;
@@ -100,6 +81,26 @@
     font-weight: bold;
     margin: 10px 0;
 }
+
+div.quill.editor {
+    padding: 15px 0px; 
+    margin-bottom: 50px;
+}
+
+.Q-title {
+    font-weight: bold;
+}
+
+.create-answer button {
+    cursor: pointer;
+   align-self: end;
+}
+
+.create-A {
+    display: flex;
+    justify-content: flex-end;
+}
+
 
 
 

@@ -1,0 +1,36 @@
+.profile-dropdown li {
+    padding: 10px 0;
+    padding-left: 15px;
+  }
+  
+  ul.profile-dropdown {
+    padding: 0px
+  }
+
+.log-out-btn {
+    border: none;
+    background-color: transparent;
+    font-size: 15px;
+} 
+
+.log-out-btn:hover {
+    background-color: #f1f2f2;
+    cursor: pointer;
+}
+
+.your-profile-click a{
+    color: black
+}
+
+.your-profile-click:hover{
+    background-color: #f1f2f2;
+}
+
+.your-profile-click {
+    border-bottom: 1px solid #ddd;
+}
+
+.greeting {
+    font-weight: bold;
+    color: #333
+}
