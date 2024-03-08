@@ -27,14 +27,13 @@ function Navigation() {
   
   const handleSearch = (e) => {
     setSearchInput(e.target.value)
-    setIsTyping(e.target.value.length > 0)
     if(!e.target.value.length) {
       setCurrentQuestions([])
       setModalOpen(false)
     } else {
       const newQuestions= questions.filter(question => question.title.toLowerCase().includes(searchInput.toLocaleLowerCase()))
       if (!newQuestions.length) setCurrentQuestions([noResultQ])
-      else setCurrentQuestions(newQuestions.slice(0,6))
+      else setCurrentQuestions(newQuestions.slice(0,8))
       setModalOpen(true)
     } 
   }
@@ -65,7 +64,7 @@ const handleCloseModal = () => {
             <form style={{ width: isTyping? '500px' : '360px' }}action="/search" method="get">
               <input type="text" name="query" placeholder="Search questions..." value={searchInput} onChange={handleSearch} />
             </form>
-              <SearchResultsModal isOpen={modalOpen} onClose={handleCloseModal} questions={currentQuestions} searchInput={searchInput}/>
+              <SearchResultsModal isOpen={modalOpen} onClose={handleCloseModal} questions={currentQuestions} searchInput={searchInput} setIsTyping={setIsTyping}/>
           </div>
           
         </div>
