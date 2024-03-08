@@ -9,12 +9,14 @@ import sessionReducer from "./session";
 import questionReducer from "./question";
 import topicReducer from "./topic";
 import answerReducer from "./answer";
+import searchReducer from "./search";
 
 const rootReducer = combineReducers({
   session: sessionReducer,
   questions: questionReducer,
   topics: topicReducer,
-  answers: answerReducer
+  answers: answerReducer,
+  search: searchReducer
 });
 
 let enhancer;

@@ -3,7 +3,7 @@ import { useSelector } from "react-redux/es/hooks/useSelector";
 import { useEffect } from "react";
 import { useNavigate} from "react-router-dom";
 
-const AnswerList = ({answers}) => {
+const AnswerList = ({answers, setDeleteA, setEditA}) => {
     const user = useSelector(state => state.session.user)
     const navigate = useNavigate()
     const answersReversed = [...answers].reverse();
@@ -15,7 +15,7 @@ const AnswerList = ({answers}) => {
     return (
         <div className="answer-list-component">
             {answersReversed.map(answer =>
-               <AnswerListItem answer={answer} key={answer.id} />    
+               <AnswerListItem answer={answer} setDeleteA={setDeleteA} setEditA={setEditA} key={answer.id} />    
             )}
         </div>
     )

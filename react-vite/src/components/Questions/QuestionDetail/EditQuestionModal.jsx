@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { useModal } from "../../../context/Modal";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch} from "react-redux";
 import { thunkEditQuestion } from "../../../redux/question";
 
-const EditQuestionModal = ({question}) => {
+const EditQuestionModal = ({question, setEditQ}) => {
     const dispatch = useDispatch()
     const questionId = question.id
     const { closeModal } = useModal()
@@ -31,6 +31,7 @@ const EditQuestionModal = ({question}) => {
 
             await dispatch(thunkEditQuestion(formData, questionId))
             .then(() => {
+                setEditQ(prev => prev + 1)
                 closeModal()
             })
             .catch(async (res) => {

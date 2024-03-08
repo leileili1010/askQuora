@@ -1,6 +1,6 @@
 import { useParams, Link } from "react-router-dom";
 import {thunkGetQuestion, returnInitialQuestionState} from '../../../redux/question'
-import { useEffect} from "react";
+import { useEffect, useState} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { thunkGetQuestionAnswers, returnInitial } from "../../../redux/answer";
 import AnswerList from "../../Answers/AnswerList/AnswerList";
@@ -21,6 +21,10 @@ const QuestionDetail = () => {
     const topicId = question?.topic?.id
     const topic = useSelector(state => state.topics)
     const questions = topic?.questions;
+    const [deleteQ, setDeleteQ] = useState(0)
+    const [editQ, setEditQ] = useState(0)
+    const [deleteA, setDeleteA] = useState(0)
+    const [editA, setEditA] = useState(0)
     let relevantQs
 
     if (questions?.length > 1)
@@ -42,35 +46,40 @@ const QuestionDetail = () => {
         return () => {
             dispatch(returnInitialQuestionState());
           };
-    }, [dispatch, questionId])
+    }, [dispatch, questionId, deleteQ, editQ, editA, deleteA])
 
     useEffect(() => {
         dispatch(thunkGetQuestionAnswers(questionId))
         return () => {
             dispatch(returnInitial());
           };
-    }, [dispatch, questionId])
+    }, [dispatch, questionId, editA, deleteA])
 
-
-
-    if (!question) return null
     if (answersObj.length == 0) return null
-
+    
     const answers = Object.values(answersObj)
-
+    
+    if(!question) 
+        return (
+            <div className="question-details-page">
+                <Navigation />
+                <div className="question-detail">
+                    <Link to={`/user-profile/${user.id}`}><h3>This question does not exist. Click to go to user-profile page or navigate to other pages.</h3></Link>
+                </div>
+            </div>       
+        )
 
     return (
         <div className="question-details-page">  
             <Navigation />
-
             <div className="question-detail">
                 {/*part 1: question detail*/}
                 <div  className="question-answers-container">
                     {/*question details*/}
-                    <QuestionListItem question={question}/>
+                    <QuestionListItem question={question} setDeleteQ={setDeleteQ} setEditQ={setEditQ}/>
                     {/*answers list*/}
                     <div className="answers-container">
-                        <AnswerList answers = {answers}/>
+                        <AnswerList answers = {answers} setDeleteA={setDeleteA} setEditA={setEditA}/>
                     </div>
                 </div>
                 

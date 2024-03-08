@@ -1,0 +1,119 @@
+#model-content {
+    border-radius: 50%;
+    background-color: red;
+}
+
+.user-add-q {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-top: 40px;
+}
+
+.user-add-q i {
+    color: darkgray;
+    font-size: 12px;
+}
+
+.create-q-form img {
+    height: 30px;
+    width:30px;
+    border-radius: 50%;
+}
+
+.create-q-form {
+    background-color: white;
+    padding: 20px;
+    max-width: 600px; 
+    margin: auto;  
+}
+
+.create-q-form i.fa-circle-xmark {
+    float: right;
+    cursor: pointer;
+    color: darkgray;
+    font-size: 30px;
+}
+
+
+.create-q-form > div {
+    margin-bottom: 20px;
+}
+
+.create-q-form p {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.prfile-img {
+    width: 40px; 
+    height: 40px; 
+    border-radius: 50%;
+}
+
+.create-q-form label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.create-q-form textarea {
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 10px;
+    font-size: 16px;
+    resize: none; 
+    outline: none;
+}
+
+.question-errors p {
+    color: red;
+    font-size: 13px;
+}
+
+.create-q-button-container {
+    display: flex;
+    justify-content: flex-end;
+    gap: 5px;
+}
+
+#question-submit {
+    background-color:  #007bff;
+    color: white;
+    border: none;
+    border-radius: 24px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+#question-cancel {
+    border:none;
+    background-color: transparent;
+    font-size: 14px;
+    padding: 12px;
+}
+
+
+#question-submit:hover {
+    background-color: #1a52cc; 
+}
+
+#question-cancel:hover {
+    background-color: rgb(248, 247, 247); 
+    border-radius: 24px;
+}
+
+.cancel-icon i{
+    width: auto;
+    height: auto;
+    padding: 10px;
+    background-color: transparent;
+    border-radius: 50%;
+}
+
+.cancel-icon i:hover {
+    background-color: rgb(248, 247, 247);
+}
+
+

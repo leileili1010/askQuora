@@ -29,6 +29,9 @@ class User(db.Model, UserMixin):
     comments = db.relationship('Comment', back_populates = 'author', cascade = 'all, delete-orphan')
     spaces = db.relationship('Topic', secondary=space_contributors,  back_populates = 'contributors')
     invites = db.relationship('QuestionInvite', back_populates = 'receiver', cascade = 'all, delete-orphan')
+    # subscriptions = db.relationship('Subscription', back_populates = 'user', cascade = 'all, delete-orphan')
+
+
 
     @property
     def password(self):
@@ -52,6 +55,7 @@ class User(db.Model, UserMixin):
             'position': self.position,
             'field': self.field,
             'years_of_experience': self.years_of_experience,
+            # 'num_of_subscriptions': len(self.subscriptions),
             'created_at': self.created_at,
             'updated_at': self.updated_at
         }

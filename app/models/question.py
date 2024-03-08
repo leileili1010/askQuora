@@ -20,7 +20,7 @@ class Question(db.Model):
     answers = db.relationship('Answer', back_populates = 'question', cascade = 'all, delete-orphan')
     comments = db.relationship('Comment', back_populates = 'question', cascade = 'all, delete-orphan')
     invites = db.relationship('QuestionInvite', back_populates = 'question', cascade = 'all, delete-orphan')
-
+    
     def to_dict(self):
         if self.topic:
             topic = self.topic.to_dict()

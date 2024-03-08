@@ -64,3 +64,9 @@ body {
 .relevantQs a:hover{
     text-decoration: underline;
 }
+
+.question-details-page h3 {
+    color: #333;
+    text-decoration: underline;
+    font-weight: normal;
+}
