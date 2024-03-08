@@ -87,13 +87,29 @@
 } 
 
 .more-link {
-    color: blue;
+    color: #185faa;
     cursor: pointer;
     display: inline; 
+    text-align: right;
+}
+
+.more-link:hover {
+    text-decoration: underline;
 }
 
 .rendered-content-class p {
     word-break: break-all;
 }
 
+.user-comments-area {
+    display: flex;
+    gap: 20px;
+    color: grey;
+    margin-top: 20px;
+}
+
+.user-comments-area a {
+    font-size: 12px;
+    color: grey;
+}
 

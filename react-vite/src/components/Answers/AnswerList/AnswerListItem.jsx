@@ -36,26 +36,6 @@ import './AnswerListItem.css'
     };
     const truncatedDetail = truncateDetail(answer.detail);
     const contentToShow = isTruncated ? truncatedDetail : answer.detail;
-
-    // lines
-    // const contentRef = useRef(null);
-//     const [applyClamp, setApplyClamp] = useState(false);
-
-//    useEffect(() => {
-//         if (contentRef.current) {
-//             const lineHeight = parseInt(window.getComputedStyle(contentRef.current).lineHeight, 10);
-//             const contentHeight = contentRef.current.scrollHeight;
-//             const isContentLongerThanThreeLines = contentHeight > lineHeight * 3;
-//             setApplyClamp(isContentLongerThanThreeLines);
-//         }
-//     }, [answer.detail]);
-
-//     const contentStyle = applyClamp && isTruncated ? {
-//         display: '-webkit-box',
-//         WebkitLineClamp: 3,
-//         WebkitBoxOrient: 'vertical',
-//         overflow: 'hidden',
-//     } : {};
     
     return (
         <div className="answer">
@@ -70,8 +50,6 @@ import './AnswerListItem.css'
             <Link to={`/questions/${answer.question.id}`}>{answer.question.title}</Link>
 
             <div 
-                // ref={contentRef}
-                // style={contentStyle}
                 className={isTruncated ? "truncated-text rendered-content-class" : "rendered-content-class"} 
                 dangerouslySetInnerHTML={{ __html: contentToShow }} 
             />
@@ -86,12 +64,15 @@ import './AnswerListItem.css'
                 <img className="rendered-content-class" src={firstImageUrl} alt="" />
             }
 
-            <div>
-                <i className="fa-regular fa-comment comment"></i>
+            <div className="user-comments-area">
+                <div>
+                    <Link to={`/questions/${answer.question.id}`}>{answer_s}</Link>
+                </div>
+                <div>
+                    <i className="fa-regular fa-comment comment"></i>
+                </div>
             </div>
-            <div>
-                <Link to={`/questions/${answer.question.id}`}>{answer_s}</Link>
-            </div>
+           
             {isOwner && (
                 <div className="operation-button">
                     <AnswerOperationButton answer={answer} setDeleteA={setDeleteA} setEditA={setEditA} />

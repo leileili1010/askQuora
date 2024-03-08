@@ -6,7 +6,6 @@ import { useNavigate} from "react-router-dom";
 const AnswerList = ({answers, setDeleteA, setEditA}) => {
     const user = useSelector(state => state.session.user)
     const navigate = useNavigate()
-    const answersReversed = [...answers].reverse();
 
     useEffect(() => {
         if (!user) navigate("/");
@@ -14,7 +13,7 @@ const AnswerList = ({answers, setDeleteA, setEditA}) => {
 
     return (
         <div className="answer-list-component">
-            {answersReversed.map(answer =>
+            {answers.map(answer =>
                <AnswerListItem answer={answer} setDeleteA={setDeleteA} setEditA={setEditA} key={answer.id} />    
             )}
         </div>

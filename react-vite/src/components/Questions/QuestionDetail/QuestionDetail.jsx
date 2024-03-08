@@ -59,15 +59,7 @@ const QuestionDetail = () => {
     
     const answers = Object.values(answersObj)
     
-    if(!question) 
-        return (
-            <div className="question-details-page">
-                <Navigation />
-                <div className="question-detail">
-                    <Link to={`/user-profile/${user.id}`}><h3>This question does not exist. Click to go to user-profile page or navigate to other pages.</h3></Link>
-                </div>
-            </div>       
-        )
+    if(!question) return null;
 
     return (
         <div className="question-details-page">  

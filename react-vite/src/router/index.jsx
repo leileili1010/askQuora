@@ -33,16 +33,6 @@ export const router = createBrowserRouter([
       {
         path: "user-profile/:userId",
         element: <UserProfile />,
-        // children: [
-        //   {
-        //     path: 'questions',
-        //     element: <UserQuestions />
-        //   },
-        //   {
-        //     path: 'answers',
-        //     element: <UserAnswers />
-        //   }
-        // ]
       },
       {
         path: "topics",
