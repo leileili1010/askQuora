@@ -23,15 +23,16 @@ const DeleteAnswerModal = ({answer, setDeleteA}) => {
         await dispatch(thunkDeleteAnswer(answerId))
         setDeleteA(prev => prev + 1)
         closeModal()
-        // navigate(`/user-profile/${user.id}`)
     }
 
     return (
-        <div>
-            <h2>Delete Answer</h2>
+        <div className="delete-confirm">
+            <h3>Delete Answer</h3>
             <p>Are you sure to delete this answer?</p>
-            <button  onClick={handleDelete}>Confirm</button>
-            <button onClick={handleCancel}>Cancel</button>
+            <div className="delete-btns">
+                <button id="question-cancel" onClick={handleCancel}>Cancel</button>
+                <button id="question-submit" onClick={handleDelete}>Confirm</button>
+            </div>
         </div>
     )
 }

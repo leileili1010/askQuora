@@ -23,7 +23,7 @@ const QuestionList = () => {
     return (
         <div>
             <ul className="question-list">
-                {questions.map((question) => (
+                {questions.sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at)).map((question) => (
                 <QuestionListItem question={question} key={question.id} />
                 ))}
             </ul>

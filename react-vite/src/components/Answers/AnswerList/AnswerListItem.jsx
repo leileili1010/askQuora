@@ -64,20 +64,27 @@ import './AnswerListItem.css'
                 <img className="rendered-content-class" src={firstImageUrl} alt="" />
             }
 
-            <div className="user-comments-area">
-                <div>
+            <div className="flex answer-comment-area">
+            
+                <div className="user-comments-area">
                     <Link to={`/questions/${answer.question.id}`}>{answer_s}</Link>
                 </div>
-                <div>
-                    <i className="fa-regular fa-comment comment"></i>
+            
+                <div className="flex user-comments-area">
+                    <div>
+                        <i className="fa-regular fa-comment comment"></i>
+                    </div>
+            
+                    {isOwner && (
+                    <div className="operation-button">
+                        <AnswerOperationButton answer={answer} setDeleteA={setDeleteA} setEditA={setEditA} />
+                    </div>
+                    )}
                 </div>
+
+              
             </div>
-           
-            {isOwner && (
-                <div className="operation-button">
-                    <AnswerOperationButton answer={answer} setDeleteA={setDeleteA} setEditA={setEditA} />
-                </div>
-            )}
+            
         </div>
     )
 }

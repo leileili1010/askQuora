@@ -48,23 +48,27 @@ const EditAnswerModal = ({answer, setEditA}) => {
 
     return (
          <div className="create-answer">
-            <div className="author-container">
-                <img className="autor-image" src={author?.profile_img} alt="profile image" />
-                <div className="author">
-                    <p>{author.first_name} {author.last_name}</p>
-                    <p>{author.position}, {author.years_of_experience}yr of experience</p>
+              <div className="author-container">
+                    <img className="autor-image" src={author?.profile_img} alt="profile image" />
+                    <div className="author">
+                        <p className="autho-name">{author.first_name} {author.last_name}</p>
+                        <p>{author.position}, {author.years_of_experience}yr of experience</p>
+                    </div>
                 </div>
-                <p>{question.title}</p>
+
+                <p className="Q-title"> {question.title}</p>
                 <form onSubmit={handleAnswerSubmit}>
                     <Editor 
                     onValueChange={(value) => setDetail(value)}
                     value={detail}
                     />
                     {"detail" in errors && <p >{errors.tdetail}</p>}
-                    <button type="submit">Post</button>
+                    <div className="create-A">
+                        <button id="question-cancel" onClick={handleCancel}>Cancel</button>
+                        <button id="question-submit" type="submit">Post</button>
+                    </div>
                 </form>
-                    <button onClick={handleCancel}>Cancel</button>
-            </div>
+            
         </div>
     )
 }

@@ -113,3 +113,8 @@
     color: grey;
 }
 
+.answer-comment-area {
+    align-items: center;
+    justify-content: space-between;
+}
+

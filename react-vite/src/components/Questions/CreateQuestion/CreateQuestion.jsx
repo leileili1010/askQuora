@@ -73,7 +73,7 @@ const CreateQuestionModal = () => {
               
                 <div className="user-add-q">
                     <div>
-                        <img className="prfile-img" src={user.profile_img} />
+                        <img className="prfile-img" src={user?.profile_img} />
                     </div>
                     <div>
                         <i className="fa-solid fa-play"></i>
