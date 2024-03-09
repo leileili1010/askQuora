@@ -1,6 +1,7 @@
 const SET_USER = 'session/setUser';
 const REMOVE_USER = 'session/removeUser';
 const SET_USER_ANSWERS = 'session/setUserAnswers';
+const GET_USER_SUBSCRIPTIONS = 'session/getUserSubscriptions';
 
 const setUser = (user) => ({
   type: SET_USER,
@@ -15,6 +16,24 @@ const setUserAnswers = (answers) => ({
   type: SET_USER_ANSWERS,
   answers
 })
+
+const getUserSubscriptions = (subscriptions) => ({
+  type: GET_USER_SUBSCRIPTIONS,
+  subscriptions
+})
+
+
+
+export const thunkGetUserSubscriptions = () => async (dispatch) => {
+  const res = await fetch("/api/subscriptions/current")
+    if (res.ok) {
+      const subscriptions = await res.json();
+      dispatch(getUserSubscriptions(subscriptions));
+    } else {
+      const errs = await res.json()
+      return errs;
+    }
+}
 
 export const thunkSetUserAnswers = () => async (dispatch) => {
   const res = await fetch(`/api/questions/currrent/answers`)
@@ -79,7 +98,8 @@ export const thunkLogout = () => async (dispatch) => {
   dispatch(removeUser());
 };
 
-const initialState = { user: null };
+
+const initialState = { user: null, userAnswers: null, userSubscriptions: null };
 
 function sessionReducer(state = initialState, action) {
   switch (action.type) {
@@ -91,6 +111,9 @@ function sessionReducer(state = initialState, action) {
       const newState = {...state}
       newState["userAnswers"] = action.answers
       return newState;
+    }
+    case GET_USER_SUBSCRIPTIONS: {
+      return { ...state, userSubscriptions: action.subscriptions };
     }
     default:
       return state;

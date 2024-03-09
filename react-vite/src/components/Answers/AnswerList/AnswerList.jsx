@@ -12,7 +12,7 @@ const AnswerList = ({answers, setDeleteA, setEditA}) => {
         setIsLoading(true);
         setTimeout(() => {
             setIsLoading(false);
-        }, 2000); 
+        }, 800); 
     }, []);
 
     useEffect(() => {
@@ -24,6 +24,8 @@ const AnswerList = ({answers, setDeleteA, setEditA}) => {
             <div className="spinner">Loading...</div>
         </div>
       )
+
+    if (!answers.length) return null;
 
     return (
         <div className="answer-list-component">

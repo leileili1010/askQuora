@@ -5,10 +5,11 @@ import OpenModalButton from '../OpenModalButton/OpenModalButton'
 import CreateQuestionModal from "../Questions/CreateQuestion/CreateQuestion";
 import "./Navigation.css";
 
-function NavigationHome({answers, searchInput, setSearchInput, currentAnswers, setCurrentAnswers}) {
+function NavigationHome({setSub, answers, searchInput, setSearchInput, currentAnswers, setCurrentAnswers}) {
   const navigate = useNavigate();
 
   const handleInputChange = (e) => {
+      setSub({})
       setSearchInput(e.target.value)
 
       if (!e.target.value.length) {

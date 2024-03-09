@@ -40,7 +40,6 @@ def get_topic(topic_id):
 
     topic_dict["questions"] = [question.to_dict() for question in topic.questions]
 
-    print("===========================================", topic_dict)
     return topic_dict
     
     

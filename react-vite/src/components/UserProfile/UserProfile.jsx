@@ -6,6 +6,7 @@ import UserAnswers from "../Answers/UserAnswers/UserAnswers";
 import UserQuestions from "../Questions/UserQuestions/UserQuestions";
 import { thunkGetAuthorAnswers } from "../../redux/answer";
 import { thunkGetUserQuestions } from "../../redux/question";
+import UserSpacesList from "../Spaces/UserSpaces";
 import "./UserProfile.css"
 
 const UserProfile = () => {
@@ -104,9 +105,9 @@ const UserProfile = () => {
                             </div>
                         </div>
 
-                        <div className="subscriptions">
-                            <p className="credentials-title" >Subscriptions</p>
-                            <p className="credentials-details">Currently no supscriptions</p>
+                        <div className="user-subscriptions">
+                            <p className="credentials-title" id="user-subscriptions-title" >Manage Your Subscriptions</p>
+                           <UserSpacesList/>
                         </div>
                     </div>
                     

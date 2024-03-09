@@ -12,16 +12,18 @@
 .topics {
     background-color: #f1f2f2;
     min-height: 100vh;
+    display: flex;
+    margin: auto; 
+    margin-top: 80px; 
+    gap:55px;
 }
 
 
-/* need to update margin later */
+
 .topic-answers {
     width:600px;
-    margin: auto; 
     display: flex;
     flex-direction: column;
-    margin-top: 80px;
 }
 
 .answer-question-nav {
@@ -40,10 +42,6 @@
 .answer-question-nav p:hover {
     background-color: #E9EAEA;
 }
-
-/* .answer-question-nav p {
-    border-bottom: 3px solid #f1f2f2; 
-} */
 
 .answer-question-nav .active {
     color: #a82723;
@@ -127,4 +125,82 @@
     cursor: pointer;
 }
 
+/* spaces and topics*/
+.spaces-container {
+    width: 150px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;   
+}
+.subscription img {
+    width:25px;
+    height:25px;
+    border-radius: 6px;
+    border: 1px solid #e2e2e2;
+    box-shadow: 0 5px 4px rgba(0, 0, 0, 0.1);
+}
 
+.subscription {
+    display: flex;
+    gap: 6px;
+    color: #333;
+    padding: 15px 10px;
+    gap: 10px;
+    cursor: pointer;
+    align-items: center;
+}
+
+.subscription:hover {
+    background-color: #E9EAEA;
+    text-decoration: underline;
+}
+
+.subscription p {
+    /* word-break:break-all; */
+    font-size: 14px;
+    line-height: 1.2em; 
+    max-height: 2.4em; 
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
+  
+}
+
+.subscriptions {
+    display: flex;
+    flex-direction: column;
+}
+
+.add-sub {
+    margin-left:8px;
+}
+
+.add-subs {
+    background-color: #E9EAEA;
+    padding: 20px 12px;
+    cursor: pointer;
+}
+
+.add-subs:hover {
+    background-color: #e2e2e2;;
+    text-decoration: underline;
+}
+
+.render-space img{
+    width: 80px;
+    height: 80px;
+}
+
+.render-space {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 10px;
+    margin-bottom: 3px;
+}
+
+.render-space h3 {
+    margin-bottom: 10px;
+}

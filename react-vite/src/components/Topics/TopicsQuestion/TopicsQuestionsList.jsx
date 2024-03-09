@@ -4,12 +4,13 @@ import { useEffect, useState } from "react";
 import { thunkGetTopicsQuestions, returnTopicInitial } from "../../../redux/topic"
 import './TopicsQuestionsList.css'
 
-const TopicsQuestionsList = () => {
+const TopicsQuestionsList = ({sub}) => {
     const dispatch = useDispatch()
     const [deleteQ, setDeleteQ] = useState(0);
     const [editQ, setEditQ] = useState(0);
     const topicsObj =  useSelector(state => state.topics)
     const topics = Object.values(topicsObj)
+    let subTopics;
     
     useEffect(() => {
         dispatch(thunkGetTopicsQuestions());
@@ -19,11 +20,15 @@ const TopicsQuestionsList = () => {
     }, [dispatch,deleteQ, editQ])
     
     if(topics.length == 0) return null;
+    if (Object.keys(sub).length > 0 ) {
+        subTopics = topics.filter(topic => topic.name === sub.name)
+    }
+    const topicsRendered = Object.keys(sub).length > 0 ? subTopics: topics
 
  return (
         <div>
             <div id="topics-qlist" className="topics-questions-list">
-                {topics.map(topic => (
+                {topicsRendered.map(topic => (
                     <div key={topic.id} className="topics-qs">
                         <div className="topic-container">
                             <img src={topic.cover_img} alt="Topic image" />
