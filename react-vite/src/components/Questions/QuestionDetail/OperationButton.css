@@ -12,8 +12,8 @@
  
   .menu-container ul {
     position: absolute;
-    top: -270%; 
-    right: -60%; 
+    top: 80%; 
+    right: 0; 
     background-color: white;
     border: 1px solid #ccc;
     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
@@ -23,6 +23,7 @@
     margin: 0;
     border-radius: 4px;
     overflow: hidden; 
+    width:120px;
   }
   
   .menu-container ul li {
@@ -30,32 +31,10 @@
     cursor: pointer;
   }
   
-  .menu-container ul li:hover {
+  .opearion-button:hover {
     background-color: #f5f5f5;
   }
   
-  .menu-container ul::before {
-    content: "";
-    position: absolute;
-    bottom: 100%; 
-    right: 10px; 
-    border-width: 5px;
-    border-style: solid;
-    border-color: transparent transparent white transparent; 
-  }
-
-  .menu-container ul::after {
-    content: "";
-    position: absolute;
-    top: -5px; 
-    right: 15px; 
-    border-width: 5px;
-    border-style: solid;
-    border-color: transparent transparent white transparent; 
-    transform: translateY(-100%);
-  }
-  
-
   .flex {
     display: flex;
     justify-content: flex-start;
@@ -63,5 +42,7 @@
   }
 
   .opearion-button {
-    width: 150px;
+    width: 100%;
+    padding-left: 15px;
+    z-index: 99999999;
   }

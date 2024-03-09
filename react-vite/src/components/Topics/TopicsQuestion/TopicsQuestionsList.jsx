@@ -33,7 +33,7 @@ const TopicsQuestionsList = () => {
                             </div>
                         </div>
                         
-                        {topic && topic.questions && topic.questions.map(question => (
+                        {topic && topic.questions && topic.questions.sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at)).map(question => (
                             <QuestionListItem question={question} setDeleteQ={setDeleteQ} setEditQ={setEditQ} key={question.id} />
                         ))}
                         <div className="more">

@@ -31,22 +31,29 @@ const AnswerOperationButton = ({answer,setDeleteA, setEditA}) => {
       const ulClassName = "operations" + (showMenu ? "" : " hidden");
 
     return (
-        <div>
-            <div className="three-dots" onClick={toggleMenu}>
+        <div className="menu-container" >
+            <div className="three-dots" onClick={toggleMenu} style={{ color: "#333" }}>
                 <i className="fa-solid fa-ellipsis"></i>
             </div>
             {showMenu && (
                 <ul className={ulClassName} ref={ulRef}>
+                  <div className="flex opearion-button" style={{ color: "#333" }}>
+                    <i className="fa-solid fa-delete-left fa-flip-horizontal"></i>
                     <OpenModalMenuItem
-                      itemText="Edit Answer"
+                      itemText="Edit"
                       onItemClick={closeMenu}
                       modalComponent={<EditAnswerModal answer={answer} setEditA={setEditA}/>}
                     />
-                    <OpenModalMenuItem
-                      itemText="Delete Answer"
-                      onItemClick={closeMenu}
-                      modalComponent={<DeleteAnswerModal answer={answer} setDeleteA={setDeleteA} />}
-                    />
+                  </div>
+                  
+                  <div className="flex opearion-button" style={{ color: "#333" }}> 
+                    <i className="fa-regular fa-pen-to-square" ></i>
+                      <OpenModalMenuItem
+                        itemText="Delete"
+                        onItemClick={closeMenu}
+                        modalComponent={<DeleteAnswerModal answer={answer} setDeleteA={setDeleteA} />}
+                      />
+                  </div>
                 </ul>
             )}
         </div>

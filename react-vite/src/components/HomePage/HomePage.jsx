@@ -23,7 +23,7 @@ const HomePage = () => {
     const [searchInput, setSearchInput] = useState("")
     
     if (answersObj.length == 0 && activeTab == 'answers') return null
-    const answers = Object.values(answersObj)
+    const answers = Object.values(answersObj).sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at));
 
     const [currentAnswers, setCurrentAnswers] = useState([...answers]);
     
@@ -105,3 +105,6 @@ const HomePage = () => {
 }
 
 export default HomePage;
+
+
+

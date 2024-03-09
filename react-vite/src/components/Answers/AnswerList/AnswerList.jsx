@@ -13,7 +13,7 @@ const AnswerList = ({answers, setDeleteA, setEditA}) => {
 
     return (
         <div className="answer-list-component">
-            {answers.map(answer =>
+            {answers.sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at)).map(answer =>
                <AnswerListItem answer={answer} setDeleteA={setDeleteA} setEditA={setEditA} key={answer.id} />    
             )}
         </div>

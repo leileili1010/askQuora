@@ -2,6 +2,7 @@ import { useModal } from "../../../context/Modal";
 import { useDispatch, useSelector} from "react-redux";
 import { thunkDeleteQuestion } from "../../../redux/question";
 import { useNavigate, useParams, } from "react-router-dom";
+import "./DeleteQuestionModal.css"
 
 const DeleteQuestionModal = ({question, setDeleteQ}) => {
     const dispatch = useDispatch()
@@ -26,11 +27,13 @@ const DeleteQuestionModal = ({question, setDeleteQ}) => {
     }
     
     return (
-        <div>
-            <h2>Delete Question</h2>
+        <div className="delete-confirm">
+            <h3>Delete Question</h3>
             <p>Are you sure to delete this question?</p>
-            <button  onClick={handleDelete}>Confirm</button>
-            <button onClick={handleCancel}>Cancel</button>
+            <div className="delete-btns">
+                <button id="question-cancel" onClick={handleCancel}>Cancel</button>
+                <button id="question-submit" onClick={handleDelete}>Confirm</button>
+            </div>
         </div>
     )
 }

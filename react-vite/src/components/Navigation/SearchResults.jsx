@@ -33,9 +33,12 @@ function SearchResultsModal({ isOpen, onClose, questions, searchInput, setIsTypi
                 <span className='search-title'>Search: </span>
                 <span>{searchInput}</span>
             </div>
-            {questions.map(question => (
-            <Link to={`/questions/${question.id}`} key={question.id}><p>{question.title}</p></Link>
-            ))}
+            {questions.map(question => {
+              if (question.title !== "No question found")
+                  return <Link to={`/questions/${question.id}`} key={question.id}><p>{question.title}</p></Link>
+              else return <p>No question found</p>
+                }
+            )}
         </div>
     </>
   );
