@@ -22,8 +22,8 @@ const UserSpacesList = () => {
             {!spaces?.length &&  <p id="no-subs-p" className="credentials-details">Currently no supscriptions</p>}
             <div className="subscriptions">
                 {spaces?.map(space =>
-                    <>
-                        <div className="subscription" id="subscription">
+                  
+                        <div key={space?.id} className="subscription" id="subscription">
                             <img src={space?.topic.cover_img} alt="" />
                             <p>{space?.topic.name}</p>
                             <div className="subscription-details">
@@ -42,7 +42,7 @@ const UserSpacesList = () => {
                                 </div>
                             </div>
                         </div>
-                    </>
+                 
 
                 )}
             </div>

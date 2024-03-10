@@ -115,7 +115,7 @@ const UserProfile = () => {
                             <div className="subscriptions">
                                 {
                                     Object.values(answersObj).map(answer => 
-                                        <div className="subscription" id="knows">
+                                        <div key={answer.id} className="subscription" id="knows">
                                             <img src={answer.topic.cover_img} alt="" />
                                             <p>{answer.topic.name}</p>
                                         </div>
