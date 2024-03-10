@@ -14,6 +14,7 @@ const AnswerList = ({questionId}) => {
     const answersObj = useSelector(state => state.answers)
     if (answersObj.length == 0) return null
     const answers = Object.values(answersObj)
+    const sortedAnswers = answers.sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at));
 
     useEffect(() => {
         dispatch(thunkGetQuestionAnswers(questionId))
@@ -43,7 +44,7 @@ const AnswerList = ({questionId}) => {
 
     return (
         <div className="answer-list-component">
-            {answers.sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at)).map(answer =>
+            {sortedAnswers.map(answer =>
                <AnswerListItem answer={answer} setDeleteA={setDeleteA} setEditA={setEditA} key={answer.id} />    
             )}
         </div>

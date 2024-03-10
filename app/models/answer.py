@@ -34,6 +34,6 @@ class Answer(db.Model):
             "author": self.author.to_dict(),
             "question": self.question.to_dict(),
             "topic": topic,
-            'created_At': self.created_at,
-            'updated_At': self.updated_at
+            'created_at': self.created_at,
+            'updated_at': self.updated_at
         }

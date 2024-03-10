@@ -1,11 +1,12 @@
 import AnswerListItem from "./AnswerListItem";
 import { useSelector } from "react-redux/es/hooks/useSelector";
-import { useEffect, useState } from "react";
+import { useEffect} from "react";
 import { useNavigate} from "react-router-dom";
 
 const AnswerListHome = ({answers, setDeleteA, setEditA}) => {
     const user = useSelector(state => state.session.user)
     const navigate = useNavigate()
+    const sortedAnswers = [...answers].sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at))
     // const [isLoading, setIsLoading] = useState(false);
 
     // useEffect(() => {
@@ -29,7 +30,7 @@ const AnswerListHome = ({answers, setDeleteA, setEditA}) => {
 
     return (
         <div className="answer-list-component">
-            {answers.sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at)).map(answer =>
+            {sortedAnswers.map(answer =>
                <AnswerListItem answer={answer} setDeleteA={setDeleteA} setEditA={setEditA} key={answer.id} />    
             )}
         </div>

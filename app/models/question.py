@@ -33,6 +33,6 @@ class Question(db.Model):
             "owner": self.owner.to_dict(),
             "topic": topic,
             "numOfAnswers": len(self.answers),
-            'createdAt': self.created_at,
-            'updatedAt': self.updated_at
+            'created_at': self.created_at,
+            'updated_at': self.updated_at
         }

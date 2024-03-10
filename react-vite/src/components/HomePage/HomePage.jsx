@@ -57,6 +57,7 @@ const HomePage = () => {
 
     
     const answers = Object.values(answersObj).sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at));
+    
     if (Object.keys(sub).length > 0) {
         subAnswers = answers.filter(answer => answer.topic.name === sub.name ) 
     }
