@@ -20,9 +20,7 @@ const QuestionDetail = () => {
     const answersObj = useSelector(state => state.answers)
     const topicId = question?.topic?.id
     const topic = useSelector(state => state.topics[topicId])
-    console.log("🚀 ~ QuestionDetail ~ topic:", topic)
     const questions = topic?.questions;
-    console.log("🚀 ~ QuestionDetail ~ questions :", questions )
     const [deleteQ, setDeleteQ] = useState(0)
     const [editQ, setEditQ] = useState(0)
     const [deleteA, setDeleteA] = useState(0)

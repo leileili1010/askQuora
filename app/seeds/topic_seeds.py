@@ -27,7 +27,7 @@ topics = [
         'name': 'Career Connect',
         'description': 'The space where you can learn about anything career-related',
         'creator_id': 6,
-        'cover_img': "https://askcora.s3.us-west-1.amazonaws.com/topics_image/5_carrer+connect.png"
+        'cover_img': "https://askcora.s3.us-west-1.amazonaws.com/topics_image/career-cover.png"
     },
     {
         'name': 'Software Engineering Experiences',
@@ -63,6 +63,6 @@ topics = [
         'name': 'More Questions',
         'description': 'Everything considered here',
         'creator_id': 11,
-        'cover_img': "https://askcora.s3.us-west-1.amazonaws.com/topics_image/question-mark.jpg"
+        'cover_img': "https://askcora.s3.us-west-1.amazonaws.com/topics_image/everything-cover.jpg"
     }
 ]
