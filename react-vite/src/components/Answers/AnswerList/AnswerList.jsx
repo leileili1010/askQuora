@@ -10,35 +10,34 @@ const AnswerList = ({questionId}) => {
     const navigate = useNavigate()
     const [editA, setEditA] = useState(0)
     const [deleteA, setDeleteA] = useState(0)
-    const [isLoading, setIsLoading] = useState(false);
+    // const [isLoading, setIsLoading] = useState(false);
     const answersObj = useSelector(state => state.answers)
     if (answersObj.length == 0) return null
     const answers = Object.values(answersObj)
 
     useEffect(() => {
         dispatch(thunkGetQuestionAnswers(questionId))
-        console.log("🚀 ~ Answerlist ~ anser:", "inside anserlist thunk")
         return () => {
             dispatch(returnInitial());
           };
-    }, [dispatch, questionId])
+    }, [dispatch, questionId, editA, deleteA])
 
-    useEffect(() => {
-        setIsLoading(true);
-        setTimeout(() => {
-            setIsLoading(false);
-        }, 1500); 
-    }, []);
+    // useEffect(() => {
+    //     setIsLoading(true);
+    //     setTimeout(() => {
+    //         setIsLoading(false);
+    //     }, 1500); 
+    // }, []);
 
     useEffect(() => {
         if (!user) navigate("/");
       }, [user, navigate]);
 
-      if (isLoading) return(
-        <div className="answer-list-component">
-            <div className="spinner">Loading...</div>
-        </div>
-      )
+    //   if (isLoading) return(
+    //     <div className="answer-list-component">
+    //         <div className="spinner">Loading...</div>
+    //     </div>
+    //   )
 
     if (!answers.length) return null;
 
