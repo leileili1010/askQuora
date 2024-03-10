@@ -1,19 +1,9 @@
-import { useDispatch, useSelector } from "react-redux";
-import { thunkGetUserSubscriptions } from "../../redux/session";
-import { useEffect} from "react";
 import { useNavigate } from "react-router-dom";
 
 
-const SpacesList = ({setSub}) => {
-    const dispatch = useDispatch()
+const SpacesList = ({setSub,spaces}) => {
     const navigate = useNavigate()
-    const spaces = useSelector(state => state.session.userSubscriptions)
-
-
-    useEffect(() => {
-        dispatch(thunkGetUserSubscriptions())
-    }, [dispatch])
-
+   
     return (
         <div className="spaces-container">
             <div className="add-subs" onClick={() => navigate("/explore-topics")}>
@@ -22,7 +12,7 @@ const SpacesList = ({setSub}) => {
             </div>
             <div className="subscriptions">
                 <div className="subscription" onClick={() => setSub({})}>
-                    <img src="https://askcora.s3.us-west-1.amazonaws.com/topics_image/everything.png" />
+                    <img src="https://askcora.s3.us-west-1.amazonaws.com/topics_image/everything-cover.jpg" />
                     <p>Everything</p>
                 </div>
                 {spaces?.map(space =>

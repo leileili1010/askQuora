@@ -10,7 +10,10 @@ import CreateQuestionModal from '../Questions/CreateQuestion/CreateQuestion'
 import OpenModalButton from '../OpenModalButton/OpenModalButton'
 import TopicsQuestionsList from "../Topics/TopicsQuestion/TopicsQuestionsList"
 import { thunkSetUserAnswers } from "../../redux/session";
+import { thunkGetUserSubscriptions } from "../../redux/session";
 import SpacesList from "../Spaces/SpacesList";
+import RecommendTopics from "../Spaces/RecomendSpace";
+
 
 const HomePage = () => {
     const dispatch = useDispatch()
@@ -23,6 +26,7 @@ const HomePage = () => {
     const [editA, setEditA] = useState(0)
     const [sub, setSub] = useState({})
     const [searchInput, setSearchInput] = useState("")
+    const spaces = useSelector(state => state.session.userSubscriptions)
     let subAnswers
 
     useEffect(() => {
@@ -43,6 +47,10 @@ const HomePage = () => {
             dispatch(returnInitial());
         };
     }, [dispatch, editA, deleteA])
+
+    useEffect(() => {
+        dispatch(thunkGetUserSubscriptions())
+    }, [dispatch])
     
     const answers = Object.values(answersObj).sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at));
     if (Object.keys(sub).length > 0) {
@@ -68,7 +76,7 @@ const HomePage = () => {
 
             <div className="topics">
                 {/* spaces and topics*/}
-                <SpacesList setSub={setSub}/>
+                <SpacesList setSub={setSub} spaces={spaces}/>
 
                  {/* spaces and topics*/}
                 <div className="topic-answers">
@@ -119,7 +127,7 @@ const HomePage = () => {
                 </div>
                
                <div className="relevant-spaces-container">
-                
+                    <RecommendTopics setSub={setSub} spaces={spaces}/>     
                </div>
             </div>
         </div>

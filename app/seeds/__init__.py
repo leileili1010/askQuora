@@ -43,7 +43,7 @@ def seed():
 # Creates the `flask seed undo` command
 @seed_commands.command('undo')
 def undo():
-    undo_subscriptions
+    undo_subscriptions()
     undo_space_contributors()
     undo_question_invites()
     undo_comments()
