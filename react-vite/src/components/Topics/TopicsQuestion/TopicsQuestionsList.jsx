@@ -4,9 +4,20 @@ import { useEffect, useState } from "react";
 import { thunkGetTopicsQuestions, returnTopicInitial } from "../../../redux/topic"
 import './TopicsQuestionsList.css'
 
-const TopicsQuestionsList = ({sub, setEditQ, setDeleteQ, topicsObj}) => {
+const TopicsQuestionsList = ({sub}) => {
+    const dispatch = useDispatch()
+    const [deleteQ, setDeleteQ] = useState(0);
+    const [editQ, setEditQ] = useState(0);
+    const topicsObj =  useSelector(state => state.topics)
     const topics = Object.values(topicsObj)
     let subTopics;
+
+    useEffect(() => {
+        dispatch(thunkGetTopicsQuestions());
+        return () => {
+            dispatch(returnTopicInitial());
+        };
+    }, [dispatch,deleteQ, editQ])
     
     if(topics.length == 0) return null;
     if (Object.keys(sub).length > 0 ) {
