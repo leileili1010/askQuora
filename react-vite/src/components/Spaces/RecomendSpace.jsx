@@ -1,7 +1,7 @@
-import { thunkGetTopics } from "../../redux/topic";
+// import { thunkGetTopics } from "../../redux/topic";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { thunkGetTopicQuestions } from "../../redux/question";
+import { thunkGetTopicsQuestions } from "../../redux/topic";
 import "./RecomendSpace.css";
 
 const RecommendTopics = ({setSub, spaces, setTopicForUser}) => {
@@ -15,7 +15,7 @@ const RecommendTopics = ({setSub, spaces, setTopicForUser}) => {
     const recommendTopics = topics.filter(topic => !spaceIdArr.includes(topic.id))
 
     useEffect(() => {
-        dispatch(thunkGetTopicQuestions())
+        dispatch( thunkGetTopicsQuestions())
     }, [dispatch])
 
     return (
