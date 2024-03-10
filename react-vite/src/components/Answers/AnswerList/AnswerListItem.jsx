@@ -31,6 +31,8 @@ import './AnswerListItem.css'
         return doc.body.innerHTML;
     }, [answer.detail]); 
 
+    
+
     // // get url of the 1st image if there is any
     // const getFirstImageUrl = (htmlContent) => {
     //     const parser = new DOMParser();
