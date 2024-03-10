@@ -25,6 +25,7 @@ const TopicsQuestionsList = ({sub}) => {
     }
     const topicsRendered = Object.keys(sub).length > 0 ? subTopics: topics
 
+
  return (
         <div>
             <div id="topics-qlist" className="topics-questions-list">
@@ -38,7 +39,7 @@ const TopicsQuestionsList = ({sub}) => {
                             </div>
                         </div>
                         
-                        {topic && topic.questions && topic.questions.sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at)).map(question => (
+                        {topic && topic.questions && topic.questions.map(question => (
                             <QuestionListItem question={question} setDeleteQ={setDeleteQ} setEditQ={setEditQ} key={question.id} />
                         ))}
                         <div className="more">

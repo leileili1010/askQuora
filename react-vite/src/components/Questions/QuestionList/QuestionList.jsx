@@ -9,6 +9,7 @@ const QuestionList = () => {
     const questionObj = useSelector(state => state.questions)
     const questions = Object.values(questionObj)
     const {topicId} = useParams()
+    const sortedQuestions = questions.sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at));
     
     useEffect(() => {
         if (topicId) {
@@ -23,7 +24,7 @@ const QuestionList = () => {
     return (
         <div>
             <ul className="question-list">
-                {questions.sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at)).map((question) => (
+                {sortedQuestions.map((question) => (
                 <QuestionListItem question={question} key={question.id} />
                 ))}
             </ul>
