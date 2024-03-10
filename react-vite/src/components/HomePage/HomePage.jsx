@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { thunkGetAllAnswers, returnInitial } from "../../redux/answer";  
 import { useEffect, useState } from "react";
-import AnswerList from "../Answers/AnswerList/AnswerList";
+import AnswerListHome from "../Answers/AnswerList/AnswerListHome";
 import NavigationHome from "../Navigation/NavigationHome";
 import Navigation from "../Navigation/Navigation";
 import { useNavigate} from "react-router-dom";
@@ -22,7 +22,6 @@ const HomePage = () => {
     const user = useSelector(state => state.session.user)
     const profile_img = user?.profile_img
     const [activeTab, setActiveTab] = useState('answers');
-    
     const [deleteA, setDeleteA] = useState(0)
     const [editA, setEditA] = useState(0)
     const [sub, setSub] = useState({})
@@ -158,7 +157,7 @@ const HomePage = () => {
                         <p className={activeTab == 'answers' ? 'active' : ''} onClick={() => handleTabClick('answers')}>Answers</p>
                         <p className={activeTab === 'questions' ? 'active' : ''} onClick={() => handleTabClick('questions')}>Questions</p>
                     </div> 
-                    {activeTab === 'answers' && <AnswerList answers={Object.keys(sub).length >0?subAnswers:currentAnswers} setDeleteA={setDeleteA} setEditA={setEditA}/>}
+                    {activeTab === 'answers' && <AnswerListHome answers={Object.keys(sub).length >0?subAnswers:currentAnswers} setDeleteA={setDeleteA} setEditA={setEditA}/>}
                     {activeTab === 'questions' && <TopicsQuestionsList sub={sub}   />}
                 </div>
                
