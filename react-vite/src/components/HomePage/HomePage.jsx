@@ -13,6 +13,7 @@ import { thunkSetUserAnswers } from "../../redux/session";
 import { thunkGetUserSubscriptions } from "../../redux/session";
 import SpacesList from "../Spaces/SpacesList";
 import RecommendTopics from "../Spaces/RecomendSpace";
+import { thunkGetTopicsQuestions, returnTopicInitial } from "../../redux/topic";
 
 
 const HomePage = () => {
@@ -20,8 +21,11 @@ const HomePage = () => {
     const navigate = useNavigate()
     const answersObj = useSelector(state => state.answers)
     const user = useSelector(state => state.session.user)
+    const topicsObj =  useSelector(state => state.topics)
     const profile_img = user?.profile_img
     const [activeTab, setActiveTab] = useState('answers');
+    const [deleteQ, setDeleteQ] = useState(0);
+    const [editQ, setEditQ] = useState(0);
     const [deleteA, setDeleteA] = useState(0)
     const [editA, setEditA] = useState(0)
     const [sub, setSub] = useState({})
@@ -49,6 +53,14 @@ const HomePage = () => {
             dispatch(returnInitial());
         };
     }, [dispatch, editA, deleteA])
+
+
+    useEffect(() => {
+        dispatch(thunkGetTopicsQuestions());
+        return () => {
+            dispatch(returnTopicInitial());
+        };
+    }, [dispatch,deleteQ, editQ])
 
     useEffect(() => {
         dispatch(thunkGetUserSubscriptions())
@@ -156,11 +168,11 @@ const HomePage = () => {
                         <p className={activeTab === 'questions' ? 'active' : ''} onClick={() => handleTabClick('questions')}>Questions</p>
                     </div> 
                     {activeTab === 'answers' && <AnswerList answers={Object.keys(sub).length >0?subAnswers:currentAnswers} setDeleteA={setDeleteA} setEditA={setEditA}/>}
-                    {activeTab === 'questions' && <TopicsQuestionsList sub={sub}/>}
+                    {activeTab === 'questions' && <TopicsQuestionsList sub={sub} setDeleteQ={setDeleteQ} setEditQ={setEditQ} topicsObj={topicsObj}  />}
                 </div>
                
                <div className="relevant-spaces-container">
-                    <RecommendTopics setSub={setSub} spaces={spaces} setTopicForUser={setTopicForUser}/>     
+                    <RecommendTopics setSub={setSub} spaces={spaces} setTopicForUser={setTopicForUser} topicsObj={topicsObj} />     
                </div>
             </div>
         </div>
