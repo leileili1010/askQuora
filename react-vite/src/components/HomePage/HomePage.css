@@ -18,8 +18,6 @@
     gap:40px;
 }
 
-
-
 .topic-answers {
     width:600px;
     display: flex;
@@ -187,13 +185,14 @@
 }
 
 .add-subs:hover {
-    background-color: #e2e2e2;;
+    background-color: #e2e2e2;
     text-decoration: underline;
 }
 
 .render-space img{
     width: 80px;
     height: 80px;
+    border-radius: 5px;
 }
 
 .render-space {
@@ -206,4 +205,42 @@
 
 .render-space h3 {
     margin-bottom: 10px;
+}
+
+.new-sub {
+    color: #2f69ff;
+    border-radius: 24px;
+    border: 1px solid #2f69ff;
+    font-size: 12px;
+    width: 75px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 5px;
+    align-self: flex-end;
+    margin-top: -22px;
+    margin-bottom: 4px;
+}
+
+.new-sub button {
+    background-color: transparent;
+    border: none;
+    color: #2f69ff;
+    font-size: 12px;
+    cursor: pointer;
+    
+}
+
+.add-new-sub {
+    display: flex;
+    flex-direction: column;
+}
+
+.new-sub:hover {
+    background-color:   #E9EAEA;
+    font-weight: bold;
+}
+
+.new-sub button:hover {
+    font-weight: bold;
 }

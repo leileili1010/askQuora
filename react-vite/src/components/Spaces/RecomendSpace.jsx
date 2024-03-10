@@ -1,27 +1,25 @@
-import { useNavigate } from "react-router-dom";
 import { thunkGetTopics } from "../../redux/topic";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import "./RecomendSpace.css";
 
-const RecommendTopics = ({setSub, spaces}) => {
-    const navigate = useNavigate();
+const RecommendTopics = ({setSub, spaces, setTopicForUser}) => {
     const dispatch = useDispatch();
     const spaceIdArr = [11]
     if (spaces?.length) {
         spaces.forEach(space => spaceIdArr.push(space.topic.id))
     }
-    console.log("🚀 ~ RecommendTopics ~ spaceIdArr:", spaceIdArr)
 
     const topicObj = useSelector(state => state.topics)
     const topics = Object.values(topicObj)
     const recommendTopics = topics.filter(topic => !spaceIdArr.includes(topic.id))
-    console.log("🚀 ~ RecommendTopics ~ recommendTopics:", recommendTopics)
 
     useEffect(() => {
         dispatch(thunkGetTopics())
     }, [dispatch])
 
+
+  
 
     return (
         <div className="recomend-topic-container">
@@ -31,7 +29,7 @@ const RecommendTopics = ({setSub, spaces}) => {
 
             <div id="recommendations">
                 {recommendTopics?.map(topic =>
-                    <div className="subscription" onClick={() => setSub(topic)}>
+                    <div className="subscription" onClick={() => {setSub(topic); setTopicForUser(topic.id)}} key={topic.name}>
                         <img src={topic?.cover_img}/>
                         <div id="topics-for-u">
                             <p className="topic-for-u-name">{topic?.name}</p>

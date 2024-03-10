@@ -26,6 +26,8 @@ const HomePage = () => {
     const [editA, setEditA] = useState(0)
     const [sub, setSub] = useState({})
     const [searchInput, setSearchInput] = useState("")
+    const [topicForUser, setTopicForUser] = useState("")
+    const [subscriptionUpdate, setSubscriptionUpdate] = useState(0);
     const spaces = useSelector(state => state.session.userSubscriptions)
     let subAnswers
 
@@ -50,7 +52,7 @@ const HomePage = () => {
 
     useEffect(() => {
         dispatch(thunkGetUserSubscriptions())
-    }, [dispatch])
+    }, [dispatch, subscriptionUpdate])
     
     const answers = Object.values(answersObj).sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at));
     if (Object.keys(sub).length > 0) {
@@ -63,6 +65,32 @@ const HomePage = () => {
         setActiveTab(tab);
     };
     
+    const handleSubscribe = async (subId) => {
+        try {
+            const res = await fetch("/api/subscriptions/new", {
+                method: "POST", 
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({ topic_id: subId })  
+            });
+    
+            if (res.ok) {
+                const data = await res.json();
+                setSubscriptionUpdate(prev => prev + 1);
+                setTopicForUser("");
+                // console.log('Subscription added:', data);
+                return data;
+            } else {
+                const errorData = await res.json();
+                console.error('Error adding subscription:', errorData);
+                return null;
+            }
+        } catch (error) {
+            console.error('Network error:', error.message);
+            return null;
+        }
+    };
+    
+
     return (
         <div className="homepage">
             <div className="home-nav-bar">
@@ -71,12 +99,11 @@ const HomePage = () => {
                     (<NavigationHome answers={answers} searchInput={searchInput} setSearchInput={setSearchInput} currentAnswers={currentAnswers} setCurrentAnswers={setCurrentAnswers} setSub={setSub}/>):
                     <Navigation/>
                 }
-                
             </div>
 
             <div className="topics">
                 {/* spaces and topics*/}
-                <SpacesList setSub={setSub} spaces={spaces}/>
+                <SpacesList setSub={setSub} spaces={spaces} setTopicForUser={setTopicForUser}/>
 
                  {/* spaces and topics*/}
                 <div className="topic-answers">
@@ -108,14 +135,20 @@ const HomePage = () => {
                     
                          
                          {Object.keys(sub).length > 0 && 
-                        <div className="render-space">
-                           <img src={sub.cover_img}/>
-                           <div>
-                                <h3>{sub.name}</h3>
-                                <p>{sub.description}</p> 
-                           </div>
 
-                        </div>} 
+                            <div className="add-new-sub">
+                                <div className="render-space">
+                                    <img src={sub.cover_img} />
+                                    <div>
+                                        <h3>{sub.name}</h3>
+                                        <p>{sub.description}</p>
+                                    </div>
+                                </div>
+                                {topicForUser && <div className="new-sub">
+                                    <button onClick={() => handleSubscribe(sub.id)}>Subscribe</button>
+                                </div>}
+                            </div>
+                        } 
                         
                     </div>
                     <div className="answer-question-nav">
@@ -127,7 +160,7 @@ const HomePage = () => {
                 </div>
                
                <div className="relevant-spaces-container">
-                    <RecommendTopics setSub={setSub} spaces={spaces}/>     
+                    <RecommendTopics setSub={setSub} spaces={spaces} setTopicForUser={setTopicForUser}/>     
                </div>
             </div>
         </div>

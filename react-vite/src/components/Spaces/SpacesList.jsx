@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 
 
-const SpacesList = ({setSub,spaces}) => {
+const SpacesList = ({setSub,spaces, setTopicForUser}) => {
     const navigate = useNavigate()
    
     return (
@@ -16,7 +16,7 @@ const SpacesList = ({setSub,spaces}) => {
                     <p>Everything</p>
                 </div>
                 {spaces?.map(space =>
-                    <div className="subscription" onClick={() => setSub(space?.topic)}>
+                    <div key={space?.id} className="subscription" onClick={() => {setSub(space?.topic); setTopicForUser("")}}>
                         <img src={space?.topic.cover_img} alt="" />
                         <p>{space?.topic.name}</p>
                     </div>
