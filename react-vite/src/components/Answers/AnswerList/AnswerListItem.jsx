@@ -22,8 +22,7 @@ const AnswerListItem = ({ answer, setDeleteA, setEditA }) => {
             firstImageHtml = images[0].src; 
             images[0].remove();
         }
-
-       
+    
         const textContent = doc.body.textContent + '...'; 
 
         return { 
