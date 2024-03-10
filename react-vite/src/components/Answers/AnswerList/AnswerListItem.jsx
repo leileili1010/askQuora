@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import AnswerOperationButton from "./AnswerOpertionButton";
 import { useSelector } from "react-redux/es/hooks/useSelector";
-import {useState} from "react"
+import {useState, useMemo} from "react"
 import './AnswerListItem.css'
 
 
@@ -16,25 +16,41 @@ import './AnswerListItem.css'
     const toggleTruncation = () => {
     setIsTruncated(!isTruncated);
     };
-    
-    // get url of the 1st image if there is any
-    const getFirstImageUrl = (htmlContent) => {
+   
+    const firstImageUrl = useMemo(() => {
         const parser = new DOMParser();
-        const doc = parser.parseFromString(htmlContent, 'text/html');
+        const doc = parser.parseFromString(answer.detail, 'text/html');
         const firstImage = doc.querySelector('img');
         return firstImage ? firstImage.src : null;
-    };
+    }, [answer.detail]); 
 
-    const firstImageUrl = getFirstImageUrl(answer.detail);
-
-    // remove all images from answer.detail 
-    const truncateDetail = (htmlContent) => {
-        const doc = new DOMParser().parseFromString(htmlContent, 'text/html');
+    const truncatedDetail = useMemo(() => {
+        const doc = new DOMParser().parseFromString(answer.detail, 'text/html');
         const images = doc.querySelectorAll('img');
-        images.forEach(img => img.remove()); 
+        images.forEach(img => img.remove());
         return doc.body.innerHTML;
-    };
-    const truncatedDetail = truncateDetail(answer.detail);
+    }, [answer.detail]); 
+
+    // // get url of the 1st image if there is any
+    // const getFirstImageUrl = (htmlContent) => {
+    //     const parser = new DOMParser();
+    //     const doc = parser.parseFromString(htmlContent, 'text/html');
+    //     const firstImage = doc.querySelector('img');
+    //     return firstImage ? firstImage.src : null;
+    // };
+
+    // const firstImageUrl = getFirstImageUrl(answer.detail);
+
+    // // remove all images from answer.detail 
+    // const truncateDetail = (htmlContent) => {
+    //     const doc = new DOMParser().parseFromString(htmlContent, 'text/html');
+    //     const images = doc.querySelectorAll('img');
+    //     images.forEach(img => img.remove()); 
+    //     return doc.body.innerHTML;
+    // };
+    // const truncatedDetail = truncateDetail(answer.detail);
+
+
     const contentToShow = isTruncated ? truncatedDetail : answer.detail;
     
     return (
