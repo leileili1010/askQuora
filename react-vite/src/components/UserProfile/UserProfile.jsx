@@ -4,7 +4,7 @@ import { useNavigate} from "react-router-dom";
 import { useEffect, useState} from "react";
 import UserAnswers from "../Answers/UserAnswers/UserAnswers";
 import UserQuestions from "../Questions/UserQuestions/UserQuestions";
-import { thunkGetAuthorAnswers } from "../../redux/answer";
+import { thunkGetAuthorAnswers, returnInitial } from "../../redux/answer";
 import { thunkGetUserQuestions } from "../../redux/question";
 import UserSpacesList from "../Spaces/UserSpaces";
 import "./UserProfile.css"
@@ -28,6 +28,7 @@ const UserProfile = () => {
     const [deleteA, setDeleteA] = useState(0)
     const [editA, setEditA] = useState(0)
 
+
     const handleTabClick = (tab) => {
         setActiveTab(tab);
     };
@@ -38,6 +39,9 @@ const UserProfile = () => {
 
       useEffect(() => {
         dispatch(thunkGetAuthorAnswers())
+        return () => {
+            dispatch(returnInitial());
+        };
     }, [dispatch, editA, deleteA])
 
     useEffect(() => {
@@ -110,7 +114,7 @@ const UserProfile = () => {
                             <UserSpacesList />
                         </div>
 
-                        <div className="user-subscriptions knows">
+                        {/* <div className="user-subscriptions knows">
                             <p className="credentials-title">Knows About</p>
                             <div className="subscriptions">
                                 {
@@ -122,7 +126,7 @@ const UserProfile = () => {
                                     )
                                 }
                             </div>
-                        </div>
+                        </div> */}
                     </div>
 
                 </div>

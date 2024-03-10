@@ -6,7 +6,7 @@ import { useNavigate} from "react-router-dom";
 const AnswerListHome = ({answers, setDeleteA, setEditA}) => {
     const user = useSelector(state => state.session.user)
     const navigate = useNavigate()
-    const sortedAnswers = [...answers].sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at))
+    const sortedAnswers = answers.sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at))
     // const [isLoading, setIsLoading] = useState(false);
 
     // useEffect(() => {
