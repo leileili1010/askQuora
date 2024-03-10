@@ -117,3 +117,8 @@
     background-color:transparent;
     cursor:auto;
 }
+
+#no-subs-p {
+    margin-top: 10px;
+    font-weight: bold;
+}

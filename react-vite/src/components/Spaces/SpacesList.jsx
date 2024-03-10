@@ -1,10 +1,12 @@
 import { useDispatch, useSelector } from "react-redux";
 import { thunkGetUserSubscriptions } from "../../redux/session";
-import { useEffect, useState } from "react";
+import { useEffect} from "react";
+import { useNavigate } from "react-router-dom";
 
 
 const SpacesList = ({setSub}) => {
     const dispatch = useDispatch()
+    const navigate = useNavigate()
     const spaces = useSelector(state => state.session.userSubscriptions)
 
 
@@ -14,7 +16,7 @@ const SpacesList = ({setSub}) => {
 
     return (
         <div className="spaces-container">
-            <div className="add-subs">
+            <div className="add-subs" onClick={() => navigate("/explore-topics")}>
                 <i className="fa-solid fa-plus"></i>
                 <span className="add-sub">Subscriptions</span>
             </div>

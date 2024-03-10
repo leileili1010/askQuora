@@ -153,6 +153,7 @@
 .subscription:hover {
     background-color: #E9EAEA;
     text-decoration: underline;
+    border-radius: 4px;
 }
 
 .subscription p {
@@ -179,8 +180,10 @@
 
 .add-subs {
     background-color: #E9EAEA;
-    padding: 20px 12px;
+    padding: 10px 12px;
     cursor: pointer;
+    margin-bottom: -10px;
+    border-radius: 10px;
 }
 
 .add-subs:hover {

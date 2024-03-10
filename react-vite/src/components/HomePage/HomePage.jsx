@@ -118,7 +118,9 @@ const HomePage = () => {
                     {activeTab === 'questions' && <TopicsQuestionsList sub={sub}/>}
                 </div>
                
-               <div className="relevant-spaces-container"></div>
+               <div className="relevant-spaces-container">
+                
+               </div>
             </div>
         </div>
     )

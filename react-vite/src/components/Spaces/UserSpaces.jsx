@@ -1,4 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { thunkGetUserSubscriptions } from "../../redux/session";
 import { useEffect, useState} from "react";
 import OpenModalButton from "../OpenModalButton/OpenModalButton";
@@ -8,6 +9,7 @@ import "./UserSpaces.css"
 
 const UserSpacesList = () => {
     const dispatch = useDispatch()
+    const navigate = useNavigate();
     const [deleteS, setDeleteS] = useState(0)
     const spaces = useSelector(state => state.session.userSubscriptions)
 
@@ -17,7 +19,7 @@ const UserSpacesList = () => {
 
     return (
         <div id="spaces-container">
-            {!spaces?.length &&  <p className="credentials-details">Currently no supscriptions</p>}
+            {!spaces?.length &&  <p id="no-subs-p" className="credentials-details">Currently no supscriptions</p>}
             <div className="subscriptions">
                 {spaces?.map(space =>
                     <>
@@ -36,7 +38,7 @@ const UserSpacesList = () => {
                                     modalComponent={<UnsubscripModal space={space} setDeleteS={setDeleteS}/>}
                                     className="sub-btn"
                                     />
-                                    <button className="sub-btn">Explore subscriptions</button>
+                                    <button onClick={() => navigate("/explore-topics")}  className="sub-btn">Explore subscriptions</button>
                                 </div>
                             </div>
                         </div>
