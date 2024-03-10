@@ -1,9 +1,7 @@
 import { createBrowserRouter, Outlet } from 'react-router-dom';
 import SignupFormPage from '../components/SignupFormPage';
 import Layout from './Layout';
-import QuestionList from '../components/Questions/QuestionList/QuestionList';
 import QuestionDetail from '../components/Questions/QuestionDetail/QuestionDetail';
-import TopicAnswers from '../components/Answers/TopicAnswers/TopicAnswers';
 import HomePage from '../components/HomePage/HomePage';
 import LandingPage from '../components/HomePage/LandingPage';
 import UserProfile from '../components/UserProfile/UserProfile';

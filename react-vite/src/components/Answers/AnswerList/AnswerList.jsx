@@ -12,7 +12,7 @@ const AnswerList = ({answers, setDeleteA, setEditA}) => {
         setIsLoading(true);
         setTimeout(() => {
             setIsLoading(false);
-        }, 800); 
+        }, 1500); 
     }, []);
 
     useEffect(() => {

@@ -13,7 +13,6 @@ import { thunkSetUserAnswers } from "../../redux/session";
 import { thunkGetUserSubscriptions } from "../../redux/session";
 import SpacesList from "../Spaces/SpacesList";
 import RecommendTopics from "../Spaces/RecomendSpace";
-// import { thunkGetTopicsQuestions, returnTopicInitial } from "../../redux/topic";
 
 
 const HomePage = () => {
@@ -56,13 +55,6 @@ const HomePage = () => {
     useEffect(() => {
         dispatch(thunkGetUserSubscriptions())
     }, [dispatch, subscriptionUpdate])
-
-    // useEffect(() => {
-    //     dispatch(thunkGetTopicsQuestions());
-    //     return () => {
-    //         dispatch(returnTopicInitial());
-    //     };
-    // }, [dispatch,deleteQ, editQ])
 
     
     const answers = Object.values(answersObj).sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at));

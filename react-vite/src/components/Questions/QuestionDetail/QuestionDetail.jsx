@@ -7,7 +7,7 @@ import AnswerList from "../../Answers/AnswerList/AnswerList";
 import Navigation from "../../Navigation/Navigation"
 import { useNavigate} from "react-router-dom";
 import QuestionListItem from "../QuestionListItem/QuestionListItem";
-import { thunkGetTopic, returnTopicInitial } from "../../../redux/topic"; 
+// import { thunkGetTopic, returnTopicInitial } from "../../../redux/topic"; 
 import "./QuestionDetail.css"
 
 
@@ -30,14 +30,14 @@ const QuestionDetail = () => {
     if (questions?.length > 1)
         relevantQs = questions.filter(question => question.id !== parseInt(questionId)).slice(0, 10); // Limit to 10 Qs
     
-    useEffect(() => {
-        if (topicId) {
-            dispatch(thunkGetTopic(topicId));
-        }
-        return () => {
-            dispatch(returnTopicInitial());
-          };
-    }, [dispatch, topicId]);
+    // useEffect(() => {
+    //     if (topicId) {
+    //         dispatch(thunkGetTopic(topicId));
+    //     }
+    //     return () => {
+    //         dispatch(returnTopicInitial());
+    //       };
+    // }, [dispatch, topicId]);
     
     
     useEffect(() => {
