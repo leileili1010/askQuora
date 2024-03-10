@@ -2,12 +2,12 @@ import { useParams, Link } from "react-router-dom";
 import {thunkGetQuestion, returnInitialQuestionState} from '../../../redux/question'
 import { useEffect, useState} from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { thunkGetQuestionAnswers, returnInitial } from "../../../redux/answer";
+// import { thunkGetQuestionAnswers, returnInitial } from "../../../redux/answer";
 import AnswerList from "../../Answers/AnswerList/AnswerList";
 import Navigation from "../../Navigation/Navigation"
 import { useNavigate} from "react-router-dom";
 import QuestionListItem from "../QuestionListItem/QuestionListItem";
-import { thunkGetTopic, returnTopicInitial } from "../../../redux/topic"; 
+// import { thunkGetTopic, returnTopicInitial } from "../../../redux/topic"; 
 import "./QuestionDetail.css"
 
 
@@ -17,27 +17,25 @@ const QuestionDetail = () => {
     const navigate = useNavigate()
     const question = useSelector(state => state.questions[questionId])
     const user = useSelector(state => state.session.user)
-    const answersObj = useSelector(state => state.answers)
+    // const answersObj = useSelector(state => state.answers)
     const topicId = question?.topic?.id
     const topic = useSelector(state => state.topics[topicId])
     const questions = topic?.questions;
     const [deleteQ, setDeleteQ] = useState(0)
     const [editQ, setEditQ] = useState(0)
-    const [deleteA, setDeleteA] = useState(0)
-    const [editA, setEditA] = useState(0)
     let relevantQs
 
     if (questions?.length > 1)
         relevantQs = questions.filter(question => question.id !== parseInt(questionId)).slice(0, 10); // Limit to 10 Qs
     
-    useEffect(() => {
-        if (topicId) {
-            dispatch(thunkGetTopic(topicId));
-        }
-        return () => {
-            dispatch(returnTopicInitial());
-          };
-    }, [dispatch, topicId]);
+    // useEffect(() => {
+    //     if (topicId) {
+    //         dispatch(thunkGetTopic(topicId));
+    //     }
+    //     return () => {
+    //         dispatch(returnTopicInitial());
+    //       };
+    // }, [dispatch, topicId]);
     
     
     useEffect(() => {
@@ -49,18 +47,18 @@ const QuestionDetail = () => {
         return () => {
             dispatch(returnInitialQuestionState());
           };
-    }, [dispatch, questionId, deleteQ, editQ, editA, deleteA])
+    }, [dispatch, questionId, deleteQ, editQ])
 
-    useEffect(() => {
-        dispatch(thunkGetQuestionAnswers(questionId))
-        return () => {
-            dispatch(returnInitial());
-          };
-    }, [dispatch, questionId, editA, deleteA])
+    // useEffect(() => {
+    //     dispatch(thunkGetQuestionAnswers(questionId))
+    //     return () => {
+    //         dispatch(returnInitial());
+    //       };
+    // }, [dispatch, questionId, editA, deleteA])
 
-    if (answersObj.length == 0) return null
+    // if (answersObj.length == 0) return null
     
-    const answers = Object.values(answersObj)
+    // const answers = Object.values(answersObj)
     
     if(!question) return null;
 
@@ -74,7 +72,7 @@ const QuestionDetail = () => {
                     <QuestionListItem question={question} setDeleteQ={setDeleteQ} setEditQ={setEditQ}/>
                     {/*answers list*/}
                     <div className="answers-container">
-                        <AnswerList answers = {answers} setDeleteA={setDeleteA} setEditA={setEditA}/>
+                        <AnswerList questionId={questionId}/>
                     </div>
                 </div>
                 
