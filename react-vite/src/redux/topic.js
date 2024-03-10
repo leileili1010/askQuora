@@ -78,13 +78,13 @@ function topicReducer(state = initialState, action) {
         return newState
       }
       case GET_TOPIC: {
-        return action.topic;
+        return { ...state, [action.topic.id]: action.topic };
+      }
+      case GET_TOPICS_Questions: {
+        return {...action.topic_dict}
       }
       case RETURN_INITIAL: {
         return initialState;
-      }
-      case GET_TOPICS_Questions: {
-        return action.topic_dict
       }
       default:
         return state;

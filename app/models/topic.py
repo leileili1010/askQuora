@@ -21,7 +21,7 @@ class Topic(db.Model):
     questions = db.relationship('Question', back_populates = 'topic', cascade = 'all, delete-orphan')
     answers = db.relationship('Answer', back_populates = 'topic', cascade = 'all, delete-orphan')
     contributors = db.relationship('User', secondary=space_contributors,  back_populates = 'spaces')
-    # subscriptions = db.relationship('Subscription', back_populates = 'topic', cascade = 'all, delete-orphan')
+    subscriptions = db.relationship('Subscription', back_populates = 'topic', cascade = 'all, delete-orphan')
 
 
     def to_dict(self):
@@ -31,7 +31,7 @@ class Topic(db.Model):
             'description': self.description,
             'creator': self.creator.to_dict(),
             'cover_img': self.cover_img,
-            # 'num_of_subscriptions': len(self.subscriptions),
+            'num_of_subscriptions': len(self.subscriptions),
             'created_at': self.created_at,
             'updated_at': self.updated_at,
         }

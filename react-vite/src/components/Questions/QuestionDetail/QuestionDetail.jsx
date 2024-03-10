@@ -7,7 +7,7 @@ import AnswerList from "../../Answers/AnswerList/AnswerList";
 import Navigation from "../../Navigation/Navigation"
 import { useNavigate} from "react-router-dom";
 import QuestionListItem from "../QuestionListItem/QuestionListItem";
-import { thunkGetTopic } from "../../../redux/topic"; 
+import { thunkGetTopic, returnTopicInitial } from "../../../redux/topic"; 
 import "./QuestionDetail.css"
 
 
@@ -19,7 +19,7 @@ const QuestionDetail = () => {
     const user = useSelector(state => state.session.user)
     const answersObj = useSelector(state => state.answers)
     const topicId = question?.topic?.id
-    const topic = useSelector(state => state.topics)
+    const topic = useSelector(state => state.topics[topicId])
     const questions = topic?.questions;
     const [deleteQ, setDeleteQ] = useState(0)
     const [editQ, setEditQ] = useState(0)
@@ -34,6 +34,9 @@ const QuestionDetail = () => {
         if (topicId) {
             dispatch(thunkGetTopic(topicId));
         }
+        return () => {
+            dispatch(returnTopicInitial());
+          };
     }, [dispatch, topicId]);
     
     

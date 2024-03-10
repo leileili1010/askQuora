@@ -1,0 +1,45 @@
+.recomend-topic-container {
+    background-color: white;
+    margin-left: -12px;
+    border-radius: 4px;
+    border: 1px solid #e2e2e2;
+    width: 220px;
+}
+
+.recommend-title {
+    border-bottom: 1px solid #e2e2e2;
+}
+
+.recommend-title p {
+    padding: 10px;
+    font-weight: bold;
+    font-size: 15px;
+    color: #333;
+}
+
+#recommendations {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 10px 0;
+    padding-bottom: 50px;
+}
+
+
+#recommendations .subscription {
+    padding: 0px 15px;
+}
+
+#recommendations .subscription:hover {
+    background-color: white;
+}
+
+#topics-for-u .topic-for-u-name {
+    font-weight: bold;
+    font-size: 13px;
+}
+
+#topics-for-u .topic-for-u-num {
+    color: grey;
+    margin-top: 2px;
+}

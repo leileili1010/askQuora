@@ -1,14 +1,17 @@
 import { NavLink, useNavigate } from "react-router-dom";
+import {useState} from 'react';
 import ProfileButton from "./ProfileButton";
 import "./Navigation.css";
 import OpenModalButton from '../OpenModalButton/OpenModalButton'
 import CreateQuestionModal from "../Questions/CreateQuestion/CreateQuestion";
 import "./Navigation.css";
 
-function NavigationHome({answers, searchInput, setSearchInput, currentAnswers, setCurrentAnswers}) {
+function NavigationHome({setSub, answers, searchInput, setSearchInput, currentAnswers, setCurrentAnswers}) {
   const navigate = useNavigate();
+  const [active, setActive] = useState("home")
 
   const handleInputChange = (e) => {
+      setSub({})
       setSearchInput(e.target.value)
 
       if (!e.target.value.length) {
@@ -19,6 +22,7 @@ function NavigationHome({answers, searchInput, setSearchInput, currentAnswers, s
       }
   }
 
+  const iconId = ""
   return (
     <div className="nav-bar-container">
       <div className="navigation">
@@ -28,7 +32,7 @@ function NavigationHome({answers, searchInput, setSearchInput, currentAnswers, s
           </div>
           <i id="home-sign" onClick={() => navigate("/topics")} className="fa-solid fa-house" ></i>
           <i className="fa-regular fa-pen-to-square" style={{ color: "#626466" }}></i>
-          <i className="fa-solid fa-users" style={{ color: "#626466" }}></i>
+          <i className="fa-solid fa-users" style={{ color: "#626466" }} onClick={() => navigate("/explore-topics")}></i>
           <form action="/search" method="get">
             <input type="text" name="query" placeholder="Search answers..." value={searchInput} onChange={handleInputChange} />
             {/* <button type="submit">Search</button> */}

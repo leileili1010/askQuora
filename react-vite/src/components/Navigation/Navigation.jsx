@@ -59,7 +59,7 @@ const handleCloseModal = () => {
           </div>
           <i id="home-sign" onClick={() => navigate("/topics")} className="fa-solid fa-house" ></i>
           <i className="fa-regular fa-pen-to-square" style={{ color: "#626466" }}></i>
-          <i className="fa-solid fa-users" style={{ color: "#626466" }}></i>
+          <i id="group-sign" className="fa-solid fa-users" onClick={() => navigate("/explore-topics")}></i>
           <div className="search-container">
             <form style={{ width: isTyping? '500px' : '360px' }}action="/search" method="get">
               <input type="text" name="query" placeholder="Search questions..." value={searchInput} onChange={handleSearch} />

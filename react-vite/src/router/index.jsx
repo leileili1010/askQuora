@@ -7,6 +7,7 @@ import TopicAnswers from '../components/Answers/TopicAnswers/TopicAnswers';
 import HomePage from '../components/HomePage/HomePage';
 import LandingPage from '../components/HomePage/LandingPage';
 import UserProfile from '../components/UserProfile/UserProfile';
+import ExploreTopics from '../components/Spaces/ExploreTopics';
 
 export const router = createBrowserRouter([
   {
@@ -36,21 +37,11 @@ export const router = createBrowserRouter([
       },
       {
         path: "topics",
-        element: <Outlet />,
-        children: [
-          {
-            index: true,
-            element: <HomePage />
-          }, 
-          {
-            path: ':topicId/questions',
-            element: <QuestionList />
-          },
-          {
-            path: ':topicId/answers',
-            element: <TopicAnswers />
-          }
-        ]
+        element: <HomePage />,
+      },
+      {
+        path: "explore-topics",
+        element: <ExploreTopics />,
       },
       {
         path: '/*',
