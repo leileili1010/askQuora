@@ -16,6 +16,7 @@
 
 #subscription:hover {
     background-color: transparent;
+    text-decoration: none;
 }
 
 #subscription {
@@ -32,7 +33,7 @@
     display: none; 
     position: absolute;
     left: -10%;
-    top: 65%; 
+    top: 78%; 
     width: 280px; 
     height: 140px;
     background: white;
@@ -105,4 +106,14 @@
 
 .sub-btns button:hover{
     background-color:  #e2e2e2;;
+}
+
+#knows {
+    font-weight: bold;
+}
+
+#knows:hover {
+    text-decoration: none;
+    background-color:transparent;
+    cursor:auto;
 }

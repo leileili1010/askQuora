@@ -1,0 +1,14 @@
+#explore-topics-page #home-sign {
+    color: gray;
+}
+
+#explore-topics-page #group-sign {
+    color: #a82723;
+}
+
+.explore-topics-container {
+    width: 1089px;
+    border: 1px solid red;
+    margin: auto;
+    margin-top: 80px;
+}

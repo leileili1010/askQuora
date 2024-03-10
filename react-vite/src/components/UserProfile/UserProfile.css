@@ -98,3 +98,7 @@
     padding: 12px;
     border-radius: 50%;
 }
+
+.knows p {
+    margin-bottom: 0px;
+}

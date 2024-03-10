@@ -13,7 +13,7 @@ const UserSpacesList = () => {
 
     useEffect(() => {
         dispatch(thunkGetUserSubscriptions())
-    }, [dispatch, deleteS])
+    }, [dispatch,deleteS])
 
     return (
         <div id="spaces-container">

@@ -46,14 +46,14 @@ const UserProfile = () => {
 
     return (
         <div className="User-profile-page">
-            <Navigation/>
+            <Navigation />
 
             <div className={activeTab == 'answers' ? 'background-answer' : 'background-Qs'}>
                 <div className="profile-container">
                     {/*part 1: user info  */}
                     <div className="profile">
                         <div className="user-info">
-                            <img src={user?.profile_img} alt="profile image" className="profile-img"/>
+                            <img src={user?.profile_img} alt="profile image" className="profile-img" />
                             <div>
                                 <h1>{user?.first_name} {user?.last_name}</h1>
                                 <p>{user?.position} · {user?.years_of_experience}yr, {user?.field}</p>
@@ -64,9 +64,9 @@ const UserProfile = () => {
                             <div className="answer-question-nav">
                                 <p className={activeTab == 'answers' ? 'active' : ''} onClick={() => handleTabClick('answers')}>{answerTitle}</p>
                                 <p className={activeTab === 'questions' ? 'active' : ''} onClick={() => handleTabClick('questions')}>{questionTitle}</p>
-                            </div> 
-                            {activeTab === 'answers' && <UserAnswers answersObj={answersObj} answerTitle={answerTitle} setDeleteA={setDeleteA} setEditA={setEditA}/>}
-                            {activeTab === 'questions' && <UserQuestions questionsObj={questionsObj} setDeleteQ={setDeleteQ} setEditQ={setEditQ} questionTitle={questionTitle}/>}
+                            </div>
+                            {activeTab === 'answers' && <UserAnswers answersObj={answersObj} answerTitle={answerTitle} setDeleteA={setDeleteA} setEditA={setEditA} />}
+                            {activeTab === 'questions' && <UserQuestions questionsObj={questionsObj} setDeleteQ={setDeleteQ} setEditQ={setEditQ} questionTitle={questionTitle} />}
 
                         </div>
                     </div>
@@ -75,8 +75,8 @@ const UserProfile = () => {
                     <div className="credentials-highlights">
                         <div className="credentials">
                             <p className="credentials-title" >Credentials & Highlights</p>
-                           
-                           <div className="credentials-details">
+
+                            <div className="credentials-details">
                                 <div>
                                     <i className="fa-solid fa-briefcase"></i>
                                 </div>
@@ -107,18 +107,32 @@ const UserProfile = () => {
 
                         <div className="user-subscriptions">
                             <p className="credentials-title" id="user-subscriptions-title" >Manage Your Subscriptions</p>
-                           <UserSpacesList/>
+                            <UserSpacesList />
+                        </div>
+
+                        <div className="user-subscriptions knows">
+                            <p className="credentials-title">Knows About</p>
+                            <div className="subscriptions">
+                                {
+                                    Object.values(answersObj).map(answer => 
+                                        <div className="subscription" id="knows">
+                                            <img src={answer.topic.cover_img} alt="" />
+                                            <p>{answer.topic.name}</p>
+                                        </div>
+                                    )
+                                }
+                            </div>
                         </div>
                     </div>
-                    
+
                 </div>
             </div>
 
-           
+
 
         </div>
 
-        
+
     )
 }
 
