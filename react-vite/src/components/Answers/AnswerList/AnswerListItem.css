@@ -102,10 +102,8 @@
 }
 
 .user-comments-area {
-    display: flex;
     gap: 20px;
     color: grey;
-    margin-top: 20px;
 }
 
 .user-comments-area a {
@@ -114,8 +112,16 @@
 }
 
 .answer-comment-area {
+    display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 30px;
+    margin-top: 20px;
+}
+
+.user-comments-icon {
+    display: flex;
+    gap: 30px;
 }
 
 .spinner {

@@ -1,18 +1,24 @@
 
 import { Link} from "react-router-dom";
 import { useSelector } from "react-redux/es/hooks/useSelector";
+import { thunkSetUserAnswers } from "../../../redux/session";
 import OperationButton from "../QuestionDetail/OperationButton";
 import OpenModalButtonProps from "../../OpenModalButton/OpenModalButtonProps";
 import CreateAnswerModal from "../../Answers/CreateAnswer/CreateAnswer";
 import "./QuestionListItem.css"
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
 
 
 const QuestionListItem = ({question, setDeleteQ, setEditQ}) => {
+    const dispatch = useDispatch();
     const user = useSelector(state => state.session.user)
     const isOwner = user?.id == question?.owner.id
     const userAnswers = useSelector(state => state.session.userAnswers)
     const questionId = question.id;
     let ifAnswered = false;
+
+  
 
     if (userAnswers?.length > 0) {
         ifAnswered = userAnswers.some(userAnswer => userAnswer.question.id === questionId);

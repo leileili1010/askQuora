@@ -2,6 +2,7 @@ import QuestionListItem from "../../Questions/QuestionListItem/QuestionListItem"
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { thunkGetTopicsQuestions} from "../../../redux/topic"
+import { thunkSetUserAnswers } from "../../../redux/session";
 import './TopicsQuestionsList.css'
 
 const TopicsQuestionsList = ({sub}) => {
@@ -18,6 +19,10 @@ const TopicsQuestionsList = ({sub}) => {
         //     dispatch(returnTopicInitial());
         // };
     }, [dispatch,deleteQ, editQ])
+
+    useEffect(() => {
+        dispatch(thunkSetUserAnswers())
+    }, [dispatch])
     
     if(topics.length == 0) return null;
     if (Object.keys(sub).length > 0 ) {
