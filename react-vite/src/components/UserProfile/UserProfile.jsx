@@ -17,7 +17,7 @@ const UserProfile = () => {
     const answersObj = useSelector(state => state.answers)
     const questionsObj = useSelector(state => state.questions)
     const answerTitle = Object.keys(answersObj).length>1? `${Object.keys(answersObj).length} Answers`: `${Object.keys(answersObj).length} Answer`
-    const questionTitle = Object.keys(answersObj).length>1? `${Object.keys(questionsObj).length} Questions`: `${Object.keys(questionsObj).length} Question`
+    const questionTitle = Object.keys(questionsObj).length>1? `${Object.keys(questionsObj).length} Questions`: `${Object.keys(questionsObj).length} Question`
 
     const dateString = user?.created_at;
     const date = new Date(dateString);

@@ -174,7 +174,7 @@ return (
               <p className="input-errors">{errors.confirmPassword}</p>
             )}
             <label>
-              <p className="profile-img">Profile Image (Optional)</p>
+              <p className="profile-img-signup">Profile Image (Optional)</p>
               <input
                 type="file"
                 accept="image/*"

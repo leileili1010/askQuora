@@ -12,24 +12,24 @@ const AnswerListItem = ({ answer, setDeleteA, setEditA }) => {
                          : "Currently 1 answer";
     const [isTruncated, setIsTruncated] = useState(true);
 
-    // const { truncatedDetail, firstImageUrl } = useMemo(() => {
-    //     const parser = new DOMParser();
-    //     const doc = parser.parseFromString(answer.detail, 'text/html');
-    //     const images = doc.querySelectorAll('img');
-    //     let firstImageUrl = null;
+    const { truncatedDetail, firstImageUrl } = useMemo(() => {
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(answer.detail, 'text/html');
+        const images = doc.querySelectorAll('img');
+        let firstImageUrl = null;
 
-    //     if (images.length > 0) {
-    //         firstImageUrl = images[0].src; 
-    //         images[0].remove();
-    //     }
+        if (images.length > 0) {
+            firstImageUrl = images[0].src; 
+            images[0].remove();
+        }
         
-    //     const textContent = doc.body.textContent
+        const textContent = doc.body.textContent
 
-    //     return { 
-    //         truncatedDetail: textContent,
-    //         firstImageUrl,
-    //     };
-    // }, [answer.detail]);
+        return { 
+            truncatedDetail: textContent,
+            firstImageUrl,
+        };
+    }, [answer.detail]);
 
 
     const toggleTruncation = () => setIsTruncated(!isTruncated);
@@ -46,37 +46,35 @@ const AnswerListItem = ({ answer, setDeleteA, setEditA }) => {
 
             <Link to={`/questions/${answer.question.id}`}>{answer.question.title}</Link>
 
-            {/* <div className={isTruncated ? "truncated-text rendered-content-class" : "rendered-content-class"} 
-                 dangerouslySetInnerHTML={{ __html: isTruncated ? truncatedDetail : answer.detail }} /> */}
-
-            <div className={isTruncated ? "truncated-text rendered-content-class" : "rendered-content-class"} 
-                 dangerouslySetInnerHTML={{ __html: answer.detail }} />
+            <div className={isTruncated ? "truncated-text rendered-content-class" : "rendered-content-class"}
+                dangerouslySetInnerHTML={{ __html: isTruncated ? truncatedDetail : answer.detail }} />
 
             {isTruncated && (
                 <span className="more-link" onClick={toggleTruncation}>
-                  
                     (more)
                 </span>
             )}
-{/* 
-            {isTruncated && firstImageUrl && (
-                <img className="rendered-content-class" src={firstImageUrl} alt="" />
-            )} */}
 
-            <div className="flex answer-comment-area">
-                <div className="user-comments-area">
-                    <Link to={`/questions/${answer.question.id}`}>{answerSummary}</Link>
-                </div>
-                <div className="flex user-comments-area">
+            {isTruncated && firstImageUrl && (
+                <img className="rendered-content-class" src={firstImageUrl} loading="lazy" />
+            )}
+
+            <div className="answer-comment-area">
+                <div className="user-comments-icon">
+                    <div className="user-comments-area">
+                        <Link to={`/questions/${answer.question.id}`}>{answerSummary}</Link>
+                    </div>
                     <div>
                         <i className="fa-regular fa-comment comment"></i>
                     </div>
-                    {isOwner && (
-                        <div className="operation-button">
-                            <AnswerOperationButton answer={answer} setDeleteA={setDeleteA} setEditA={setEditA} />
-                        </div>
-                    )}
                 </div>
+                
+                {isOwner && (
+                    <div className="operation-button">
+                        <AnswerOperationButton answer={answer} setDeleteA={setDeleteA} setEditA={setEditA} />
+                    </div>
+                )}
+                
             </div>
         </div>
     );

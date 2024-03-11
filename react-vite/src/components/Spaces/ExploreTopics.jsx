@@ -52,7 +52,7 @@ const ExploreTopics = () => {
                         <div className="all-topics">
                             {
                                 topics.map(topic =>
-                                    <div className="one-topic">
+                                    <div key={topic.id} className="one-topic">
                                         <img src={topic.cover_img} className="topic-cover-img" />
                                         <div className="one-topic-detail">
                                             <img src={topic.cover_img} alt="" />
