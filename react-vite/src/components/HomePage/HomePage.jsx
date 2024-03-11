@@ -41,9 +41,6 @@ const HomePage = () => {
             setCurrentAnswers([...data])
         }
         loadInfo()
-        return () => {
-            dispatch(returnInitial());
-        };
     }, [dispatch, editA, deleteA])
 
 

@@ -1,12 +1,9 @@
 import AnswerListItem from "../AnswerList/AnswerListItem";
 
 
-const UserAnswers = ({answersObj, answerTitle, setDeleteA, setEditA}) => {
-    if (answersObj.length == 0) return null
-    const answers = Object.values(answersObj)
-    const sortedAnswers = answers.sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at))
-
-    if (!answers.length) return null;
+const UserAnswers = ({userAnswers, answerTitle, setDeleteA, setEditA}) => {
+    if (userAnswers.length == 0) return null
+    const sortedAnswers = userAnswers.sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at))
     
     return (
         <div id="user-answers">
