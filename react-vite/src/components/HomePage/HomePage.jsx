@@ -1,26 +1,26 @@
 import { useDispatch, useSelector } from "react-redux";
-import { thunkGetAllAnswers, returnInitial } from "../../redux/answer";  
 import { useEffect, useState } from "react";
+import { useNavigate} from "react-router-dom";
+import { thunkGetAllAnswers, returnInitial } from "../../redux/answer";  
+import { thunkGetUserSubscriptions } from "../../redux/session";
 import AnswerListHome from "../Answers/AnswerList/AnswerListHome";
 import NavigationHome from "../Navigation/NavigationHome";
 import Navigation from "../Navigation/Navigation";
-import { useNavigate} from "react-router-dom";
-import "./HomePage.css"
 import CreateQuestionModal from '../Questions/CreateQuestion/CreateQuestion'
 import OpenModalButton from '../OpenModalButton/OpenModalButton'
 import TopicsQuestionsList from "../Topics/TopicsQuestion/TopicsQuestionsList"
-import { thunkSetUserAnswers } from "../../redux/session";
-import { thunkGetUserSubscriptions } from "../../redux/session";
 import SpacesList from "../Spaces/SpacesList";
 import RecommendTopics from "../Spaces/RecomendSpace";
-
+import "./HomePage.css"
 
 const HomePage = () => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
-    const answersObj = useSelector(state => state.answers)
     const user = useSelector(state => state.session.user)
+    const spaces = useSelector(state => state.session.userSubscriptions)
+    const answersObj = useSelector(state => state.answers)
     const profile_img = user?.profile_img
+   
     const [activeTab, setActiveTab] = useState('answers');
     const [deleteA, setDeleteA] = useState(0)
     const [editA, setEditA] = useState(0)
@@ -28,16 +28,12 @@ const HomePage = () => {
     const [searchInput, setSearchInput] = useState("")
     const [topicForUser, setTopicForUser] = useState("")
     const [subscriptionUpdate, setSubscriptionUpdate] = useState(0);
-    const spaces = useSelector(state => state.session.userSubscriptions)
     let subAnswers
 
     useEffect(() => {
         if (!user) navigate("/");
     }, [user, navigate]);
     
-    useEffect(() => {
-        dispatch(thunkSetUserAnswers())
-    }, [dispatch, editA, deleteA])
     
     useEffect(() => {
         const loadInfo = async () =>{
@@ -55,7 +51,7 @@ const HomePage = () => {
         dispatch(thunkGetUserSubscriptions())
     }, [dispatch, subscriptionUpdate])
 
-    
+
     const answers = Object.values(answersObj).sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at));
     
     if (Object.keys(sub).length > 0) {
