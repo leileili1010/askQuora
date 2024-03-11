@@ -34,6 +34,9 @@ const HomePage = () => {
         if (!user) navigate("/");
     }, [user, navigate]);
     
+    useEffect(() => {
+        dispatch(thunkGetUserSubscriptions())
+    }, [dispatch, subscriptionUpdate])
     
     useEffect(() => {
         const loadInfo = async () =>{
@@ -47,9 +50,6 @@ const HomePage = () => {
     }, [dispatch, editA, deleteA])
 
 
-    useEffect(() => {
-        dispatch(thunkGetUserSubscriptions())
-    }, [dispatch, subscriptionUpdate])
 
 
     const answers = Object.values(answersObj).sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at));
