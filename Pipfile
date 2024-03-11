@@ -33,6 +33,7 @@ jmespath = "==1.0.1"
 s3transfer = "==0.10.0"
 urllib3 = "==1.26.18"
 sentence-transformers = "*"
+bs4 = "*"
 
 [dev-packages]
 
