@@ -5,6 +5,7 @@ import Editor from "./Editor";
 import './CreateAnswer.css'
 import { useState } from "react";
 import { thunkCreateAnswer } from "../../../redux/answer";
+import { thunkSetUserAnswers } from "../../../redux/session";
 
 const CreateAnswerModal = ({question}) => {
     const dispatch = useDispatch();
@@ -35,13 +36,14 @@ const CreateAnswerModal = ({question}) => {
             await dispatch(thunkCreateAnswer(answer))
             .then(() => {
                 closeModal()
+                dispatch(thunkSetUserAnswers())
                 navigate(`/questions/${questionId}`)
+
             })
             .catch(async (res) => {
                 console.log("Inside errors catch =>", res);
               });
           }
-        
     }
 
     const handleCancel = (e) => {

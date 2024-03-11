@@ -4,7 +4,6 @@ import { useNavigate} from "react-router-dom";
 import { useEffect, useState} from "react";
 import UserAnswers from "../Answers/UserAnswers/UserAnswers";
 import UserQuestions from "../Questions/UserQuestions/UserQuestions";
-import { thunkGetAuthorAnswers, returnInitial } from "../../redux/answer";
 import { thunkSetUserAnswers } from "../../redux/session";
 import { thunkGetUserQuestions } from "../../redux/question";
 import UserSpacesList from "../Spaces/UserSpaces";
@@ -41,7 +40,7 @@ const UserProfile = () => {
 
       useEffect(() => {
         dispatch(thunkSetUserAnswers())
-    }, [dispatch])
+    }, [dispatch, deleteA, editA])
 
 
     useEffect(() => {
@@ -70,7 +69,7 @@ const UserProfile = () => {
                                 <p className={activeTab === 'questions' ? 'active' : ''} onClick={() => handleTabClick('questions')}>{questionTitle}</p>
                             </div>
                             {activeTab === 'answers' && <UserAnswers userAnswers={userAnswers} answerTitle={answerTitle} setDeleteA={setDeleteA} setEditA={setEditA} />}
-                            {activeTab === 'questions' && <UserQuestions questionsObj={questionsObj} setDeleteQ={setDeleteQ} setEditQ={setEditQ} questionTitle={questionTitle} />}
+                            {activeTab === 'questions' && <UserQuestions questionsObj={questionsObj} setDeleteQ={setDeleteQ} setEditQ={setEditQ} questionTitle={questionTitle} editA={editA}deleteA={deleteA}/>}
 
                         </div>
                     </div>

@@ -4,12 +4,11 @@ import { useEffect, useState } from "react";
 import { useNavigate} from "react-router-dom";
 import { thunkGetQuestionAnswers, returnInitial } from "../../../redux/answer";
 
-const AnswerList = ({questionId}) => {
+const AnswerList = ({questionId, setDeleteA, setEditA, editA, deleteA}) => {
     const user = useSelector(state => state.session.user)
     const dispatch = useDispatch();
     const navigate = useNavigate()
-    const [editA, setEditA] = useState(0)
-    const [deleteA, setDeleteA] = useState(0)
+   
     // const [isLoading, setIsLoading] = useState(false);
     const answersObj = useSelector(state => state.answers)
     if (answersObj.length == 0) return null
