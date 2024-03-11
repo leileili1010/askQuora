@@ -5,6 +5,7 @@ import { useEffect, useState} from "react";
 import UserAnswers from "../Answers/UserAnswers/UserAnswers";
 import UserQuestions from "../Questions/UserQuestions/UserQuestions";
 import { thunkGetAuthorAnswers, returnInitial } from "../../redux/answer";
+import { thunkSetUserAnswers } from "../../redux/session";
 import { thunkGetUserQuestions } from "../../redux/question";
 import UserSpacesList from "../Spaces/UserSpaces";
 import "./UserProfile.css"
@@ -14,11 +15,9 @@ const UserProfile = () => {
     const navigate = useNavigate()
     const user = useSelector(state => state.session.user)
     const [activeTab, setActiveTab] = useState('answers');
-    const answersObj = useSelector(state => state.answers)
     const questionsObj = useSelector(state => state.questions)
-    const answerTitle = Object.keys(answersObj).length>1? `${Object.keys(answersObj).length} Answers`: `${Object.keys(answersObj).length} Answer`
     const questionTitle = Object.keys(questionsObj).length>1? `${Object.keys(questionsObj).length} Questions`: `${Object.keys(questionsObj).length} Question`
-
+    
     const dateString = user?.created_at;
     const date = new Date(dateString);
     const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
@@ -27,6 +26,9 @@ const UserProfile = () => {
     const [editQ, setEditQ] = useState(0)
     const [deleteA, setDeleteA] = useState(0)
     const [editA, setEditA] = useState(0)
+    
+    const userAnswers = useSelector(state => state.session.userAnswers) || [];
+    const answerTitle =  userAnswers.length>1? `${ userAnswers.length} Answers`: `${ userAnswers.length} Answer`
 
 
     const handleTabClick = (tab) => {
@@ -38,11 +40,9 @@ const UserProfile = () => {
       }, [user, navigate]);
 
       useEffect(() => {
-        dispatch(thunkGetAuthorAnswers())
-        return () => {
-            dispatch(returnInitial());
-        };
-    }, [dispatch, editA, deleteA])
+        dispatch(thunkSetUserAnswers())
+    }, [dispatch])
+
 
     useEffect(() => {
         dispatch(thunkGetUserQuestions())
@@ -69,7 +69,7 @@ const UserProfile = () => {
                                 <p className={activeTab == 'answers' ? 'active' : ''} onClick={() => handleTabClick('answers')}>{answerTitle}</p>
                                 <p className={activeTab === 'questions' ? 'active' : ''} onClick={() => handleTabClick('questions')}>{questionTitle}</p>
                             </div>
-                            {activeTab === 'answers' && <UserAnswers answersObj={answersObj} answerTitle={answerTitle} setDeleteA={setDeleteA} setEditA={setEditA} />}
+                            {activeTab === 'answers' && <UserAnswers userAnswers={userAnswers} answerTitle={answerTitle} setDeleteA={setDeleteA} setEditA={setEditA} />}
                             {activeTab === 'questions' && <UserQuestions questionsObj={questionsObj} setDeleteQ={setDeleteQ} setEditQ={setEditQ} questionTitle={questionTitle} />}
 
                         </div>
