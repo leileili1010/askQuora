@@ -22,7 +22,7 @@ def get_topic_questions(topic_id):
     topic = Topic.query.get(topic_id)
     if not topic:
         return {"errors": {"message": "Topic not found"}}, 404
-    questions = Question.query.filter(Question.topic_id == topic_id).all()
+    questions = topic.questions
     if not questions:
         return []
     else: 
@@ -32,7 +32,7 @@ def get_topic_questions(topic_id):
 @login_required
 @question_routes.route('/posted-questions')
 def get_user_questions():
-    questions = Question.query.filter(current_user.id == Question.owner_id).all()
+    questions = current_user.questions
     if questions:
         return [question.to_dict() for question in questions]
     else:
@@ -112,7 +112,7 @@ def get_question_answers(question_id):
     if not question:
         return {"errors": {"message": "Question not found"}}, 404
     
-    answers = Answer.query.filter(Answer.question_id == question_id).all()
+    answers = question.answers
     if not answers:
         return []
     else:
@@ -122,7 +122,9 @@ def get_question_answers(question_id):
 @login_required
 @question_routes.route('/currrent/answers')
 def get_author_answers():
-    answers = Answer.query.filter(Answer.author_id == current_user.id).all()
+    user = current_user
+    answers = user.answers
+    
     if not answers:
         return []
     else:

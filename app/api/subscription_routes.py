@@ -8,7 +8,7 @@ subscription_routes = Blueprint('subscriptions', __name__)
 @login_required
 @subscription_routes.route('/current')
 def get_user_subscriptions():
-    subscriptions = Subscription.query.filter(Subscription.user_id == current_user.id).all()
+    subscriptions = current_user.subscriptions
     if not subscriptions:
         return []
     else:
