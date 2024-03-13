@@ -3,7 +3,8 @@ import AnswerOperationButton from "./AnswerOpertionButton";
 import { useSelector } from "react-redux/es/hooks/useSelector";
 import { useState} from "react";
 import './AnswerListItem.css';
-import ReactHtmlParser from 'react-html-parser';
+// import ReactHtmlParser from 'react-html-parser';
+import parse from "html-react-parser";
 
 const AnswerListItem = ({ answer, setDeleteA, setEditA }) => {
     const user = useSelector(state => state.session.user);
@@ -15,8 +16,12 @@ const AnswerListItem = ({ answer, setDeleteA, setEditA }) => {
 
     const toggleTruncation = () => setIsTruncated(!isTruncated);
 
-    const htmlContent = ReactHtmlParser(answer.detail);
-    const htmlCoverContent = ReactHtmlParser(answer.detail_text);
+    // const htmlContent = ReactHtmlParser(answer.detail);
+    // const htmlCoverContent = ReactHtmlParser(answer.detail_text);
+    // const htmlDetail = isTruncated? htmlCoverContent: htmlContent
+
+    const htmlContent = parse(answer.detail);
+    const htmlCoverContent = parse(answer.detail_text);
     const htmlDetail = isTruncated? htmlCoverContent: htmlContent
 
     return (
@@ -30,8 +35,8 @@ const AnswerListItem = ({ answer, setDeleteA, setEditA }) => {
             </div>
 
             <Link to={`/questions/${answer.question.id}`}>{answer.question.title}</Link>
-
-            {/* <div className={isTruncated ? "truncated-text rendered-content-class" : "rendered-content-class"}
+{/* 
+            <div className={isTruncated ? "truncated-text rendered-content-class" : "rendered-content-class"}
                 dangerouslySetInnerHTML={{ __html: isTruncated ? answer?.detail_text : answer.detail }} /> */}
 
             <div className={isTruncated ? "truncated-text rendered-content-class" : "rendered-content-class"}>  
