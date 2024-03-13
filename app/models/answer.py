@@ -10,6 +10,8 @@ class Answer(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     detail = db.Column(db.Text, nullable=False)
+    detail_text = db.Column(db.Text)
+    detail_firstImgUrl = db.Column(db.Text)
     author_id = db.Column(db.Integer, ForeignKey(add_prefix_for_prod("users.id")), nullable=False)
     question_id = db.Column(db.Integer, ForeignKey(add_prefix_for_prod("questions.id")), nullable=False)
     topic_id = db.Column(db.Integer, ForeignKey(add_prefix_for_prod("topics.id")))
@@ -31,6 +33,8 @@ class Answer(db.Model):
         return {
             "id": self.id,
             "detail": self.detail,
+            "detail_text": self.detail_text,
+            "detail_firstImgUrl": self.detail_firstImgUrl,
             "author": self.author.to_dict(),
             "question": self.question.to_dict(),
             "topic": topic,

@@ -15,6 +15,26 @@ const CreateAnswerModal = ({question}) => {
     const [detail, setDetail] = useState("")
     const [errors, setErrors] = useState({});
     const questionId = question.id
+
+    const parser = (anserDetail) => {
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(anserDetail, 'text/html');
+        const images = doc.querySelectorAll('img');
+        let firstImageUrl = null;
+
+        if (images.length > 0) {
+            firstImageUrl = images[0].src; 
+        }
+
+        images.forEach(img => img.remove());
+        const textContent = doc.body.innerHTML;
+        // const textContent = doc.body.textContent
+
+        return { 
+            truncatedDetail: textContent,
+            firstImageUrl,
+        };
+    }
     
     const handleAnswerSubmit = async (e) => {
         e.preventDefault();
@@ -22,28 +42,31 @@ const CreateAnswerModal = ({question}) => {
         const validationErrors = {};
         
         if (!detail) validationErrors.detail = "Answer is required";
-        
+       
         if (Object.values(validationErrors).length) {
             setErrors(validationErrors);
         } else {
-            const topic_id = question.topic?.id 
+            const topic_id = question.topic?.id
+            const { truncatedDetail, firstImageUrl } = parser(detail)
             const answer = {
                 detail,
+                detail_text: truncatedDetail,
+                detail_firstImgUrl: firstImageUrl,
                 question_id: questionId,
                 topic_id,
             }
-            
-            await dispatch(thunkCreateAnswer(answer))
-            .then(() => {
-                closeModal()
-                dispatch(thunkSetUserAnswers())
-                navigate(`/questions/${questionId}`)
 
-            })
-            .catch(async (res) => {
-                console.log("Inside errors catch =>", res);
-              });
-          }
+            await dispatch(thunkCreateAnswer(answer))
+                .then(() => {
+                    closeModal()
+                    dispatch(thunkSetUserAnswers())
+                    navigate(`/questions/${questionId}`)
+
+                })
+                .catch(async (res) => {
+                    console.log("Inside errors catch =>", res);
+                });
+        }
     }
 
     const handleCancel = (e) => {
@@ -67,7 +90,7 @@ const CreateAnswerModal = ({question}) => {
                 onValueChange={(value) => setDetail(value)}
                 value={detail}
                 />
-                {"detail" in errors && <p >{errors.tdetail}</p>}
+                {"detail" in errors && <p className="input-errors">{errors.detail}</p>}
                 <div className="create-A">
                     <button id="question-cancel" onClick={handleCancel}>Cancel</button>
                     <button id="question-submit" type="submit">Post</button>

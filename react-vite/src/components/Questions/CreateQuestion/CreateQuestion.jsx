@@ -37,6 +37,7 @@ const CreateQuestionModal = () => {
 
     // const selectedTopics = shuffleAndSelect(topics);
     
+    
     const handleQuestionSubmit = async (e) => {
         e.preventDefault();
         setErrors({});

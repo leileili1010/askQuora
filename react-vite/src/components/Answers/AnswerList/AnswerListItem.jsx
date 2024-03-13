@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import AnswerOperationButton from "./AnswerOpertionButton";
 import { useSelector } from "react-redux/es/hooks/useSelector";
-import { useState, useMemo } from "react";
+import { useState} from "react";
 import './AnswerListItem.css';
 
 const AnswerListItem = ({ answer, setDeleteA, setEditA }) => {
@@ -11,26 +11,6 @@ const AnswerListItem = ({ answer, setDeleteA, setEditA }) => {
                          ? `1 of ${answer.question.numOfAnswers} answers`
                          : "Currently 1 answer";
     const [isTruncated, setIsTruncated] = useState(true);
-
-    const { truncatedDetail, firstImageUrl } = useMemo(() => {
-        const parser = new DOMParser();
-        const doc = parser.parseFromString(answer.detail, 'text/html');
-        const images = doc.querySelectorAll('img');
-        let firstImageUrl = null;
-
-        if (images.length > 0) {
-            firstImageUrl = images[0].src; 
-            images[0].remove();
-        }
-        
-        const textContent = doc.body.textContent
-
-        return { 
-            truncatedDetail: textContent,
-            firstImageUrl,
-        };
-    }, [answer.detail]);
-
 
     const toggleTruncation = () => setIsTruncated(!isTruncated);
 
@@ -47,7 +27,7 @@ const AnswerListItem = ({ answer, setDeleteA, setEditA }) => {
             <Link to={`/questions/${answer.question.id}`}>{answer.question.title}</Link>
 
             <div className={isTruncated ? "truncated-text rendered-content-class" : "rendered-content-class"}
-                dangerouslySetInnerHTML={{ __html: isTruncated ? truncatedDetail : answer.detail }} />
+                dangerouslySetInnerHTML={{ __html: isTruncated ? answer?.detail_text : answer.detail }} />
 
             {isTruncated && (
                 <span className="more-link" onClick={toggleTruncation}>
@@ -55,8 +35,8 @@ const AnswerListItem = ({ answer, setDeleteA, setEditA }) => {
                 </span>
             )}
 
-            {isTruncated && firstImageUrl && (
-                <img className="rendered-content-class" src={firstImageUrl} loading="lazy" />
+            {isTruncated && answer.detail_firstImgUrl && (
+                <img className="rendered-content-class" src={answer.detail_firstImgUrl} loading="lazy" />
             )}
 
             <div className="answer-comment-area">

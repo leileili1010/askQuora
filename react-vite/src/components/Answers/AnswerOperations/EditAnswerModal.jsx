@@ -4,7 +4,6 @@ import Editor from "../CreateAnswer/Editor"
 import { useState } from "react";
 import { thunkEditAnswer } from "../../../redux/answer";
 
-
 const EditAnswerModal = ({answer, setEditA}) => {    
     const dispatch = useDispatch();
     const { closeModal } = useModal()
@@ -15,6 +14,26 @@ const EditAnswerModal = ({answer, setEditA}) => {
     const [detail, setDetail] = useState(answer.detail)
     const [errors, setErrors] = useState({});
     
+    const parser = (anserDetail) => {
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(anserDetail, 'text/html');
+        const images = doc.querySelectorAll('img');
+        let firstImageUrl = "";
+
+        if (images.length > 0) {
+            firstImageUrl = images[0].src; 
+        }
+
+        images.forEach(img => img.remove());
+        const textContent = doc.body.innerHTML;
+        const pureText = doc.body.textContent;
+        return { 
+            truncatedDetail: textContent,
+            firstImageUrl,
+            pureText
+        };
+    }
+
 
     if (user.id !== author?.id) {
         return <h1>Not Authorized</h1>
@@ -29,10 +48,16 @@ const EditAnswerModal = ({answer, setEditA}) => {
         e.preventDefault();
         setErrors({})
         const validationErrors = {};
-        if (!detail) validationErrors.detail = "Answer is required";
-        else {
+        const {pureText, truncatedDetail, firstImageUrl} = parser(detail)
+        if (!detail || !pureText ) validationErrors.detail = "Answer is required";
+
+        if (Object.values(validationErrors).length) {
+            setErrors(validationErrors);
+        } else {
             const formData = new FormData();
             formData.append("detail", detail);
+            formData.append("detail_text", truncatedDetail);
+            formData.append("detail_firstImgUrl", firstImageUrl);
 
             await dispatch(thunkEditAnswer(formData, answerId))
             .then(() => {
@@ -62,7 +87,7 @@ const EditAnswerModal = ({answer, setEditA}) => {
                     onValueChange={(value) => setDetail(value)}
                     value={detail}
                     />
-                    {"detail" in errors && <p >{errors.tdetail}</p>}
+                    {"detail" in errors && <p className="input-errors">{errors.detail}</p>}
                     <div className="create-A">
                         <button id="question-cancel" onClick={handleCancel}>Cancel</button>
                         <button id="question-submit" type="submit">Post</button>
