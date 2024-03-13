@@ -4,7 +4,6 @@ import Editor from "../CreateAnswer/Editor"
 import { useState } from "react";
 import { thunkEditAnswer } from "../../../redux/answer";
 
-
 const EditAnswerModal = ({answer, setEditA}) => {    
     const dispatch = useDispatch();
     const { closeModal } = useModal()
@@ -15,6 +14,26 @@ const EditAnswerModal = ({answer, setEditA}) => {
     const [detail, setDetail] = useState(answer.detail)
     const [errors, setErrors] = useState({});
     
+    const parser = (anserDetail) => {
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(anserDetail, 'text/html');
+        const images = doc.querySelectorAll('img');
+        let firstImageUrl = null;
+
+        if (images.length > 0) {
+            firstImageUrl = images[0].src; 
+        }
+
+        images.forEach(img => img.remove());
+        const textContent = doc.body.innerHTML;
+        // const textContent = doc.body.textContent
+
+        return { 
+            truncatedDetail: textContent,
+            firstImageUrl,
+        };
+    }
+
 
     if (user.id !== author?.id) {
         return <h1>Not Authorized</h1>
@@ -32,7 +51,10 @@ const EditAnswerModal = ({answer, setEditA}) => {
         if (!detail) validationErrors.detail = "Answer is required";
         else {
             const formData = new FormData();
+            const { truncatedDetail, firstImageUrl } = parser(detail)
             formData.append("detail", detail);
+            formData.append("detail_text", truncatedDetail);
+            formData.append("detail_firstImgUrl", firstImageUrl);
 
             await dispatch(thunkEditAnswer(formData, answerId))
             .then(() => {

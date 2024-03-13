@@ -49,8 +49,6 @@ const CreateAnswerModal = ({question}) => {
         } else {
             const topic_id = question.topic?.id
             const { truncatedDetail, firstImageUrl } = parser(detail)
-            console.log("🚀 ~ handleAnswerSubmit ~ firstImageUrl :", firstImageUrl )
-            console.log("🚀 ~ handleAnswerSubmit ~ truncatedDetail:", truncatedDetail)
             const answer = {
                 detail,
                 detail_text: truncatedDetail,

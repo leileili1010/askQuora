@@ -49,6 +49,8 @@ def edit_answer(answer_id):
         data = form.data
       
         answer.detail = data['detail']
+        answer.detail_firstImgUrl = data['detail_firstImgUrl']
+        answer.detail_text = data['detail_text']
         
         db.session.commit()
         return answer.to_dict()
