@@ -101,6 +101,11 @@ div.quill.editor {
     justify-content: flex-end;
 }
 
+.input-errors {
+    color: red;
+    font-size: 15px;
+}
+
 
 
 

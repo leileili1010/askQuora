@@ -12,26 +12,6 @@ const AnswerListItem = ({ answer, setDeleteA, setEditA }) => {
                          : "Currently 1 answer";
     const [isTruncated, setIsTruncated] = useState(true);
 
-    // const { truncatedDetail, firstImageUrl } = useMemo(() => {
-    //     const parser = new DOMParser();
-    //     const doc = parser.parseFromString(answer.detail, 'text/html');
-    //     const images = doc.querySelectorAll('img');
-    //     let firstImageUrl = null;
-
-    //     if (images.length > 0) {
-    //         firstImageUrl = images[0].src; 
-    //         images[0].remove();
-    //     }
-        
-    //     const textContent = doc.body.textContent
-
-    //     return { 
-    //         truncatedDetail: textContent,
-    //         firstImageUrl,
-    //     };
-    // }, [answer.detail]);
-
-
     const toggleTruncation = () => setIsTruncated(!isTruncated);
 
     return (
@@ -55,8 +35,8 @@ const AnswerListItem = ({ answer, setDeleteA, setEditA }) => {
                 </span>
             )}
 
-            {isTruncated && answer?.detail_firstImgUrl && (
-                <img className="rendered-content-class" src={answer?.detail_firstImgUrl} loading="lazy" />
+            {isTruncated && answer.detail_firstImgUrl && (
+                <img className="rendered-content-class" src={answer.detail_firstImgUrl} loading="lazy" />
             )}
 
             <div className="answer-comment-area">

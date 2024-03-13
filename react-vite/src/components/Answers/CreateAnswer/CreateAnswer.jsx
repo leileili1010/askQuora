@@ -42,8 +42,7 @@ const CreateAnswerModal = ({question}) => {
         const validationErrors = {};
         
         if (!detail) validationErrors.detail = "Answer is required";
-    
-
+       
         if (Object.values(validationErrors).length) {
             setErrors(validationErrors);
         } else {
@@ -91,7 +90,7 @@ const CreateAnswerModal = ({question}) => {
                 onValueChange={(value) => setDetail(value)}
                 value={detail}
                 />
-                {"detail" in errors && <p >{errors.tdetail}</p>}
+                {"detail" in errors && <p className="input-errors">{errors.detail}</p>}
                 <div className="create-A">
                     <button id="question-cancel" onClick={handleCancel}>Cancel</button>
                     <button id="question-submit" type="submit">Post</button>
