@@ -18,6 +18,8 @@ def create_answer():
         
         new_answer = Answer(
             detail = data['detail'],
+            detail_text = data["detail_text"],
+            detail_firstImgUrl = data["detail_firstImgUrl"],
             author_id = current_user.id,
             question_id = data['question_id'],
             topic_id = data['topic_id']

@@ -6,4 +6,6 @@ class AnswerForm(FlaskForm):
     detail = TextAreaField("Answer Detail", validators=[DataRequired()])
     question_id = IntegerField("Question ID", validators=[DataRequired()])
     topic_id = IntegerField("Topic ID")
+    detail_firstImgUrl = TextAreaField("First Image URL")
+    detail_text = TextAreaField("Answer Detail Text") 
    
