@@ -6,13 +6,14 @@ import "./RecomendSpace.css";
 
 const RecommendTopics = ({setSub, spaces, setTopicForUser}) => {
     const dispatch = useDispatch();
-    const spaceIdArr = [11]
+    const spaceIdSet = new Set([11]); // Initialize with default space ID
+
     if (spaces?.length) {
-        spaces.forEach(space => spaceIdArr.push(space.topic.id))
+        spaces.forEach(space => spaceIdSet.add(space.topic.id));
     }
     const topicsObj =  useSelector(state => state.topics)
     const topics = Object.values(topicsObj)
-    const recommendTopics = topics.filter(topic => !spaceIdArr.includes(topic.id))
+    const recommendTopics = topics.filter(topic => !spaceIdSet.has(topic.id))
 
     useEffect(() => {
         dispatch( thunkGetTopicsQuestions())
