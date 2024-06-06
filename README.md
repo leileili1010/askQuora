@@ -75,9 +75,9 @@ askQuora aims to provide a similar platform as Quora where users can ask questio
   - You can run from the default port in development to see changes live.
 
 ## Features
-Users
-users can create an account
-users can Log-in and Logout of their created account with authentication
+1. Users
+- users can create an account
+- users can Log-in and Logout of their created account with authentication
 Vans
 Logged in users can create new vans
 Users can view vans
