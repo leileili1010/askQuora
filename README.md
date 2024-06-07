@@ -3,6 +3,9 @@
 ### Link to live site:
 https://askquora.onrender.com/
 
+### Creator
+Fiona(Lei) Li [Github](https://github.com/leileili1010) | [LinkedIn](https://www.linkedin.com/in/leileili/)
+
 ### Let's Get Technical
 In this project I have used Javascript, React, Redux, Python, Flask, SQLAlchemy, PostgreSQL, Render, HTML5, CSS3, AWS S3
 
@@ -78,19 +81,44 @@ askQuora aims to provide a similar platform as Quora where users can ask questio
 1. Users
 - users can create an account
 - users can Log-in and Logout of their created account with authentication
-Vans
-Logged in users can create new vans
-Users can view vans
-Logged in users can update their vans
-Logged in users can delete their vans
-Reviews
-Logged in users can create new reviews
-Users can view reviews
-Logged in users can update their reviews
-Logged in users can delete their reviews
-Favorites
-Logged in users can create new favorites
-Logged in users can view their favorites
-Logged in users can delete their favorites
+2. Questions
+- Logged in users can view questions
+- Logged in users can post questions
+- Logged in users can update questions 
+- Logged in users can delete questions
+3. Answers
+- Logged in users can view answers to questions
+- Logged in users can post their answers
+- Logged in users can update their answers
+- Logged in users can delete answers
+4. subcription
+- Logged in users can view subscriptions
+- Logged in users can subscribe to different topics
+- Logged in users can delete their subscriptions
+
+## User Stories
+1. User Account
+- Logged in users can view their account details
+- Logged in users can view question/answers they posted and subscriptions
+- Logged in users can update their questions and answers
+- Logged in users can delete their questions and answers
+2. Question
+- Logged in users can view questions so to find information and contribute to discussions
+- post a question, number of answers will be displayed below question
+- Logged in users can post a question to seek answers from the community
+- Logged in users can udate posted questions to correct mistakes or add more details
+- Logged in users can delete posted questions if they are no longer relevant or if user received the needed information
+3. Answer
+- Logged-in user can view answers to questions to gain knowledge or find solutions to problems
+- Logged-in user can post answers to questions, text, code, and images are all supported forms in their answers
+- Logged-in user can update posted answers to correct mistakes or provide additional information
+- Logged-in user can delete posted answers if they are no longer relevant or if the user wants to retract response
+4. Subscription
+- Logged-in user can view subscriptions so that the user can keep track of the topics the user interested in
+- Logged-in user can subscribe to different topics so that the user can receive updates and stay informed about new content
+- Logged-in user can delete subscriptions if the user longer interested in a topic
+5. Search 
+- Logged-in user can search for questions by keyword so that user can quickly find relevant questions and answers
+  
 
 
