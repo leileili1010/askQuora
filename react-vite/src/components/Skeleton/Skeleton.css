@@ -17,7 +17,7 @@
     width: 100%;
     height: 8px;
     border-radius: 3px;
-    animation: colorChange 1s linear infinite alternate;
+    animation: colorChange 0.5s linear infinite alternate;
 }
 
 .skelenton-text-box {
@@ -36,7 +36,7 @@
 
 .short-text {
     width:80%;
-    animation: colorChange 1s linear infinite alternate;
+    /* animation: colorChange 1s linear infinite alternate; */
 }
 
 .main-container {
@@ -67,7 +67,7 @@
     height: 35px;
     border-radius: 50%;
     background-color:pink;
-    animation: colorChange 1s linear infinite alternate;
+    /* animation: colorChange 0.5s linear infinite alternate; */
 }
 
 .skelenton-profile-detail {
@@ -78,8 +78,11 @@
 
 }
 
+.loading {
+    animation: colorChange 0.5s linear infinite alternate;
+}
 
 @keyframes colorChange {
-    0% { background-color: gray; } /* Initial color */
-    100% { background-color: lightgray; } /* Target color */
+    0% { background-color: #333; } /* Initial color */
+    100% { background-color: grey; } /* Target color */
 }

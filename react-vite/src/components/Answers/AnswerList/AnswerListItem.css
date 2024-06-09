@@ -1,10 +1,10 @@
 .answer {
     display: flex;
     flex-direction: column;
-    border: 1px solid #e2e2e2; 
+    border: 1px solid #333; 
     padding: 16px;
     margin-bottom: 8px;
-    background-color: #333333; ; 
+    background-color: #262626; ; 
     border-radius: 4px;
     
 }

@@ -9,7 +9,7 @@
   right: 50%; 
   transform: translateX(38%); 
   margin-top: 8px; 
-  border: 1px solid #ddd;
+  border: 1px solid #333;
   background-color: white;
   display: flex;
   flex-direction: column;
@@ -24,7 +24,7 @@
   transform: translateX(-50%); 
   border-left: 9px solid transparent;
   border-right: 9px solid transparent;
-  border-bottom: 9px solid #ddd; 
+  border-bottom: 9px solid #333; 
 }
 
 .profile-dropdown::after {
@@ -35,17 +35,21 @@
   transform: translateX(-50%); 
   border-left: 8px solid transparent;
   border-right: 8px solid transparent;
-  border-bottom: 8px solid white; 
+  border-bottom: 8px solid #333; 
 }
 
 .hidden {
   display: none;
 }
 
+
+div .nav-bar-container {
+  background-color: #262626; 
+}
+
 .nav-bar-container {
   height: 60px;
-  background-color: #333333; 
-  border-bottom: 1px solid #333333; 
+  background-color: #262626; 
   box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.1);
   z-index: 10000;
 }
@@ -80,31 +84,31 @@
 
 .nav-bar a {
   text-decoration: none;
-  color: #a82723; 
+  color: red; 
   font-weight: bold;
   font-size: 31px;
   font-family: "Literata", serif;
 }
 
 .nav-bar a:hover {
-  color: #d26f6a;
+  color:#b82c32;
 }
 
 .nav-bar i {
-  color: #626466; 
+  color: #262626; 
   cursor: pointer; 
 }
 
 .nav-bar i:hover {
-  background-color: #f1f2f2; 
+  background-color: #333; 
 }
 
 #home-sign {
-  color:  #a82723
+  color:  red
 }
 
 #home-sign:hover{
-  color: #d26f6a;
+  color: #b82c32;
 }
 
 /* Search box */
@@ -141,7 +145,7 @@
 }
 
 .nav-bar button:hover {
-  color: #a82723;
+  color: red;
 }
 
 /* Profile and Add Question*/
@@ -156,7 +160,7 @@
 
 .pledge-detail button {
   border: none;
-  background-color: #a82723;
+  background-color: red;
   color: white;
   padding: 7px 20px;
   border-radius: 22px;
@@ -164,13 +168,14 @@
 
 .pledge-detail button:hover{
   cursor: pointer;
+  background-color: #b82c32;
 }
 
 .profile-dropdown {
   position: absolute;
   right: 0;
   background-color: white;
-  border: 1px solid #e2e2e2;
+  border: 1px solid #333;
   border-radius: 4px;
   padding: 10px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);

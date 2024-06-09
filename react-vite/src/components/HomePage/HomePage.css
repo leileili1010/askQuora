@@ -28,7 +28,7 @@
     display: flex;
     font-size: 12px;
     margin-bottom: 10px;
-    border-bottom: 1px solid lightgray; 
+    border-bottom: 1px solid #333; 
 }
 
 
@@ -38,24 +38,30 @@
 }
 
 .answer-question-nav p:hover {
-    background-color: #E9EAEA;
+    background-color:#333;
 }
 
 .answer-question-nav .active {
-    color: #a82723;
+    color: red;
     font-weight: bold;
-    border-bottom: 3px solid #a82723; 
+    border-bottom: 3px solid red; 
 }
 
 .ask-answer {
     display: flex;
     flex-direction: column;
-    border: 1px solid #e2e2e2; 
-    background-color: white;
+    border: 1px solid #333; 
+    background-color: #262626;
     padding: 10px;
-    padding-bottom: 5px;
     border-radius: 3px;
     margin-bottom: 10px;
+    gap: 7px;
+}
+
+.answer-list-component {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
 }
 
 .profile-question {
@@ -71,12 +77,8 @@
     border-radius: 24px;
     border: 1px solid ; 
     color: gray;
-    background-color: #f7f7f7;
-    border: 1px solid #e2e2e2; 
-}
-
-.profile-question button:hover {
-    background-color: #f1f2f2 ;
+    background-color: #202020;
+    border: 1px solid #333; 
 }
 
 .ask-anwser-link {
@@ -92,14 +94,14 @@
 
 .ask-anwser-link div {
     padding: 5px;
-    border: 1px solid white; 
+    border: 1px solid #333; 
     width: 170px;
     text-align: center;
     border-radius: 10px;
 }
 
 .ask-anwser-link div:hover {
-    background-color: #f1f2f2;
+    background-color: #333;
     color: black
 }
 
@@ -149,7 +151,7 @@
 }
 
 .subscription:hover {
-    background-color: #E9EAEA;
+    background-color: #333;
     text-decoration: underline;
     border-radius: 4px;
 }
@@ -177,7 +179,7 @@
 }
 
 .add-subs {
-    background-color: #E9EAEA;
+    background-color: #333;
     padding: 10px 12px;
     cursor: pointer;
     margin-bottom: -10px;

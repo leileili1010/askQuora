@@ -39,7 +39,7 @@ const Skeleton = () => {
                     <div className='skelenton-text-container'>
                         <div className="skeleton-text"></div>
                         <div className="skeleton-text"></div>
-                        <div className="skeleton-text short-text"></div>
+                        <div className="skeleton-text short-text "></div>
                     </div>
                 </div>
 
