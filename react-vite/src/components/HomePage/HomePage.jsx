@@ -11,6 +11,7 @@ import OpenModalButton from '../OpenModalButton/OpenModalButton'
 import TopicsQuestionsList from "../Topics/TopicsQuestion/TopicsQuestionsList"
 import SpacesList from "../Spaces/SpacesList";
 import RecommendTopics from "../Spaces/RecomendSpace";
+import Spinner from "../Spinner/Spinner";
 import "./HomePage.css"
 
 const HomePage = () => {
@@ -20,7 +21,7 @@ const HomePage = () => {
     const spaces = useSelector(state => state.session.userSubscriptions)
     const answersObj = useSelector(state => state.answers)
     const profile_img = user?.profile_img
-   
+
     const [activeTab, setActiveTab] = useState('answers');
     const [deleteA, setDeleteA] = useState(0)
     const [editA, setEditA] = useState(0)
@@ -28,29 +29,47 @@ const HomePage = () => {
     const [searchInput, setSearchInput] = useState("")
     const [topicForUser, setTopicForUser] = useState("")
     const [subscriptionUpdate, setSubscriptionUpdate] = useState(0);
+    const [loading, setLoading] = useState(true);
     let subAnswers
 
     useEffect(() => {
         if (!user) navigate("/");
     }, [user, navigate]);
     
-    // useEffect(() => {
-    //     dispatch(thunkGetUserSubscriptions())
-    // }, [dispatch, subscriptionUpdate])
-    
     useEffect(() => {
-        const loadInfo = async () =>{
-            const data = await dispatch(thunkGetAllAnswers());
-            setCurrentAnswers([...data])
-        }
-        loadInfo()
+        dispatch(thunkGetUserSubscriptions())
+    }, [dispatch, subscriptionUpdate])
+    
+    // useEffect(() => {
+    //     const loadInfo = async () =>{
+    //         const data = await dispatch(thunkGetAllAnswers());
+    //         setCurrentAnswers([...data])
+    //     }
+    //     loadInfo()
+    //     return () => {
+    //         dispatch(returnInitial());
+    //     };
+    // }, [dispatch, editA, deleteA])
+
+
+    useEffect(() => {
+        const loadInfo = async () => {
+            setLoading(true); 
+            try {
+                const data = await dispatch(thunkGetAllAnswers());
+                setCurrentAnswers([...data]);
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            } finally {
+                setLoading(false); 
+            }
+        };
+        loadInfo();
+
         return () => {
             dispatch(returnInitial());
         };
-    }, [dispatch, editA, deleteA])
-
-
-
+    }, [dispatch, editA, deleteA]);
 
     const answers = Object.values(answersObj).sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at));
     
@@ -76,7 +95,6 @@ const HomePage = () => {
                 const data = await res.json();
                 setSubscriptionUpdate(prev => prev + 1);
                 setTopicForUser("");
-                // console.log('Subscription added:', data);
                 return data;
             } else {
                 const errorData = await res.json();
@@ -99,6 +117,9 @@ const HomePage = () => {
                     <Navigation/>
                 }
             </div>
+
+            {loading && <Spinner />}
+
 
             <div className="topics">
                 {/* spaces and topics*/}
@@ -159,7 +180,7 @@ const HomePage = () => {
                 </div>
                
                <div className="relevant-spaces-container">
-                    {/* <RecommendTopics setSub={setSub} spaces={spaces} setTopicForUser={setTopicForUser} />      */}
+                    <RecommendTopics setSub={setSub} spaces={spaces} setTopicForUser={setTopicForUser} />     
                </div>
             </div>
         </div>
