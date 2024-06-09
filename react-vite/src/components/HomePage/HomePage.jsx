@@ -34,9 +34,9 @@ const HomePage = () => {
         if (!user) navigate("/");
     }, [user, navigate]);
     
-    useEffect(() => {
-        dispatch(thunkGetUserSubscriptions())
-    }, [dispatch, subscriptionUpdate])
+    // useEffect(() => {
+    //     dispatch(thunkGetUserSubscriptions())
+    // }, [dispatch, subscriptionUpdate])
     
     useEffect(() => {
         const loadInfo = async () =>{
@@ -159,7 +159,7 @@ const HomePage = () => {
                 </div>
                
                <div className="relevant-spaces-container">
-                    <RecommendTopics setSub={setSub} spaces={spaces} setTopicForUser={setTopicForUser} />     
+                    {/* <RecommendTopics setSub={setSub} spaces={spaces} setTopicForUser={setTopicForUser} />      */}
                </div>
             </div>
         </div>
