@@ -11,7 +11,7 @@ import OpenModalButton from '../OpenModalButton/OpenModalButton'
 import TopicsQuestionsList from "../Topics/TopicsQuestion/TopicsQuestionsList"
 import SpacesList from "../Spaces/SpacesList";
 import RecommendTopics from "../Spaces/RecomendSpace";
-import Spinner from "../Spinner/Spinner";
+import Skeleton from "../Skeleton/Skeleton";
 import "./HomePage.css"
 
 const HomePage = () => {
@@ -118,7 +118,7 @@ const HomePage = () => {
                 }
             </div>
 
-            {loading && <Spinner />}
+            {loading && <Skeleton />}
 
 
             <div className="topics">

@@ -4,7 +4,7 @@
     border: 1px solid #e2e2e2; 
     padding: 16px;
     margin-bottom: 8px;
-    background-color: white; 
+    background-color: #333333; ; 
     border-radius: 4px;
     
 }
@@ -42,13 +42,13 @@
 /* Author Info */
 .author {
     font-size: 12px;
-    color:#333; 
+    color:white; 
     margin-bottom: 8px;
 }
 
 .author-name {
     font-weight: bold;
-    color: #333;
+    color: white;
     margin-bottom: 4px;
 }
 
@@ -59,7 +59,7 @@
 
 /* Question Link */
 .answer a {
-    color: #333; 
+    color: white; 
     text-decoration: none; 
     font-weight: bold; 
     margin-bottom: 8px;
@@ -74,7 +74,7 @@
 .rendered-content-class {
     font-size: 14px;
     line-height: 1.6; 
-    color: #333; 
+    color: white; 
 }
 
 
@@ -103,12 +103,12 @@
 
 .user-comments-area {
     gap: 20px;
-    color: grey;
+    color: white;
 }
 
 .user-comments-area a {
     font-size: 12px;
-    color: grey;
+    color: white;
 }
 
 .answer-comment-area {
