@@ -80,9 +80,9 @@ export const thunkGetAuthorAnswers = () => async dispatch => {
     }
 }
 
-// get all answers
-export const thunkGetAllAnswers = () => async dispatch => {
-    const res = await fetch(`/api/topics/answers`)
+// get answers with limit and pagination
+export const thunkGetAllAnswers = (page, limit = 5)  => async dispatch => {
+    const res = await fetch(`/api/answers/?page=${page}&limit=${limit}`)
     if (res.ok) {
         const answers = await res.json();
         dispatch(getAllAnswers(answers));
@@ -193,5 +193,53 @@ function answerReducer(state = initialState, action) {
         return state;
     }
 }
+
+// export default answerReducer;
+// const initialState = {
+//     answers: {}, // Object to store answers by ID
+//     page: 1, // Current page number
+//     hasMore: true, // Indicator if more answers are available
+// };
+
+// function answerReducer(state = initialState, action) {
+//     switch (action.type) {
+//         case GET_TOPIC_ANSWERS:
+//         case GET_QUESTION_ANSWERS:
+//         case GET_AUTHOR_ANSWERS:
+//         case GET_ALL_ANSWERS: {
+//             const newState = {
+//                 ...state,
+//                 page: action.page,
+//                 hasMore: action.answers.length > 0
+//             };
+//             action.answers.forEach(answer => {
+//                 newState.answers[answer.id] = answer;
+//             });
+//             return newState;
+//         }
+//         case CREATE_ANSWER: {
+//             return {
+//                 ...state,
+//                 answers: {
+//                     ...state.answers,
+//                     [action.answer.id]: action.answer
+//                 }
+//             };
+//         }
+//         case DELETE_ANSWER: {
+//             const newState = {
+//                 ...state,
+//                 answers: { ...state.answers }
+//             };
+//             delete newState.answers[action.answerId];
+//             return newState;
+//         }
+//         case RETURN_INITIAL: {
+//             return initialState;
+//         }
+//         default:
+//             return state;
+//     }
+// }
 
 export default answerReducer;
