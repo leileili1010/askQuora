@@ -37,7 +37,7 @@ const HomePage = () => {
     useEffect(() => {
             setLoading(true); 
             try {
-                dispatch(thunkGetAllAnswers());
+                dispatch(thunkGetAllAnswers(1, 10));
             } catch (error) {
                 console.error('Error fetching data:', error);
             } finally {
@@ -149,7 +149,7 @@ const HomePage = () => {
                         <p className={activeTab == 'answers' ? 'active' : ''} onClick={() => handleTabClick('answers')}>Answers</p>
                         <p className={activeTab === 'questions' ? 'active' : ''} onClick={() => handleTabClick('questions')}>Questions</p>
                     </div> 
-                    {activeTab === 'answers' && <AnswerListHome answers={Object.keys(sub).length >0?subAnswers:answers} setDeleteA={setDeleteA} setEditA={setEditA}/>}
+                    {activeTab === 'answers' && <AnswerLigstHome answers={Object.keys(sub).length >0?subAnswers:answers} setDeleteA={setDeleteA} setEditA={setEditA}/>}
                     {activeTab === 'questions' && <TopicsQuestionsList sub={sub}   />}
                 </div>
                

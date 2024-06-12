@@ -1,10 +1,34 @@
-from flask import Blueprint, request
+from flask import Blueprint, request, jsonify
 from flask_login import current_user, login_required
 from ..models import db, Answer
 from ..forms import AnswerForm
 from ..forms import EditAnswerForm
 
 answer_routes = Blueprint('answers', __name__)
+
+# Get ansers for all topics with paginationa and limit
+@login_required
+@answer_routes.route('/', methods=['GET'])
+def get_limited_answers():
+    page = request.args.get('page', 1, type=int)
+    limit = request.args.get('limit', 5, type=int)
+    answers = Answer.query.paginate(page=page, per_page=limit, error_out=False)
+    if not answers.items:
+        return []
+    else:
+        return jsonify([answer.to_dict() for answer in answers.items])
+    
+
+# Get answers for all topics
+@login_required
+@answer_routes.route('/')
+def get_all_answers():
+    answers = Answer.query.all()
+
+    if not answers:
+        return []
+    else:
+        return [answer.to_dict() for answer in answers]
 
 # create new answer
 @login_required

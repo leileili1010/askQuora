@@ -80,9 +80,9 @@ export const thunkGetAuthorAnswers = () => async dispatch => {
     }
 }
 
-// get all answers
-export const thunkGetAllAnswers = () => async dispatch => {
-    const res = await fetch(`/api/topics/answers`)
+// get answers with limit and pagination
+export const thunkGetAllAnswers = (page = 1, limit = 5)  => async dispatch => {
+    const res = await fetch(`/api/answers/?page=${page}&limit=${limit}`)
     if (res.ok) {
         const answers = await res.json();
         dispatch(getAllAnswers(answers));

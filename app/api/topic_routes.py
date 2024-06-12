@@ -43,30 +43,6 @@ def get_topic(topic_id):
     return topic_dict
     
     
-# Get answers for all topics
-@login_required
-@topic_routes.route('/answers')
-def get_all_answers():
-    answers = Answer.query.all()
-
-    if not answers:
-        return []
-    else:
-        return [answer.to_dict() for answer in answers]
-
-
-# Get ansers for all topics with paginationa and limit
-# @login_required
-# @topic_routes.route('/answers', methods=['GET'])
-# def get_all_answers():
-#     page = request.args.get('page', 1, type=int)
-#     limit = request.args.get('limit', 5, type=int)
-#     answers = Answer.query.paginate(page=page, per_page=limit, error_out=False)
-#     if not answers.items:
-#         return []
-#     else:
-#         return jsonify([answer.to_dict() for answer in answers.items])
-    
 # get all topics with corresponding questions attached to it
 @login_required
 @topic_routes.route('/topics-questions')
