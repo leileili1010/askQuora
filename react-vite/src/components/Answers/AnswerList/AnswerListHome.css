@@ -5,7 +5,13 @@
       transform: scale(1);
     }
   }
-  
+  .spinner-container {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    width: 100%;
+  }
+
   .loading-spinner {
     display: inline-block;
     position: relative;
@@ -37,4 +43,29 @@
     left: 60px;
     animation-delay: 0.4s;
   }
+
+  .loading-dot {
+  position: absolute;
+  top: 30px; 
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: #333;
+  animation: loading-dots 1.4s infinite ease-in-out both;
+}
+
+.loading-dot:nth-child(1) {
+  left: 0;
+  animation-delay: 0s;
+}
+
+.loading-dot:nth-child(2) {
+  left: 30px;
+  animation-delay: 0.2s;
+}
+
+.loading-dot:nth-child(3) {
+  left: 60px;
+  animation-delay: 0.4s;
+}
   
