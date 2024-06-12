@@ -2,16 +2,15 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { useNavigate} from "react-router-dom";
 import { thunkGetAllAnswers, returnInitial } from "../../redux/answer";  
-import { thunkGetUserSubscriptions } from "../../redux/session";
 import AnswerListHome from "../Answers/AnswerList/AnswerListHome";
-import NavigationHome from "../Navigation/NavigationHome";
 import Navigation from "../Navigation/Navigation";
 import CreateQuestionModal from '../Questions/CreateQuestion/CreateQuestion'
 import OpenModalButton from '../OpenModalButton/OpenModalButton'
 import TopicsQuestionsList from "../Topics/TopicsQuestion/TopicsQuestionsList"
 import SpacesList from "../Spaces/SpacesList";
 import RecommendTopics from "../Spaces/RecomendSpace";
-import Spinner from "../Spinner/Spinner";
+import Skeleton from "../Skeleton/Skeleton";
+import InfiniteScroll from 'react-infinite-scroll-component';
 import "./HomePage.css"
 
 const HomePage = () => {
@@ -20,15 +19,13 @@ const HomePage = () => {
     const user = useSelector(state => state.session.user)
     const spaces = useSelector(state => state.session.userSubscriptions)
     const answersObj = useSelector(state => state.answers)
+    const answers = Object.values(answersObj).sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at));
     const profile_img = user?.profile_img
-
     const [activeTab, setActiveTab] = useState('answers');
     const [deleteA, setDeleteA] = useState(0)
     const [editA, setEditA] = useState(0)
     const [sub, setSub] = useState({})
-    const [searchInput, setSearchInput] = useState("")
     const [topicForUser, setTopicForUser] = useState("")
-    const [subscriptionUpdate, setSubscriptionUpdate] = useState(0);
     const [loading, setLoading] = useState(true);
     let subAnswers
 
@@ -36,48 +33,27 @@ const HomePage = () => {
         if (!user) navigate("/");
     }, [user, navigate]);
     
-    useEffect(() => {
-        dispatch(thunkGetUserSubscriptions())
-    }, [dispatch, subscriptionUpdate])
-    
-    // useEffect(() => {
-    //     const loadInfo = async () =>{
-    //         const data = await dispatch(thunkGetAllAnswers());
-    //         setCurrentAnswers([...data])
-    //     }
-    //     loadInfo()
-    //     return () => {
-    //         dispatch(returnInitial());
-    //     };
-    // }, [dispatch, editA, deleteA])
-
 
     useEffect(() => {
-        const loadInfo = async () => {
             setLoading(true); 
             try {
-                const data = await dispatch(thunkGetAllAnswers());
-                setCurrentAnswers([...data]);
+                dispatch(thunkGetAllAnswers());
             } catch (error) {
                 console.error('Error fetching data:', error);
             } finally {
                 setLoading(false); 
             }
-        };
-        loadInfo();
-
+        
         return () => {
             dispatch(returnInitial());
         };
     }, [dispatch, editA, deleteA]);
 
-    const answers = Object.values(answersObj).sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at));
     
     if (Object.keys(sub).length > 0) {
         subAnswers = answers.filter(answer => answer.topic.name === sub.name ) 
     }
-    const [currentAnswers, setCurrentAnswers] = useState([...answers]);
-    
+   
     
     const handleTabClick = (tab) => {
         setActiveTab(tab);
@@ -112,18 +88,16 @@ const HomePage = () => {
         <div className="homepage">
             <div className="home-nav-bar">
                 {
-                    activeTab === "answers"?
-                    (<NavigationHome answers={answers} searchInput={searchInput} setSearchInput={setSearchInput} currentAnswers={currentAnswers} setCurrentAnswers={setCurrentAnswers} setSub={setSub}/>):
                     <Navigation/>
                 }
             </div>
 
-            {loading && <Spinner />}
+            {loading && <Skeleton />}
 
 
             <div className="topics">
                 {/* spaces and topics*/}
-                <SpacesList setSub={setSub} spaces={spaces} setTopicForUser={setTopicForUser}/>
+                <SpacesList setSub={setSub} setTopicForUser={setTopicForUser}/>
 
                  {/* spaces and topics*/}
                 <div className="topic-answers">
@@ -175,7 +149,7 @@ const HomePage = () => {
                         <p className={activeTab == 'answers' ? 'active' : ''} onClick={() => handleTabClick('answers')}>Answers</p>
                         <p className={activeTab === 'questions' ? 'active' : ''} onClick={() => handleTabClick('questions')}>Questions</p>
                     </div> 
-                    {activeTab === 'answers' && <AnswerListHome answers={Object.keys(sub).length >0?subAnswers:currentAnswers} setDeleteA={setDeleteA} setEditA={setEditA}/>}
+                    {activeTab === 'answers' && <AnswerListHome answers={Object.keys(sub).length >0?subAnswers:answers} setDeleteA={setDeleteA} setEditA={setEditA}/>}
                     {activeTab === 'questions' && <TopicsQuestionsList sub={sub}   />}
                 </div>
                

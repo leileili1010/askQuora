@@ -27,7 +27,7 @@ const AnswerListItem = ({ answer, setDeleteA, setEditA }) => {
     return (
         <div className="answer">
             <div className="author-profile">
-                <img className="profile-image" src={answer.author.profile_img} alt="Profile image" />
+                <img className="profile-image loading" src={answer.author.profile_img} alt="Profile image" />
                 <div className="author">
                     <p className="author-name">{answer.author.first_name} {answer.author.last_name}</p>
                     <p>{answer.author.position} · {answer.author.years_of_experience}yr, {answer.author.field}</p>

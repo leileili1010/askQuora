@@ -31,8 +31,8 @@ function NavigationHome({setSub, answers, searchInput, setSearchInput, currentAn
             <NavLink to="/topics">askQuora</NavLink>
           </div>
           <i id="home-sign" onClick={() => navigate("/topics")} className="fa-solid fa-house" ></i>
-          <i className="fa-regular fa-pen-to-square" style={{ color: "#626466" }} onClick={() => window.alert("Feature coming soon...")}></i>
-          <i className="fa-solid fa-users" style={{ color: "#626466" }} onClick={() => navigate("/explore-topics")}></i>
+          <i className="fa-regular fa-pen-to-square" style={{ color: "white" }} onClick={() => window.alert("Feature coming soon...")}></i>
+          <i className="fa-solid fa-users" style={{ color: "white" }} onClick={() => navigate("/explore-topics")}></i>
           <form action="/search" method="get">
             <input type="text" name="query" placeholder="Search answers..." value={searchInput} onChange={handleInputChange} />
             {/* <button type="submit">Search</button> */}
