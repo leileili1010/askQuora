@@ -5,7 +5,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { thunkGetAllAnswers } from "../../../redux/answer";
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { createSelector } from 'reselect';
-import "./AnswerListHome.css";
+import Spinner from "../Spinner/Spinner";
+
 
 const AnswerListHome = () => {
     const user = useSelector(state => state.session.user)
@@ -54,21 +55,12 @@ const AnswerListHome = () => {
                 dataLength={sortedAnswers.length}
                 next={() => setPage(page + 1)}
                 hasMore={hasMore}
-                loader={
-                    isLoading &&
-                    <div className="spinner-container">
-                        <div className="loading-spinner">
-                            <div className="loading-dot"></div>
-                            <div className="loading-dot"></div>
-                            <div className="loading-dot"></div>
-                        </div>
-                    </div>
-                }
             >
                 {sortedAnswers.map(answer =>
                     <AnswerListItem answer={answer} setDeleteA={setDeleteA} setEditA={setEditA} key={answer.id} />
                 )}
             </InfiniteScroll>
+            {isLoading && <Spinner />}
 
         </div>
     )
