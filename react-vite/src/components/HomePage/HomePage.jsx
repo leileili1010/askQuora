@@ -1,7 +1,6 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { useNavigate} from "react-router-dom";
-// import { thunkGetAllAnswers, returnInitial } from "../../redux/answer";  
 import AnswerListHome from "../Answers/AnswerList/AnswerListHome";
 import Navigation from "../Navigation/Navigation";
 import CreateQuestionModal from '../Questions/CreateQuestion/CreateQuestion'
@@ -9,23 +8,15 @@ import OpenModalButton from '../OpenModalButton/OpenModalButton'
 import TopicsQuestionsList from "../Topics/TopicsQuestion/TopicsQuestionsList"
 import SpacesList from "../Spaces/SpacesList";
 import RecommendTopics from "../Spaces/RecomendSpace";
-// import Skeleton from "../Skeleton/Skeleton";
 
 import "./HomePage.css"
 
 const HomePage = () => {
-    const dispatch = useDispatch()
     const navigate = useNavigate()
     const user = useSelector(state => state.session.user)
     const spaces = useSelector(state => state.session.userSubscriptions)
-  
-
-    // const answersObj = useSelector(state => state.answers)
-    // const answers = Object.values(answersObj).sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at));
     const profile_img = user?.profile_img
     const [activeTab, setActiveTab] = useState('answers');
-    // const [deleteA, setDeleteA] = useState(0)
-    // const [editA, setEditA] = useState(0)
     const [sub, setSub] = useState({})
     const [topicForUser, setTopicForUser] = useState("")
     // const [loading, setLoading] = useState(true);
@@ -34,16 +25,7 @@ const HomePage = () => {
     useEffect(() => {
         if (!user) navigate("/");
     }, [user, navigate]);
-    
 
-    
-
-    
-    // if (Object.keys(sub).length > 0) {
-    //     subAnswers = answers.filter(answer => answer.topic.name === sub.name ) 
-    // }
-   
-    
     const handleTabClick = (tab) => {
         setActiveTab(tab);
     };

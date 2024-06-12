@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
+import './SearchResults.css';
 
 function SearchResultsModal({ isOpen, onClose, questions, searchInput, setIsTyping}) {
   const modalRef = useRef();
@@ -35,8 +36,13 @@ function SearchResultsModal({ isOpen, onClose, questions, searchInput, setIsTypi
             </div>
             {questions.map(question => {
               if (question.title !== "No question found")
-                  return <Link to={`/questions/${question.id}`} key={question.id}><p>{question.title}</p></Link>
-              else return <p>No question found</p>
+                  return <Link to={`/questions/${question.id}`} key={question.id}>
+                    <div className='search-result'>
+                      <img src={question.owner.profile_img} className="profile-image" alt="" />
+                      <p>{question.title}</p>
+                    </div>
+                  </Link>
+              else return <p className='not-found'>No question found...</p>
                 }
             )}
         </div>

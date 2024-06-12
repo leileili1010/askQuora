@@ -11,7 +11,7 @@ answer_routes = Blueprint('answers', __name__)
 @answer_routes.route('/', methods=['GET'])
 def get_limited_answers():
     page = request.args.get('page', 1, type=int)
-    limit = request.args.get('limit', 5, type=int)
+    limit = request.args.get('limit', 6, type=int)
     answers = Answer.query.paginate(page=page, per_page=limit, error_out=False)
     if not answers.items:
         return []
