@@ -1,13 +1,20 @@
 import AnswerListItem from "./AnswerListItem";
-import { useSelector } from "react-redux/es/hooks/useSelector";
-import { useEffect} from "react";
+import { useEffect, useState} from "react";
 import { useNavigate} from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { thunkGetAllAnswers } from "../../../redux/answer";
+import InfiniteScroll from 'react-infinite-scroll-component';
 
-const AnswerListHome = ({answers, setDeleteA, setEditA}) => {
+const AnswerListHome = () => {
     const user = useSelector(state => state.session.user)
+    const dispatch = useDispatch()
     const navigate = useNavigate()
+    const answers = useSelector(state => Object.values(state.answers))
     const sortedAnswers = answers.sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at))
-    // const [isLoading, setIsLoading] = useState(false);
+    const [deleteA, setDeleteA] = useState(0)
+    const [editA, setEditA] = useState(0)
+    const [page, setPage] = useState(1)
+    const [isLoading, setIsLoading] = useState(false);
 
     // useEffect(() => {
     //     setIsLoading(true);
@@ -15,6 +22,19 @@ const AnswerListHome = ({answers, setDeleteA, setEditA}) => {
     //         setIsLoading(false);
     //     }, 1500); 
     // }, []);
+
+    useEffect(() => {
+        setIsLoading(true); 
+        try {
+            dispatch(thunkGetAllAnswers(page));
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        } finally {
+            setIsLoading(false); 
+        }
+
+    }, [dispatch, editA, deleteA, page]);
+
 
     useEffect(() => {
         if (!user) navigate("/");
@@ -30,9 +50,15 @@ const AnswerListHome = ({answers, setDeleteA, setEditA}) => {
 
     return (
         <div className="answer-list-component">
-            {sortedAnswers.map(answer =>
-               <AnswerListItem answer={answer} setDeleteA={setDeleteA} setEditA={setEditA} key={answer.id} />    
-            )}
+            <InfiniteScroll
+                dataLength={answers.length}
+                next = {() => setPage(page + 1)}
+                hasMore={answers.length > 0}
+            >
+                {sortedAnswers.map(answer =>
+                <AnswerListItem answer={answer} setDeleteA={setDeleteA} setEditA={setEditA} key={answer.id} />    
+                )}
+            </InfiniteScroll>
         </div>
     )
 }

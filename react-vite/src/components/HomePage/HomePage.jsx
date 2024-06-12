@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { useNavigate} from "react-router-dom";
-import { thunkGetAllAnswers, returnInitial } from "../../redux/answer";  
+// import { thunkGetAllAnswers, returnInitial } from "../../redux/answer";  
 import AnswerListHome from "../Answers/AnswerList/AnswerListHome";
 import Navigation from "../Navigation/Navigation";
 import CreateQuestionModal from '../Questions/CreateQuestion/CreateQuestion'
@@ -9,8 +9,8 @@ import OpenModalButton from '../OpenModalButton/OpenModalButton'
 import TopicsQuestionsList from "../Topics/TopicsQuestion/TopicsQuestionsList"
 import SpacesList from "../Spaces/SpacesList";
 import RecommendTopics from "../Spaces/RecomendSpace";
-import Skeleton from "../Skeleton/Skeleton";
-import InfiniteScroll from 'react-infinite-scroll-component';
+// import Skeleton from "../Skeleton/Skeleton";
+
 import "./HomePage.css"
 
 const HomePage = () => {
@@ -18,15 +18,17 @@ const HomePage = () => {
     const navigate = useNavigate()
     const user = useSelector(state => state.session.user)
     const spaces = useSelector(state => state.session.userSubscriptions)
-    const answersObj = useSelector(state => state.answers)
-    const answers = Object.values(answersObj).sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at));
+  
+
+    // const answersObj = useSelector(state => state.answers)
+    // const answers = Object.values(answersObj).sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at));
     const profile_img = user?.profile_img
     const [activeTab, setActiveTab] = useState('answers');
-    const [deleteA, setDeleteA] = useState(0)
-    const [editA, setEditA] = useState(0)
+    // const [deleteA, setDeleteA] = useState(0)
+    // const [editA, setEditA] = useState(0)
     const [sub, setSub] = useState({})
     const [topicForUser, setTopicForUser] = useState("")
-    const [loading, setLoading] = useState(true);
+    // const [loading, setLoading] = useState(true);
     let subAnswers
 
     useEffect(() => {
@@ -34,25 +36,12 @@ const HomePage = () => {
     }, [user, navigate]);
     
 
-    useEffect(() => {
-            setLoading(true); 
-            try {
-                dispatch(thunkGetAllAnswers(1, 10));
-            } catch (error) {
-                console.error('Error fetching data:', error);
-            } finally {
-                setLoading(false); 
-            }
-        
-        return () => {
-            dispatch(returnInitial());
-        };
-    }, [dispatch, editA, deleteA]);
+    
 
     
-    if (Object.keys(sub).length > 0) {
-        subAnswers = answers.filter(answer => answer.topic.name === sub.name ) 
-    }
+    // if (Object.keys(sub).length > 0) {
+    //     subAnswers = answers.filter(answer => answer.topic.name === sub.name ) 
+    // }
    
     
     const handleTabClick = (tab) => {
@@ -91,10 +80,7 @@ const HomePage = () => {
                     <Navigation/>
                 }
             </div>
-
-            {loading && <Skeleton />}
-
-
+            
             <div className="topics">
                 {/* spaces and topics*/}
                 <SpacesList setSub={setSub} setTopicForUser={setTopicForUser}/>
@@ -149,7 +135,7 @@ const HomePage = () => {
                         <p className={activeTab == 'answers' ? 'active' : ''} onClick={() => handleTabClick('answers')}>Answers</p>
                         <p className={activeTab === 'questions' ? 'active' : ''} onClick={() => handleTabClick('questions')}>Questions</p>
                     </div> 
-                    {activeTab === 'answers' && <AnswerLigstHome answers={Object.keys(sub).length >0?subAnswers:answers} setDeleteA={setDeleteA} setEditA={setEditA}/>}
+                    {activeTab === 'answers' && <AnswerListHome/>}
                     {activeTab === 'questions' && <TopicsQuestionsList sub={sub}   />}
                 </div>
                
