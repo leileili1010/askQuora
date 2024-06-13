@@ -42,7 +42,7 @@ function SearchResultsModal({ isOpen, onClose, questions, searchInput, setIsTypi
                       <p>{question.title}</p>
                     </div>
                   </Link>
-              else return <p className='not-found'>No question found...</p>
+              else return <p className='not-found' key={"not-found"}>No question found...</p>
                 }
             )}
         </div>
