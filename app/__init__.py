@@ -12,6 +12,7 @@ from .api.topic_routes import topic_routes
 from .api.image_routes import image_routes
 from .api.answer_routes import answer_routes
 from .api.contributor_routes import contributor_routes
+from .api.comment_routes import comment_routes
 from .seeds import seed_commands
 from .config import Config
 
@@ -38,6 +39,7 @@ app.register_blueprint(topic_routes, url_prefix='/api/topics')
 app.register_blueprint(image_routes, url_prefix='/api/images')
 app.register_blueprint(answer_routes, url_prefix='/api/answers')
 app.register_blueprint(contributor_routes, url_prefix='/api/contributors')
+app.register_blueprint(comment_routes, url_prefix='/api/comments')
 db.init_app(app)
 Migrate(app, db)
 
