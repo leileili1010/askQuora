@@ -1,24 +1,25 @@
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import { useNavigate} from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import AnswerListHome from "../Answers/AnswerList/AnswerListHome";
+import AnswerListTopic from "../Answers/AnswerList/AnswerListTopic";
 import Navigation from "../Navigation/Navigation";
 import CreateQuestionModal from '../Questions/CreateQuestion/CreateQuestion'
 import OpenModalButton from '../OpenModalButton/OpenModalButton'
 import TopicsQuestionsList from "../Topics/TopicsQuestion/TopicsQuestionsList"
 import SpacesList from "../Spaces/SpacesList";
-import RecommendTopics from "../Spaces/RecomendSpace";
+// import RecommendTopics from "../Spaces/RecomendSpace";
 
 import "./HomePage.css"
 
 const HomePage = () => {
     const navigate = useNavigate()
     const user = useSelector(state => state.session.user)
-    const spaces = useSelector(state => state.session.userSubscriptions)
     const profile_img = user?.profile_img
     const [activeTab, setActiveTab] = useState('answers');
     const [sub, setSub] = useState({})
-    const [topicForUser, setTopicForUser] = useState("")
+    const topicName = useParams().topicName;    
+    console.log("🚀 ~ HomePage ~ topicName:", topicName)
     // const [loading, setLoading] = useState(true);
     let subAnswers
 
@@ -29,31 +30,6 @@ const HomePage = () => {
     const handleTabClick = (tab) => {
         setActiveTab(tab);
     };
-    
-    const handleSubscribe = async (subId) => {
-        try {
-            const res = await fetch("/api/subscriptions/new", {
-                method: "POST", 
-                headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify({ topic_id: subId })  
-            });
-    
-            if (res.ok) {
-                const data = await res.json();
-                setSubscriptionUpdate(prev => prev + 1);
-                setTopicForUser("");
-                return data;
-            } else {
-                const errorData = await res.json();
-                console.error('Error adding subscription:', errorData);
-                return null;
-            }
-        } catch (error) {
-            console.error('Network error:', error.message);
-            return null;
-        }
-    };
-    
 
     return (
         <div className="homepage">
@@ -65,7 +41,7 @@ const HomePage = () => {
             
             <div className="topics">
                 {/* spaces and topics*/}
-                <SpacesList setSub={setSub} setTopicForUser={setTopicForUser}/>
+                <SpacesList setSub={setSub}/>
 
                  {/* spaces and topics*/}
                 <div className="topic-answers">
@@ -106,9 +82,6 @@ const HomePage = () => {
                                         <p>{sub.description}</p>
                                     </div>
                                 </div>
-                                {topicForUser && <div className="new-sub">
-                                    <button onClick={() => handleSubscribe(sub.id)}>Subscribe</button>
-                                </div>}
                             </div>
                         } 
                         
@@ -117,13 +90,14 @@ const HomePage = () => {
                         <p className={activeTab == 'answers' ? 'active' : ''} onClick={() => handleTabClick('answers')}>Answers</p>
                         <p className={activeTab === 'questions' ? 'active' : ''} onClick={() => handleTabClick('questions')}>Questions</p>
                     </div> 
-                    {activeTab === 'answers' && <AnswerListHome/>}
+                    {activeTab === 'answers' &&  !topicName && <AnswerListHome/>}
+                    {activeTab === 'answers' && topicName && <AnswerListTopic topicName={topicName} />}
                     {activeTab === 'questions' && <TopicsQuestionsList sub={sub}   />}
                 </div>
                
-               <div className="relevant-spaces-container">
+               {/* <div className="relevant-spaces-container">
                     <RecommendTopics setSub={setSub} spaces={spaces} setTopicForUser={setTopicForUser} />     
-               </div>
+               </div> */}
             </div>
         </div>
     )

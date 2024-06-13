@@ -6,7 +6,6 @@ import HomePage from '../components/HomePage/HomePage';
 import LandingPage from '../components/HomePage/LandingPage';
 import UserProfile from '../components/UserProfile/UserProfile';
 import ExploreTopics from '../components/Spaces/ExploreTopics';
-import Skeleton from '../components/Skeleton/Skeleton';
 
 export const router = createBrowserRouter([
   {
@@ -39,12 +38,12 @@ export const router = createBrowserRouter([
         element: <HomePage />,
       },
       {
-        path: "explore-topics",
-        element: <ExploreTopics />,
+        path: "topics/:topicName",
+        element: <HomePage />,
       },
       {
-        path: '/*',
-        element: <Skeleton />
+        path: "explore-topics",
+        element: <ExploreTopics />,
       },
       {
         path: '/*',
