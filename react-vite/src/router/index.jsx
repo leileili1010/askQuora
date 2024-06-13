@@ -38,6 +38,10 @@ export const router = createBrowserRouter([
         element: <HomePage />,
       },
       {
+        path: "topics/:topicName",
+        element: <HomePage />,
+      },
+      {
         path: "explore-topics",
         element: <ExploreTopics />,
       },

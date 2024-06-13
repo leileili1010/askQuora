@@ -7,7 +7,6 @@ def seed_topics():
         db.session.add(Topic(
             name = topic['name'],
             description = topic['description'],  
-            creator_id = topic['creator_id'], 
             cover_img = topic['cover_img'] 
         ))
     db.session.commit()

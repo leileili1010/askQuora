@@ -1,0 +1,88 @@
+.skeleton {
+    min-height: 100vh;
+    display: flex;
+    margin: auto; 
+    margin-top: 80px; 
+    gap:40px;
+    border:grey solid 1px;
+}
+
+.subscription-container {
+    width: 150px;
+    border:grey solid 1px;
+}
+
+.skeleton-text {
+    background-color: #e0e0e0;
+    width: 100%;
+    height: 8px;
+    border-radius: 3px;
+    animation: colorChange 0.5s linear infinite alternate;
+}
+
+.skelenton-text-box {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    padding: 13px 15px;
+}
+
+.skelenton-text-container {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 13px 15px;
+}
+
+.short-text {
+    width:80%;
+    /* animation: colorChange 1s linear infinite alternate; */
+}
+
+.main-container {
+    width:600px;
+    display: flex;
+    flex-direction: column;
+    border:grey solid 1px;
+}
+
+.skeleton-box {
+    display: flex;
+    flex-direction: column;
+    height: 28%;
+    border:grey solid 1px;
+}
+
+
+.skelenton-head {
+    height: 70px;
+    display: flex;
+    gap: 10px;
+    padding: 13px 15px;
+
+}
+
+.skelenton-profile-img {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    background-color:pink;
+    /* animation: colorChange 0.5s linear infinite alternate; */
+}
+
+.skelenton-profile-detail {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    border:grey solid 1px;
+
+}
+
+.loading {
+    animation: colorChange 0.5s linear infinite alternate;
+}
+
+@keyframes colorChange {
+    0% { background-color: #333; } /* Initial color */
+    100% { background-color: grey; } /* Target color */
+}
