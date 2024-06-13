@@ -1,7 +1,8 @@
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import { useNavigate} from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import AnswerListHome from "../Answers/AnswerList/AnswerListHome";
+import AnswerListTopic from "../Answers/AnswerList/AnswerListTopic";
 import Navigation from "../Navigation/Navigation";
 import CreateQuestionModal from '../Questions/CreateQuestion/CreateQuestion'
 import OpenModalButton from '../OpenModalButton/OpenModalButton'
@@ -17,6 +18,8 @@ const HomePage = () => {
     const profile_img = user?.profile_img
     const [activeTab, setActiveTab] = useState('answers');
     const [sub, setSub] = useState({})
+    const topicName = useParams().topicName;    
+    console.log("🚀 ~ HomePage ~ topicName:", topicName)
     // const [loading, setLoading] = useState(true);
     let subAnswers
 
@@ -87,7 +90,8 @@ const HomePage = () => {
                         <p className={activeTab == 'answers' ? 'active' : ''} onClick={() => handleTabClick('answers')}>Answers</p>
                         <p className={activeTab === 'questions' ? 'active' : ''} onClick={() => handleTabClick('questions')}>Questions</p>
                     </div> 
-                    {activeTab === 'answers' && <AnswerListHome/>}
+                    {activeTab === 'answers' &&  !topicName && <AnswerListHome/>}
+                    {activeTab === 'answers' && topicName && <AnswerListTopic topicName={topicName} />}
                     {activeTab === 'questions' && <TopicsQuestionsList sub={sub}   />}
                 </div>
                

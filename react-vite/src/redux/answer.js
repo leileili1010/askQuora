@@ -45,10 +45,11 @@ const deleteAnswer = (answerId) => ({
 
 // thunk
 // get topic answers
-export const thunkGetTopicAnswers = (topicId) => async dispatch => {
-    const res = await fetch(`/api/topics/${topicId}/answers`)
+export const thunkGetTopicAnswers = (topicName, page) => async dispatch => {
+    const res = await fetch(`/api/topics/${topicName}/answers?page=${page}`)
     if (res.ok) {
         const answers = await res.json();
+        console.log("🚀 ~ thunkGetTopicAnswers ~ answers:", answers)
         dispatch(getTopicAnswers(answers));
     } else {
         const errs = await res.json()

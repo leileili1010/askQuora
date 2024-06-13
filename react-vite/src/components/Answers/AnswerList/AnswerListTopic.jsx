@@ -2,13 +2,13 @@ import AnswerListItem from "./AnswerListItem";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { thunkGetAllAnswers } from "../../../redux/answer";
+import { thunkGetTopicAnswers, returnInitial } from "../../../redux/answer"; 
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { createSelector } from 'reselect';
 import Spinner from "../Spinner/Spinner";
 
 
-const AnswerListHome = () => {
+const AnswerListTopic = ({topicName}) => {
     const user = useSelector(state => state.session.user)
     const dispatch = useDispatch()
     const navigate = useNavigate()
@@ -28,8 +28,9 @@ const AnswerListHome = () => {
         const fetchData = async () => {
             setIsLoading(true);
             try {
-                const result = await dispatch(thunkGetAllAnswers(page));
-                if (result.length === 0) {
+                const result = await dispatch(thunkGetTopicAnswers(topicName, page));
+                // console.log("🚀 ~ fetchData ~ result :", result )
+                if (result?.length === 0) {
                     setHasMore(false);
                 }
             } catch (error) {
@@ -40,12 +41,18 @@ const AnswerListHome = () => {
         };
 
         fetchData();
-    }, [dispatch, editA, deleteA, page]);
+    }, [dispatch, editA, deleteA, page, topicName]);
 
 
     useEffect(() => {
         if (!user) navigate("/");
     }, [user, navigate]);
+
+    useEffect(() => {
+        dispatch(returnInitial());
+        setPage(1);
+        setHasMore(true);
+    }, [topicName, dispatch]);
 
     if (!sortedAnswers.length) return null;
 
@@ -67,5 +74,5 @@ const AnswerListHome = () => {
     )
 }
 
-export default AnswerListHome;
+export default AnswerListTopic;
 

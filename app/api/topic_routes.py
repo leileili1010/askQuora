@@ -16,18 +16,38 @@ def all_topics():
         return []
     
 # Get all answers of a topic
-@login_required
-@topic_routes.route('/<int:topic_id>/answers')
-def get_topic_answers(topic_id):
-    topic = Topic.query.get(topic_id)
-    if not topic:
-        return {"errors": {"message": "Topic not found"}}, 404
+# @login_required
+# @topic_routes.route('/<int:topic_id>/answers')
+# def get_topic_answers(topic_id):
+#     topic = Topic.query.get(topic_id)
+#     if not topic:
+#         return {"errors": {"message": "Topic not found"}}, 404
 
-    if topic.answers:
-        return [answer.to_dict() for answer in topic.answers]
-    else:
-        return []
+#     if topic.answers:
+#         return [answer.to_dict() for answer in topic.answers]
+#     else:
+#         return []
+
+# Get all answers of a topic
+@login_required
+@topic_routes.route('/<string:topicName>/answers', methods=['GET'])
+def get_limited_topic_answers(topicName):
+    # print("🚀 ~ topicName:", topicName)
     
+    page = request.args.get('page', 1, type=int)
+    limit = request.args.get('limit', 6, type=int)
+    
+    topic = Topic.query.filter_by(name=topicName).first()
+    if not topic:
+        return {"errors": {"message": "Topic not found!"}}, 404
+
+    answers_paginated = Answer.query.filter_by(topic_id=topic.id).paginate(page=page, per_page=limit, error_out=False)
+    if not answers_paginated.items:
+        return jsonify([])
+
+    return jsonify([answer.to_dict() for answer in answers_paginated.items])
+
+
 # Get a topic with all its questions
 @login_required
 @topic_routes.route('/<int:topic_id>/questions')
