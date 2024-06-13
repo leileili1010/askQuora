@@ -19,7 +19,7 @@ const HomePage = () => {
     const [activeTab, setActiveTab] = useState('answers');
     const [sub, setSub] = useState({})
     const topicName = useParams().topicName;    
-    console.log("🚀 ~ HomePage ~ topicName:", topicName)
+    // console.log("🚀 ~ HomePage ~ topicName:", topicName)
     // const [loading, setLoading] = useState(true);
     let subAnswers
 
