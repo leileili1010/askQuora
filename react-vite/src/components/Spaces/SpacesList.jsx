@@ -1,9 +1,8 @@
-import { useNavigate } from "react-router-dom";
 import { thunkGetTopics } from "../../redux/topic";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-const SpacesList = ({setSub,setTopicForUser}) => {
+const SpacesList = ({setSub}) => {
     const dispatch = useDispatch();
     const topicsObj = useSelector(state => state.topics)
     const topics = Object.values(topicsObj);
@@ -23,7 +22,7 @@ const SpacesList = ({setSub,setTopicForUser}) => {
                     <p>Everything</p>
                 </div>
                 {topics?.map(topic =>
-                    <div key={topic?.id} className="subscription" onClick={() => {setSub(topic); setTopicForUser("")}}>
+                    <div key={topic?.id} className="subscription" onClick={() => {setSub(topic)}}>
                         <img src={topic?.cover_img} alt="" />
                         <p>{topic?.name}</p>
                     </div>

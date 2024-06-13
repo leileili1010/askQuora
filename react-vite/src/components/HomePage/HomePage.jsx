@@ -17,7 +17,6 @@ const HomePage = () => {
     const profile_img = user?.profile_img
     const [activeTab, setActiveTab] = useState('answers');
     const [sub, setSub] = useState({})
-    const [topicForUser, setTopicForUser] = useState("")
     // const [loading, setLoading] = useState(true);
     let subAnswers
 
@@ -39,7 +38,7 @@ const HomePage = () => {
             
             <div className="topics">
                 {/* spaces and topics*/}
-                <SpacesList setSub={setSub} setTopicForUser={setTopicForUser}/>
+                <SpacesList setSub={setSub}/>
 
                  {/* spaces and topics*/}
                 <div className="topic-answers">
@@ -80,9 +79,6 @@ const HomePage = () => {
                                         <p>{sub.description}</p>
                                     </div>
                                 </div>
-                                {topicForUser && <div className="new-sub">
-                                    <button onClick={() => handleSubscribe(sub.id)}>Subscribe</button>
-                                </div>}
                             </div>
                         } 
                         
