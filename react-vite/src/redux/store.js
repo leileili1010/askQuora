@@ -10,13 +10,15 @@ import questionReducer from "./question";
 import topicReducer from "./topic";
 import answerReducer from "./answer";
 import searchReducer from "./search";
+import commentReducer from "./comment";
 
 const rootReducer = combineReducers({
   session: sessionReducer,
   questions: questionReducer,
   topics: topicReducer,
   answers: answerReducer,
-  search: searchReducer
+  search: searchReducer,
+  comments: commentReducer
 });
 
 let enhancer;

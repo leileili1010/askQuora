@@ -35,7 +35,7 @@ const ExploreTopics = () => {
                 <div className="explore-topics">
                     <div className="owned-topics">
                         <div className="your-topic-title">
-                            <h3>Your Topics</h3>
+                            <h3>Featured Spaces</h3>
                             <div className="your-topic-btns">
                                 <button onClick={handleClick}><i className="fa-solid fa-circle-plus"></i> Create a Topic</button>
                                 <button onClick={handleScroll}><i className="fa-regular fa-compass"></i> Discover Topics</button>

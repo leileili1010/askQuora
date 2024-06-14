@@ -27,7 +27,7 @@ const QuestionListItem = ({question, setDeleteQ, setEditQ}) => {
     return (
         <div key={question.id} className="question-container">
             
-            <Link to={`/questions/${question.id}`} className="question-title">{question.title}</Link>
+            <Link to={`/questions/${question.id}`} id="question-title">{question.title}</Link>
             
             <div className="button-link">
                 

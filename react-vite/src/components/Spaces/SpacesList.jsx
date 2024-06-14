@@ -19,7 +19,7 @@ const SpacesList = () => {
     return (
         <div className="spaces-container">
             <div className="add-subs">
-                <span className="add-sub">Your Topics</span>
+                <span className="add-sub">Featured Spaces</span>
             </div>
             <div className="subscriptions">
                 <div className="subscription" onClick={() => navigate("/topics")}>

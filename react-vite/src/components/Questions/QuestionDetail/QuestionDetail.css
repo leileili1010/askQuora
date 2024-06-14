@@ -27,7 +27,6 @@ body {
 
 }
 
-
 .answers-container {
     margin-top: 15px
 }
@@ -43,8 +42,8 @@ body {
 .relevant-Qs p {
     font-weight: bold;
     padding: 10px 18px;
-    border: 1px solid #e2e2e2;
-    background-color: white;
+    border: 1px solid #333;
+    background-color: #262626;
 }
 
 .relevantQs {
@@ -53,9 +52,9 @@ body {
     gap: 20px;
     padding: 12px 18px;
     padding-bottom: 20px;
-    border: 1px solid #e2e2e2;
+    border: 1px solid #333;
     border-top: none;
-    background-color: white;
+    background-color: #262626;
 }
 
 .relevantQs a {

@@ -1,5 +1,5 @@
-#spaces-container {
-    width: 100%;
+.spaces-container {
+    width:160px;
     display: flex;
     flex-direction: column;
     gap: 18px;  

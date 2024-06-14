@@ -1,11 +1,12 @@
 .question-container {
     display: flex;
     flex-direction: column;
-    background-color: white; 
+    background-color: #262626; 
     border-radius: 4px;
     list-style-type: none; 
     padding: 0px 15px;
-    border-bottom: 1px solid #ccc;
+    border-bottom: 1px solid #333;
+    color: white;
 }
 
 
@@ -25,7 +26,13 @@
 
 .question-container a {
     font-weight:bold;
+    color: white;
 }
+
+#question-title {
+    color: white
+}
+
 
 .button-link {
     display: flex;

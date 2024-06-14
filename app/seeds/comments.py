@@ -7,8 +7,8 @@ def seed_comments():
         db.session.add(Comment(
             comment = comment['comment'],
             author_id = comment['author_id'],
-            question_id =  comment['question_id'],
-            # answer_id =  comment['answer_id'],
+            # question_id =  comment['question_id'],
+            answer_id =  comment['answer_id'],
             # parent =  comment['parent'],
         ))
     db.session.commit()
