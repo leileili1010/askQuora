@@ -6,6 +6,7 @@ import HomePage from '../components/HomePage/HomePage';
 import LandingPage from '../components/HomePage/LandingPage';
 import UserProfile from '../components/UserProfile/UserProfile';
 import ExploreTopics from '../components/Spaces/ExploreTopics';
+import CommentList from '../components/Comments/CommentsList';
 
 export const router = createBrowserRouter([
   {
@@ -44,6 +45,10 @@ export const router = createBrowserRouter([
       {
         path: "explore-topics",
         element: <ExploreTopics />,
+      },
+      {
+        path: "comments/:answerId",
+        element: <CommentList />,
       },
       {
         path: '/*',

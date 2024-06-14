@@ -1,6 +1,6 @@
 from flask import Blueprint, request, jsonify
 from flask_login import current_user, login_required
-from ..models import db, Answer
+from ..models import db, Answer, Comment
 from ..forms import AnswerForm
 from ..forms import EditAnswerForm
 
@@ -98,3 +98,60 @@ def delete_answer(answer_id):
     db.session.commit()
     return {"message": "Successfully deleted answer"}
 
+
+# Get comments for an answer
+def build_nested_comments(comments_dict, parent_id=None):
+    nested_comments = []
+    for comment_id, comment in comments_dict.items():
+        if comment['parent'] == parent_id:
+            # Recursive call to find replies to this comment
+            comment['replies'] = build_nested_comments(comments_dict, comment_id)
+            nested_comments.append(comment)
+    return nested_comments
+
+@login_required
+@answer_routes.route('/<int:answer_id>/comments/get')
+def get_comments(answer_id):
+    answer = Answer.query.get(answer_id)
+    if not answer:
+        return {"errors": {"message": "Answer not found"}}, 404
+    
+    comments = answer.comments
+    comments_dict = {comment.id: comment.to_dict() for comment in comments}
+
+    nested_comments = build_nested_comments(comments_dict)
+
+    return nested_comments
+
+# add a comment
+@login_required
+@answer_routes.route('/<int:answer_id>/comment/add', methods=["POST"])
+def create_comment(answer_id):
+
+    data = request.json
+
+    if 'comment' in data: 
+        comment = data['comment'] 
+    else: 
+        comment =  data['reply']
+
+    if 'parentId' in data:
+        parent = data['parentId']
+    else:
+        parent = None
+
+    new_comment = Comment(
+        comment = comment,
+        answer_id = answer_id,
+        author_id = current_user.id,
+        parent = parent
+    )
+    try:
+        db.session.add(new_comment)
+        db.session.commit()
+    except:
+        return {"errors": {
+            "message": "Comment required"
+        }}
+
+    return new_comment.to_dict()

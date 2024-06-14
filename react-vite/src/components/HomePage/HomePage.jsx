@@ -19,6 +19,7 @@ const HomePage = () => {
     const [activeTab, setActiveTab] = useState('answers');
     const [sub, setSub] = useState({})
     const topicName = useParams().topicName;    
+    const [initialLoad, setInitialLoad] = useState(true);
     // console.log("🚀 ~ HomePage ~ topicName:", topicName)
     // const [loading, setLoading] = useState(true);
     let subAnswers
@@ -30,6 +31,10 @@ const HomePage = () => {
     const handleTabClick = (tab) => {
         setActiveTab(tab);
     };
+
+    useEffect(() => {
+        setInitialLoad(true);
+    }, [topicName]);
 
     return (
         <div className="homepage">
@@ -90,7 +95,7 @@ const HomePage = () => {
                         <p className={activeTab == 'answers' ? 'active' : ''} onClick={() => handleTabClick('answers')}>Answers</p>
                         <p className={activeTab === 'questions' ? 'active' : ''} onClick={() => handleTabClick('questions')}>Questions</p>
                     </div> 
-                    {activeTab === 'answers' &&  !topicName && <AnswerListHome/>}
+                    {activeTab === 'answers' &&  !topicName && <AnswerListHome initialLoad={initialLoad} setInitialLoad={setInitialLoad}/>}
                     {activeTab === 'answers' && topicName && <AnswerListTopic topicName={topicName} />}
                     {activeTab === 'questions' && <TopicsQuestionsList sub={sub}   />}
                 </div>

@@ -147,51 +147,40 @@ export const thunkDeleteAnswer = (answerId) => async (dispatch) => {
 // answer reducer
 const initialState = {};
 
+function handleGetAnswers(state, answers) {
+    const newState = {...state};
+    answers.forEach(answer => {
+        newState[answer.id] = answer;
+    });
+    return newState;
+}
+
 function answerReducer(state = initialState, action) {
     switch (action.type) {
-        case GET_TOPIC_ANSWERS: {
-            const newState = {...state}
-            action.answers.forEach(answer => {
-                newState[answer.id] = answer
-            })
-            return newState;
-        }
-        case GET_QUESTION_ANSWERS: {
-            const newState = {...state}
-            action.answers.forEach(answer => {
-                newState[answer.id] = answer
-            })
-            return newState;
-        }
-        case GET_AUTHOR_ANSWERS: {
-            const newState = {...state}
-            action.answers.forEach(answer => {
-                newState[answer.id] = answer
-            })
-            return newState;
-        }
-        case GET_ALL_ANSWERS: {
-            const newState = {...state}
-            action.answers.forEach(answer => {
-                newState[answer.id] = answer
-            })
-            return newState;
-        }
+        case GET_TOPIC_ANSWERS:
+        case GET_QUESTION_ANSWERS:
+        case GET_AUTHOR_ANSWERS:
+        case GET_ALL_ANSWERS:
+            return handleGetAnswers(state, action.answers);
+        
         case CREATE_ANSWER: {
-            const newState = {...state}
-            newState[action.answer.id] = action.answer
-            return newState
+            return {
+                ...state,
+                [action.answer.id]: action.answer
+            };
         }
+        
         case DELETE_ANSWER: {
-            const newState = {...state}
-            delete newState[action.answerId] 
-            return newState
+            const newState = {...state};
+            delete newState[action.answerId];
+            return newState;
         }
-        case RETURN_INITIAL: {
+        
+        case RETURN_INITIAL:
             return initialState;
-        }
+        
         default:
-        return state;
+            return state;
     }
 }
 

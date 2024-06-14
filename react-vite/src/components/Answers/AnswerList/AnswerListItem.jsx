@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import AnswerOperationButton from "./AnswerOpertionButton";
 import { useSelector } from "react-redux/es/hooks/useSelector";
 import { useState} from "react";
+import CommentList from "../../Comments/CommentsList";
 import './AnswerListItem.css';
 // import ReactHtmlParser from 'react-html-parser';
 // import parse from "html-react-parser";
@@ -13,6 +14,7 @@ const AnswerListItem = ({ answer, setDeleteA, setEditA }) => {
                          ? `1 of ${answer.question.numOfAnswers} answers`
                          : "Currently 1 answer";
     const [isTruncated, setIsTruncated] = useState(true);
+    const [openComments, setOpenComments] = useState(false);
 
     const toggleTruncation = () => setIsTruncated(!isTruncated);
 
@@ -26,6 +28,7 @@ const AnswerListItem = ({ answer, setDeleteA, setEditA }) => {
 
     return (
         <div className="answer">
+            
             <div className="author-profile">
                 <img className="profile-image loading" src={answer.author.profile_img} alt="Profile image" />
                 <div className="author">
@@ -53,23 +56,27 @@ const AnswerListItem = ({ answer, setDeleteA, setEditA }) => {
                 <img className="rendered-content-class" src={answer.detail_firstImgUrl} loading="lazy" />
             )}
 
-            <div className="answer-comment-area">
-                <div className="user-comments-icon">
-                    <div className="user-comments-area">
-                        <Link to={`/questions/${answer.question.id}`}>{answerSummary}</Link>
+            <div className="comments-container">
+                <div className="answer-comment-area">
+                    <div className="user-comments-icon">
+                        <div className="user-comments-area">
+                            <Link to={`/questions/${answer.question.id}`}>{answerSummary}</Link>
+                        </div>
+                        <div className="comment-icon" onClick = {() => setOpenComments(!openComments)}>
+                            <i className="fa-regular fa-comment comment"></i>
+                        </div>
                     </div>
-                    <div>
-                        <i className="fa-regular fa-comment comment"></i>
-                    </div>
+                    {isOwner && (
+                        <div className="operation-button">
+                            <AnswerOperationButton answer={answer} setDeleteA={setDeleteA} setEditA={setEditA} />
+                        </div>
+                    )}
                 </div>
-                
-                {isOwner && (
-                    <div className="operation-button">
-                        <AnswerOperationButton answer={answer} setDeleteA={setDeleteA} setEditA={setEditA} />
-                    </div>
-                )}
-                
+                <div className="comments">
+                    {openComments && <CommentList answer={answer}/>}
+                </div>
             </div>
+            
         </div>
     );
 };
