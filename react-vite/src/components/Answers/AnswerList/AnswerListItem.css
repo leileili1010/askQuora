@@ -91,6 +91,7 @@
     cursor: pointer;
     display: inline; 
     text-align: right;
+    font-size: 14px;
 }
 
 .more-link:hover {
@@ -102,8 +103,8 @@
 }
 
 .user-comments-area {
-    gap: 20px;
-    color: white;
+    display: flex;
+    align-items: center;
 }
 
 .user-comments-area a {
@@ -122,8 +123,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 30px;
-    margin-top: 10px;
+    gap: 15px;
+    margin-top: 0px;
 }
 
 .comment-icon i:hover {
@@ -150,5 +151,9 @@
 .comments-container {
     display: flex;
     flex-direction: column;
+}
+
+.like {
+    color: red;
 }
 

@@ -22,6 +22,7 @@
     width:600px;
     display: flex;
     flex-direction: column;
+    margin-left: 200px;
 }
 
 .answer-question-nav {
@@ -130,8 +131,11 @@
     width: 150px;
     display: flex;
     flex-direction: column;
-    gap: 18px;   
+    gap: 18px;  
+    position: fixed; 
+    top: 80px;
 }
+
 .subscription img {
     width:25px;
     height:25px;
@@ -153,7 +157,7 @@
 .subscription:hover {
     background-color: #333;
     text-decoration: underline;
-    border-radius: 4px;
+    border-radius: 10px;
 }
 
 .subscription p {
@@ -181,14 +185,8 @@
 .add-subs {
     background-color: #333;
     padding: 10px 12px;
-    cursor: pointer;
     margin-bottom: -10px;
     border-radius: 10px;
-}
-
-.add-subs:hover {
-    background-color: #e2e2e2;
-    text-decoration: underline;
 }
 
 .render-space img{

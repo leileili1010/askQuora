@@ -20,6 +20,7 @@ const CommentList = ({ answer }) => {
   const comments = useSelector(selectCommentsArray);
   const user = useSelector(state => state.session.user);
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
+  const [text, setText] = useState("");
   const emojiPickerRef = useRef(null);
 
   useEffect(() => {
@@ -46,6 +47,11 @@ const CommentList = ({ answer }) => {
     return () => dispatch(clearComments());
   }, [dispatch, answerId]);
 
+
+  const handleEmojiSelect = emoji => {
+    setText(prevText => prevText + emoji.native);
+  };
+
   if (!comments.length) return null;
 
   return (
@@ -53,12 +59,16 @@ const CommentList = ({ answer }) => {
       <div className="user-comment-input">
         <img src={user.profile_img} alt="" />
         <div className="text-box">
-          <textarea placeholder="Add a comment..."></textarea>
+          <textarea 
+            placeholder="Add a comment..." 
+            value={text} 
+            onChange={(e) => setText(e.target.value)}
+          ></textarea>
           <i className="fa-solid fa-face-laugh emoji" onClick={() => setShowEmojiPicker(!showEmojiPicker)}></i>
         </div>
         
         {showEmojiPicker && <div className="emoji-container" ref={emojiPickerRef}>
-            <Picker theme="dark" emojiSize={20} emojiButtonSize={28} data={data} onEmojiSelect={console.log} />   
+            <Picker theme="dark" emojiSize={20} emojiButtonSize={28} data={data} onEmojiSelect={handleEmojiSelect}  />   
         </div>}
         <button>Add comment</button>
       </div>

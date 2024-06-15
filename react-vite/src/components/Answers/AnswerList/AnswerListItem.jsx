@@ -15,7 +15,7 @@ const AnswerListItem = ({ answer, setDeleteA, setEditA }) => {
                          : "Currently 1 answer";
     const [isTruncated, setIsTruncated] = useState(true);
     const [openComments, setOpenComments] = useState(false);
-
+    const [like, setLike] = useState(false);
     const toggleTruncation = () => setIsTruncated(!isTruncated);
 
     // const htmlContent = ReactHtmlParser(answer.detail);
@@ -59,11 +59,18 @@ const AnswerListItem = ({ answer, setDeleteA, setEditA }) => {
             <div className="comments-container">
                 <div className="answer-comment-area">
                     <div className="user-comments-icon">
-                        <div className="user-comments-area">
-                            <Link to={`/questions/${answer.question.id}`}>{answerSummary}</Link>
+                        <div>
+                           {!like && <i className="fa-regular fa-heart like" onClick={() => setLike(true)}></i>}
+                           { like && <i className="fa-solid fa-heart like" onClick={() => setLike(false)}></i>}
                         </div>
+                        
                         <div className="comment-icon" onClick = {() => setOpenComments(!openComments)}>
                             <i className="fa-regular fa-comment comment"></i>
+                            <span>{answer.no_of_comments}</span>
+                        </div>
+
+                        <div className="user-comments-area">
+                            <Link to={`/questions/${answer.question.id}`}>{answerSummary}</Link>
                         </div>
                     </div>
                     {isOwner && (

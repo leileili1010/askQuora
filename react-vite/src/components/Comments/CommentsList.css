@@ -1,11 +1,13 @@
 .comment-icon {
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
+  border-radius: 18px;
+  padding: 8px 10px;
   display: flex;
   align-items: center;
   justify-self: center;
   background-color: #262626;
+  display: flex;
+  gap: 7px;
+  font-size: 12px;
 }
 
 .comment-icon:hover {
@@ -14,7 +16,7 @@
 
 .comment-icon i {
   margin: auto;
-  font-size: 20px;
+  font-size: 18px;
   background-color: transparent;
 }
 
