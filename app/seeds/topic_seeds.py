@@ -30,7 +30,7 @@ topics = [
         'cover_img': "https://askcora.s3.us-west-1.amazonaws.com/topics_image/6_SE+experience.jpg"
     },
     {
-        'name': 'Burout',
+        'name': 'Burnout',
         'description': 'State of emotional, physical, and mental exhaustion',
         'cover_img': "https://askcora.s3.us-west-1.amazonaws.com/topics_image/burout-cover.jpg"
     },
