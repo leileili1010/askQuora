@@ -6,7 +6,7 @@ import CommentOperationButton from "./CommentOperationButton";
 import TextBox from "./TextBox";
 import './CommentListItem.css';
 
-const CommentListItem = ({ comment, answer, setAddComment, onCommentAdded}) => {
+const CommentListItem = ({ comment, answer, setAddComment, onCommentAdded, setDeleteComment}) => {
     const dispatch = useDispatch();
     const [like, setLike] = useState(false);
     const [ifReply, setIfReply] = useState(false);
@@ -46,7 +46,7 @@ const CommentListItem = ({ comment, answer, setAddComment, onCommentAdded}) => {
             setIfReply(false);
             setAddComment(prev => prev + 1);
             const updatedAnswer = { ...answer, no_of_comments: answer.no_of_comments + 1 };
-            onCommentAdded(updatedAnswer);
+             onCommentAdded(updatedAnswer);
         }
     };
 
@@ -81,7 +81,7 @@ const CommentListItem = ({ comment, answer, setAddComment, onCommentAdded}) => {
                             )}
                         </div>
 
-                        {!ifReply && ifAuthor && <CommentOperationButton  comment={ comment}/>}
+                        {!ifReply && ifAuthor && <CommentOperationButton  comment={ comment}  onCommentAdded={onCommentAdded} answer={answer}/>}
                     </div>
                 </div>
 
@@ -90,7 +90,7 @@ const CommentListItem = ({ comment, answer, setAddComment, onCommentAdded}) => {
                 {hasReplies && (
                     <div className="replies-container">
                         {comment.replies.map(reply => (
-                            <CommentListItem key={reply?.id} comment={reply} answer={answer} setAddComment={setAddComment} onCommentAdded={onCommentAdded}/>
+                            <CommentListItem key={reply?.id} comment={reply} answer={answer} setAddComment={setAddComment} onCommentAdded={onCommentAdded} setDeleteComment={setDeleteComment}/>
                         ))}
                     </div>
                 )}

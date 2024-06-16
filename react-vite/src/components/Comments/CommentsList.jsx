@@ -6,26 +6,28 @@ import CommentListItem from "./CommentListItem";
 import TextBox from "./TextBox";
 import './CommentsList.css';
 
-const selectComments = state => state.comments;
 
-const selectCommentsArray = createSelector(
-  [selectComments],
-  comments => Object.values(comments).sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at))
-);
 
 const CommentList = ({ answer, onCommentAdded }) => {
   const dispatch = useDispatch();
   const answerId = answer.id;
-  const comments = useSelector(selectCommentsArray);
+  const selectComments = state => state.comments;
   const user = useSelector(state => state.session.user);
   const [text, setText] = useState("");
   const [addComment, setAddComment] = useState(0);
+  const [deleteComment, setDeleteComment] = useState(0);
+  const selectCommentsArray = createSelector(
+    [selectComments],
+    comments => Object.values(comments).sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at))
+  );
+  const comments = useSelector(selectCommentsArray);
 
   useEffect(() => {
     dispatch(thunkGetComments(answerId));
-
+    // const updatedAnswer = { ...answer, no_of_comments: comments.length };
+    //   onCommentAdded(updatedAnswer);
     return () => dispatch(clearComments());
-  }, [dispatch, answerId, addComment]);
+  }, [dispatch, answerId, addComment, deleteComment]);
 
   const handleSubmitComment = async (e) => {
     e.preventDefault();
@@ -56,7 +58,7 @@ const CommentList = ({ answer, onCommentAdded }) => {
         </button>
       </div>
       {comments.length > 0 && comments.map(comment => (
-        <CommentListItem key={comment.id} comment={comment} answer={answer} setAddComment={setAddComment} onCommentAdded={onCommentAdded}/>
+        <CommentListItem key={comment.id} comment={comment} answer={answer} setAddComment={setAddComment} onCommentAdded={onCommentAdded} setDeleteComment={setDeleteComment}  />
       ))}
     </div>
   );

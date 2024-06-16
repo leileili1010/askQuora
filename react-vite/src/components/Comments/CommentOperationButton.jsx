@@ -1,12 +1,12 @@
 import { useState, useEffect, useRef } from "react";
-import { thunkDeleteComment } from "../../redux/comment";
+import { thunkDeleteComment, thunkGetComments } from "../../redux/comment";
 import { useDispatch } from "react-redux";
 import "./CommentOperationButton.css"; 
 
-const CommentOperationButton = ({comment}) => {
-    console.log("🚀 ~ CommentOperationButton ~ comment:", comment.id)
+const CommentOperationButton = ({comment, onCommentAdded, answer}) => {
     const dispatch = useDispatch();
     const [showMenu, setShowMenu] = useState(false);
+    const [deleteComment, setDeleteComment] = useState(0); // [1]
     const ulRef = useRef();
 
 
@@ -32,6 +32,12 @@ const CommentOperationButton = ({comment}) => {
         const res = dispatch(thunkDeleteComment(comment.id))   
         if (res?.errors) {
             console.error('Failed to delete comment:', res.errors);
+        } else {
+            setDeleteComment(prev => prev - 1);
+            const updatedAnswer = { ...answer, no_of_comments: answer.no_of_comments - 1 };
+            onCommentAdded(updatedAnswer);
+            await dispatch(thunkGetComments(answer.id));
+            setShowMenu(false);
         }
     }
 
