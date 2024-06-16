@@ -34,6 +34,7 @@
   padding: 10px;
   background-color: #202020; 
   border-radius: 8px;
+  width: 100%;
 }
 
 .user-comment-input img {
@@ -50,7 +51,7 @@
   background-color: #181818;
   border-radius: 8px;
   flex-grow: 1;
-  padding: 10px;
+  padding: 5px;
 }
 
 .user-comment-input textarea {
@@ -67,7 +68,7 @@
 
 .user-comment-input textarea::placeholder {
   color: #999;
-  padding-left: 10px; /* Add padding to align with other elements */
+  padding-left: 10px; 
 }
 
 .user-comment-input button {
@@ -105,4 +106,8 @@
 .emoji:hover {
   cursor: pointer;
   color: #feb12d;
+}
+
+.disabled:hover{
+  cursor: not-allowed;
 }

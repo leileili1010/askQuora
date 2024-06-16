@@ -1,79 +1,62 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { clearComments, thunkGetComments } from "../../redux/comment";
-import CommentListItem from "./CommentListItem";
 import { createSelector } from "reselect";
-import data from '@emoji-mart/data';
-import Picker from '@emoji-mart/react';
+import { clearComments, thunkGetComments, thunkCreateComment } from "../../redux/comment";
+import CommentListItem from "./CommentListItem";
+import TextBox from "./TextBox";
 import './CommentsList.css';
 
 const selectComments = state => state.comments;
 
 const selectCommentsArray = createSelector(
   [selectComments],
-  comments => Object.values(comments)
+  comments => Object.values(comments).sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at))
 );
 
-const CommentList = ({ answer }) => {
+const CommentList = ({ answer, onCommentAdded }) => {
   const dispatch = useDispatch();
   const answerId = answer.id;
   const comments = useSelector(selectCommentsArray);
   const user = useSelector(state => state.session.user);
-  const [showEmojiPicker, setShowEmojiPicker] = useState(false);
   const [text, setText] = useState("");
-  const emojiPickerRef = useRef(null);
-
-  useEffect(() => {
-    const handleClickOutside = event => {
-      if (emojiPickerRef.current && !emojiPickerRef.current.contains(event.target)) {
-        setShowEmojiPicker(false);
-      }
-    };
-
-    if (showEmojiPicker) {
-      document.addEventListener("mousedown", handleClickOutside);
-    } else {
-      document.removeEventListener("mousedown", handleClickOutside);
-    }
-
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [showEmojiPicker]);
+  const [addComment, setAddComment] = useState(0);
 
   useEffect(() => {
     dispatch(thunkGetComments(answerId));
 
     return () => dispatch(clearComments());
-  }, [dispatch, answerId]);
+  }, [dispatch, answerId, addComment]);
 
+  const handleSubmitComment = async (e) => {
+    e.preventDefault();
+    if (text.trim() === "") {
+      return;
+    }
 
-  const handleEmojiSelect = emoji => {
-    setText(prevText => prevText + emoji.native);
+    const newComment = {
+      comment: text
+    };
+
+    const res = await dispatch(thunkCreateComment(answerId, newComment));
+    if (res) {
+      setText("");
+      setAddComment(prev => prev + 1);
+      const updatedAnswer = { ...answer, no_of_comments: answer.no_of_comments + 1 };
+      onCommentAdded(updatedAnswer);
+    }
   };
-
-  if (!comments.length) return null;
 
   return (
     <div className="comment">
       <div className="user-comment-input">
         <img src={user.profile_img} alt="" />
-        <div className="text-box">
-          <textarea 
-            placeholder="Add a comment..." 
-            value={text} 
-            onChange={(e) => setText(e.target.value)}
-          ></textarea>
-          <i className="fa-solid fa-face-laugh emoji" onClick={() => setShowEmojiPicker(!showEmojiPicker)}></i>
-        </div>
-        
-        {showEmojiPicker && <div className="emoji-container" ref={emojiPickerRef}>
-            <Picker theme="dark" emojiSize={20} emojiButtonSize={28} data={data} onEmojiSelect={handleEmojiSelect}  />   
-        </div>}
-        <button>Add comment</button>
+        <TextBox text={text} setText={setText} />
+        <button className={text.trim() === "" ? "disabled" : ""} onClick={handleSubmitComment}>
+          Add comment
+        </button>
       </div>
-      {comments.map(comment => (
-        <CommentListItem key={comment.id} comment={comment} />
+      {comments.length > 0 && comments.map(comment => (
+        <CommentListItem key={comment.id} comment={comment} answer={answer} setAddComment={setAddComment} onCommentAdded={onCommentAdded}/>
       ))}
     </div>
   );

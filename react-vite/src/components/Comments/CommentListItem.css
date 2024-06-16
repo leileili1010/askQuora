@@ -4,8 +4,8 @@
     background-color:#262626;
     color: #f5f5f5;
     margin-bottom:3px;
-    border-bottom: 1px solid #333;
     display: flex;
+    align-items: flex-start;
   }
   
   .comment-author {
@@ -36,13 +36,21 @@
     font-size: 12px;
     line-height: 1.6;
   }
+  .one-comment {
+    width:100%
+  }
   
   .comment-actions {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    width: 100%;
   }
   
+textarea:empty + button {
+  cursor: not-allowed;
+}
+
   .reply-button {
     background-color:transparent;
     color: #fff;
@@ -56,5 +64,55 @@
   .reply-button:hover {
     background-color: #333;
   }
-  
+
+ .reply-container {
+   display: flex;
+
+ }
+
+ .reply-container .reply-button {
+    background-color: #1271ff;
+ }
+
+ #reply-box {
+  background-color: transparent;
+  width: 100%;
+ }
+
+ #reply-box .text-box{
+  height: 45px;
+  padding: 0px 5px;
+  display: flex;
+}
+
+.replies-container .profile-image {
+  width: 26px;
+  height: 26px;
+  width: 100%
+
+}
+
+.comment-replies {
+  margin-left: 20px;
+  border-left: 1px solid #333;
+  padding-left: 10px;
+}
+
+.comment-replies.limited-indent {
+  margin-left: 0;
+  padding-left: 0;
+}
+
+.comment-replies.limited-indent .comment-item {
+  margin-left: 20px;
+  max-width: calc(100% - 20px); 
+}
+
+.comment-replies.limited-indent .comment-item .comment-replies {
+  margin-left: 0;
+  padding-left: 20px;
+  border-left: none;
+}
+
+
  

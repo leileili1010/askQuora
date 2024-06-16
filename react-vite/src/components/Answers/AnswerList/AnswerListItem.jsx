@@ -1,11 +1,9 @@
 import { Link } from "react-router-dom";
 import AnswerOperationButton from "./AnswerOpertionButton";
 import { useSelector } from "react-redux/es/hooks/useSelector";
-import { useState} from "react";
+import { useState } from "react";
 import CommentList from "../../Comments/CommentsList";
 import './AnswerListItem.css';
-// import ReactHtmlParser from 'react-html-parser';
-// import parse from "html-react-parser";
 
 const AnswerListItem = ({ answer, setDeleteA, setEditA }) => {
     const user = useSelector(state => state.session.user);
@@ -16,19 +14,16 @@ const AnswerListItem = ({ answer, setDeleteA, setEditA }) => {
     const [isTruncated, setIsTruncated] = useState(true);
     const [openComments, setOpenComments] = useState(false);
     const [like, setLike] = useState(false);
+    const [currentAnswer, setCurrentAnswer] = useState(answer);
+
     const toggleTruncation = () => setIsTruncated(!isTruncated);
 
-    // const htmlContent = ReactHtmlParser(answer.detail);
-    // const htmlCoverContent = ReactHtmlParser(answer.detail_text);
-    // const htmlDetail = isTruncated? htmlCoverContent: htmlContent
-
-    // const htmlContent = parse(answer.detail);
-    // const htmlCoverContent = parse(answer.detail_text);
-    // const htmlDetail = isTruncated? htmlCoverContent: htmlContent
+    const handleCommentAdded = (updatedAnswer) => {
+        setCurrentAnswer(updatedAnswer);
+      };
 
     return (
         <div className="answer">
-            
             <div className="author-profile">
                 <img className="profile-image loading" src={answer.author.profile_img} alt="Profile image" />
                 <div className="author">
@@ -42,10 +37,6 @@ const AnswerListItem = ({ answer, setDeleteA, setEditA }) => {
             <div className={isTruncated ? "truncated-text rendered-content-class" : "rendered-content-class"}
                 dangerouslySetInnerHTML={{ __html: isTruncated ? answer?.detail_text : answer.detail }} /> 
                 
-            {/* <div className={isTruncated ? "truncated-text rendered-content-class" : "rendered-content-class"}>  
-                {htmlDetail}
-            </div> */}
-
             {isTruncated && (
                 <span className="more-link" onClick={toggleTruncation}>
                     (more)
@@ -64,9 +55,9 @@ const AnswerListItem = ({ answer, setDeleteA, setEditA }) => {
                            { like && <i className="fa-solid fa-heart like" onClick={() => setLike(false)}></i>}
                         </div>
                         
-                        <div className="comment-icon" onClick = {() => setOpenComments(!openComments)}>
+                        <div className="comment-icon" onClick={() => setOpenComments(!openComments)}>
                             <i className="fa-regular fa-comment comment"></i>
-                            <span>{answer.no_of_comments}</span>
+                            <span>{currentAnswer.no_of_comments}</span>
                         </div>
 
                         <div className="user-comments-area">
@@ -80,15 +71,11 @@ const AnswerListItem = ({ answer, setDeleteA, setEditA }) => {
                     )}
                 </div>
                 <div className="comments">
-                    {openComments && <CommentList answer={answer}/>}
+                    {openComments && <CommentList answer={currentAnswer} onCommentAdded={handleCommentAdded} />}
                 </div>
             </div>
-            
         </div>
     );
 };
 
 export default AnswerListItem;
-
-
-
