@@ -1,0 +1,14 @@
+
+ .menu-list .operation-button i {
+    margin-right: 10px;
+} 
+
+.menu-list .operation-button button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+}
+.menu-list .operation-button:hover {
+    background-color: #999;
+} 

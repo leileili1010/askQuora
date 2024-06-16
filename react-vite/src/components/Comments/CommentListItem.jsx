@@ -1,7 +1,8 @@
 import { formatDate } from "../HelperFunctions/HelperFunctions";
 import { useState, useRef, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { thunkCreateComment } from '../../redux/comment';
+import CommentOperationButton from "./CommentOperationButton";
 import TextBox from "./TextBox";
 import './CommentListItem.css';
 
@@ -10,6 +11,8 @@ const CommentListItem = ({ comment, answer, setAddComment, onCommentAdded}) => {
     const [like, setLike] = useState(false);
     const [ifReply, setIfReply] = useState(false);
     const [text, setText] = useState("");
+    const user = useSelector(state => state.session.user);
+    const ifAuthor = user?.id === comment.author.id;
     const textBoxRef = useRef(null);
     const hasReplies = comment?.replies?.length > 0
 
@@ -78,11 +81,7 @@ const CommentListItem = ({ comment, answer, setAddComment, onCommentAdded}) => {
                             )}
                         </div>
 
-                        {!ifReply && (
-                            <div className="three-dots">
-                                <i className="fa-solid fa-ellipsis"></i>
-                            </div>
-                        )}
+                        {!ifReply && ifAuthor && <CommentOperationButton  comment={ comment}/>}
                     </div>
                 </div>
 
