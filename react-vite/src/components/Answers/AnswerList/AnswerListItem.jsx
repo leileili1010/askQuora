@@ -14,13 +14,7 @@ const AnswerListItem = ({ answer, setDeleteA, setEditA }) => {
     const [isTruncated, setIsTruncated] = useState(true);
     const [openComments, setOpenComments] = useState(false);
     const [like, setLike] = useState(false);
-    const [currentAnswer, setCurrentAnswer] = useState(answer);
-
     const toggleTruncation = () => setIsTruncated(!isTruncated);
-
-    const handleCommentAdded = (updatedAnswer) => {
-        setCurrentAnswer(updatedAnswer);
-      };
 
     return (
         <div className="answer">
@@ -57,7 +51,6 @@ const AnswerListItem = ({ answer, setDeleteA, setEditA }) => {
                         
                         <div className="comment-icon" onClick={() => setOpenComments(!openComments)}>
                             <i className="fa-regular fa-comment comment"></i>
-                            <span>{currentAnswer.no_of_comments}</span>
                         </div>
 
                         <div className="user-comments-area">
@@ -71,7 +64,7 @@ const AnswerListItem = ({ answer, setDeleteA, setEditA }) => {
                     )}
                 </div>
                 <div className="comments">
-                    {openComments && <CommentList answer={currentAnswer} onCommentAdded={handleCommentAdded} />}
+                    {openComments && <CommentList answer={answer} />}
                 </div>
             </div>
         </div>
