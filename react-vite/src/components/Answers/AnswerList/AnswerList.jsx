@@ -7,9 +7,7 @@ import { thunkGetQuestionAnswers, returnInitial } from "../../../redux/answer";
 const AnswerList = ({questionId, setDeleteA, setEditA, editA, deleteA}) => {
     const user = useSelector(state => state.session.user)
     const dispatch = useDispatch();
-    const navigate = useNavigate()
-   
-    // const [isLoading, setIsLoading] = useState(false);
+    const navigate = useNavigate();
     const answersObj = useSelector(state => state.answers)
     if (answersObj.length == 0) return null
     const answers = Object.values(answersObj)
@@ -22,22 +20,11 @@ const AnswerList = ({questionId, setDeleteA, setEditA, editA, deleteA}) => {
           };
     }, [dispatch, questionId, editA, deleteA])
 
-    // useEffect(() => {
-    //     setIsLoading(true);
-    //     setTimeout(() => {
-    //         setIsLoading(false);
-    //     }, 1500); 
-    // }, []);
 
     useEffect(() => {
         if (!user) navigate("/");
       }, [user, navigate]);
 
-    //   if (isLoading) return(
-    //     <div className="answer-list-component">
-    //         <div className="spinner">Loading...</div>
-    //     </div>
-    //   )
 
     if (!answers.length) return null;
 

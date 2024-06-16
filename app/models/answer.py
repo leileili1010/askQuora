@@ -38,6 +38,7 @@ class Answer(db.Model):
             "author": self.author.to_dict(),
             "question": self.question.to_dict(),
             "topic": topic,
+            "no_of_comments": len(self.comments),
             'created_at': self.created_at,
             'updated_at': self.updated_at
         }

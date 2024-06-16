@@ -1,76 +1,113 @@
 .comment-icon {
-    border-radius: 50%;
-    width:40px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-self: center;
-    background-color: #262626;
+  border-radius: 18px;
+  padding: 8px 10px;
+  display: flex;
+  align-items: center;
+  justify-self: center;
+  background-color: #262626;
+  display: flex;
+  gap: 7px;
+  font-size: 12px;
 }
 
 .comment-icon:hover {
-    background-color: #333;
+  background-color: #333;
 }
 
 .comment-icon i {
-    margin: auto;
-    size: 20px;
-    background-color: transparent;
+  margin: auto;
+  font-size: 18px;
+  background-color: transparent;
 }
-  
+
 .comment {
-    background-color: #262626; 
-    color: #f5f5f5; 
-    margin-top: 10px;
-  }
-  
-  .user-comment-input {
-    display: flex;
-    align-items: center;
-    margin-bottom: 10px;
-    padding: 10px;
-    background-color: #202020; 
-    border-radius: 8px;
-  }
-  
-  .user-comment-input img {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    margin-right: 10px;
-  }
-  
-  .user-comment-input textarea {
-    flex-grow: 1;
-    padding: 10px;
-    background-color: #181818;
-    color: #f5f5f5;
-    border: 1px solid #333;
-    border-radius: 8px;
-    resize: none;
-  }
-  
-  .user-comment-input textarea::placeholder {
-    color: #999;
-  }
-  
-  .user-comment-input button {
-    padding: 10px 15px;
-    margin-left: 10px;
-    background-color: #1271ff;
-    color: #fff;
-    border: none;
-    border-radius: 30px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .user-comment-input button:hover {
-    background-color: #1f87e2;
-  }
-  
-  .user-comment-input button:active {
-    background-color: #1f87e2;
-  }
-  
-  
+  background-color: #262626; 
+  color: #f5f5f5; 
+  margin-top: 10px;
+}
+
+.user-comment-input {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  padding: 10px;
+  background-color: #202020; 
+  border-radius: 8px;
+  width: 100%;
+}
+
+.user-comment-input img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.user-comment-input .text-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #181818;
+  border-radius: 8px;
+  flex-grow: 1;
+  padding: 5px;
+}
+
+.user-comment-input textarea {
+  flex-grow: 1;
+  background-color: #181818;
+  color: #f5f5f5;
+  border-radius: 8px;
+  resize: none;
+  border: none;
+  outline: none;
+  padding: 0;
+  margin: 0;
+}
+
+.user-comment-input textarea::placeholder {
+  color: #999;
+  padding-left: 10px; 
+}
+
+.user-comment-input button {
+  padding: 10px 15px;
+  margin-left: 10px;
+  background-color: #1271ff;
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.user-comment-input button:hover {
+  background-color: #1f87e2;
+}
+
+.user-comment-input button:active {
+  background-color: #1f87e2;
+}
+
+.emoji-container {
+  z-index: 100;
+  position: absolute;
+  bottom: -435px;
+  left: 148px;
+}
+
+.emoji {
+  margin-right: 10px;
+  font-size: 22px;
+  color: #333;
+}
+
+.emoji:hover {
+  cursor: pointer;
+  color: #feb12d;
+}
+
+.disabled:hover{
+  cursor: not-allowed;
+}
