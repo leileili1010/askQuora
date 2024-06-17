@@ -68,10 +68,10 @@ const HomePage = () => {
                                     modalComponent={<CreateQuestionModal />}
                                  />
                                 </div>
-                                <div>
+                                {/* <div>
                                     <i className="fa-regular fa-pen-to-square"></i> 
                                     <span>Answer</span>
-                                </div>
+                                </div> */}
                             </div>
                             </>
                         }
