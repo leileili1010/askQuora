@@ -58,13 +58,16 @@
 
 .create-q-form textarea {
     width: 100%;
-    border: 1px solid #333;
+    border: none;
+    border-bottom: 1px solid #333;
     border-radius: 4px;
     padding: 10px;
     font-size: 16px;
     resize: none; 
     outline: none;
     background-color: #181818;
+    height: 60px;
+    min-height: fit-content;
 }
 
 .question-errors p {
