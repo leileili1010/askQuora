@@ -6,8 +6,8 @@
 /* Style for each topic and its questions */
 .topics-qs {
     margin-bottom: 20px; 
-    background-color: white;
-    border: 1px solid #ccc;
+    background-color: #262626;
+    border: 1px solid #333;
     padding: 10px 0px;
     word-wrap: break-word; 
     border-radius: 4px;
@@ -19,9 +19,10 @@
     display: flex;
     align-items: center; 
     margin-bottom: 10px;
-    border-bottom: 1px solid #ccc;;
+    border-bottom: 1px solid #333;
     padding-bottom: 8px;
 }
+
 
 .topic-container img {
     width: 30px; 
@@ -38,7 +39,7 @@
 .topic-info p {
     margin: 0;
     padding: 0;
-    color: #333;
+    color: #999;
     margin-bottom: 4px;
     font-size: 12px;
 }
@@ -49,5 +50,5 @@
 }
 
 .seperator {
-    border: 0.5px solid #ccc;
+    border: 0.5px solid #333;
 }

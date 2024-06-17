@@ -3,7 +3,7 @@ import { thunkDeleteComment, thunkGetComments } from "../../redux/comment";
 import { useDispatch, } from "react-redux";
 import "./CommentOperationButton.css"; 
 
-const CommentOperationButton = ({comment, answer, setDeleteComment}) => {
+const CommentOperationButton = ({comment, answer, setDeleteComment, setIfEdit}) => {
     const dispatch = useDispatch();
     const [showMenu, setShowMenu] = useState(false);
     const ulRef = useRef();
@@ -50,7 +50,7 @@ const CommentOperationButton = ({comment, answer, setDeleteComment}) => {
                     </li>
                     <li className="flex operation-button">
                         <i className="fa-regular fa-pen-to-square"></i>
-                        <button>Edit</button>
+                        <button onClick={() => setIfEdit(true)}>Edit</button>
                     </li>
                 </ul>
             )}

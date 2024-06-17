@@ -47,9 +47,9 @@ const TopicsQuestionsList = ({sub}) => {
                         {topic && topic.questions && topic.questions.map(question => (
                             <QuestionListItem question={question} setDeleteQ={setDeleteQ} setEditQ={setEditQ} key={question.id} />
                         ))}
-                        <div className="more">
+                        {/* <div className="more">
                             More <i className="fa-solid fa-arrow-down"></i>
-                        </div>
+                        </div> */}
                     </div>
                 ))}
             </div>
