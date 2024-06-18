@@ -13,6 +13,7 @@ const CreateQuestionModal = () => {
     const { closeModal } = useModal()
     const [title, setTitle] = useState("")
     const [errors, setErrors] = useState({});
+    const [AIEdit, setAIEdit] = useState("");
     // const topicsObj = useSelector(state => state.topics)
     // const topics = Object.values(topicsObj);
     const user = useSelector((state) => state.session.user);
@@ -67,6 +68,28 @@ const CreateQuestionModal = () => {
         closeModal()
       }
 
+    const handleAIEdit = async (e) => {
+        e.preventDefault();
+        try {
+            const response = await fetch('/api/openai/edit', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ userContent: title })
+            });
+
+            const data = await response.json();
+            if (response.ok) {
+                setAIEdit(data.editedContent);
+            } else {
+                console.error("AI Edit Error:", data.error);
+            }
+        } catch (error) {
+            console.error("Error with AI Edit:", error);
+        }
+    }
+
     return (
         <div id="create-q-modal">
             <form className="create-q-form" onSubmit={handleQuestionSubmit}>
@@ -96,12 +119,16 @@ const CreateQuestionModal = () => {
                         placeholder='Start your question with "what", "How", "Why", etc.'
                     />
                 </label>
+                <p>{AIEdit}</p>
                 <div className="question-errors">
                     {"title" in errors && <p >{errors.title}</p>}
                 </div>
                 <div className="create-q-button-container">
                     <button id="question-cancel" onClick={handleCancel}>
                         Cancel
+                    </button>
+                    <button id="question-submit" type="submit" onClick={handleAIEdit}>
+                       AI Edit
                     </button>
                     <button id="question-submit" type="submit">
                         Add Question

@@ -22,7 +22,7 @@
 }
 
 .create-q-form {
-    background-color: white;
+    background-color: #181818;
     padding: 20px;
     max-width: 600px; 
     margin: auto;  
@@ -58,12 +58,16 @@
 
 .create-q-form textarea {
     width: 100%;
-    border: 1px solid #ccc;
+    border: none;
+    border-bottom: 1px solid #333;
     border-radius: 4px;
     padding: 10px;
     font-size: 16px;
     resize: none; 
     outline: none;
+    background-color: #181818;
+    height: 60px;
+    min-height: fit-content;
 }
 
 .question-errors p {
@@ -100,7 +104,7 @@
 }
 
 #question-cancel:hover {
-    background-color: rgb(248, 247, 247); 
+    background-color: #333; 
     border-radius: 24px;
 }
 
@@ -113,7 +117,7 @@
 }
 
 .cancel-icon i:hover {
-    background-color: rgb(248, 247, 247);
+    background-color: #333;
 }
 
 

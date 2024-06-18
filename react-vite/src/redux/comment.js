@@ -26,12 +26,12 @@ const deleteComment = (commentId) => ({
 })
 
 // thunk functions
+// get comments
 export const thunkGetComments = (answerId) => async dispatch => {
     const res = await fetch(`/api/answers/${answerId}/comments/get`)
   
     if (res.ok) {
       const comments = await res.json()
-    //   console.log("🚀 ~ thunkGetComments ~ comments:", comments)
       dispatch(getComments(comments))
       return comments
     } else {
@@ -40,6 +40,7 @@ export const thunkGetComments = (answerId) => async dispatch => {
     }
   }
   
+// add comments
 export const thunkCreateComment = (answerId, commentData) => async dispatch => {
 const res = await fetch(`/api/answers/${answerId}/comment/add`, {
     method: "POST",
@@ -57,6 +58,21 @@ if (res.ok) {
     return errs;
 }
 }
+
+// delete comments
+export const thunkDeleteComment = (commentId) => async dispatch => {
+  const res = await fetch(`/api/comments/${commentId}/delete`, {
+    method: "DELETE"
+  })
+
+  if (res.ok) {
+    dispatch(deleteComment(commentId))
+  } else {
+    const errs = await res.json()
+    return errs
+  }
+}
+
 
 function commentReducer(state = initialState, action) {
     switch (action.type) {

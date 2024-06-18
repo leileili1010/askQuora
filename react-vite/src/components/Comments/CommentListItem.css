@@ -42,8 +42,14 @@
   
   .comment-actions {
     display: flex;
-    align-items: center;
     justify-content: space-between;
+    width: 100%;
+    
+  }
+
+  .reply-comment-container{
+    display: flex;
+    align-items: center;
     width: 100%;
   }
   
@@ -83,6 +89,7 @@ textarea:empty + button {
   height: 45px;
   padding: 0px 5px;
   display: flex;
+  width: 100%;
 }
 
 .replies-container .profile-image {

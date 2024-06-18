@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { useNavigateToTopic } from "./HelperFunctions";
 
 
-const SpacesList = () => {
+const SpacesList = ({setSub}) => {
     const dispatch = useDispatch();
     const topicsObj = useSelector(state => state.topics)
     const navigate = useNavigate();
@@ -27,7 +27,7 @@ const SpacesList = () => {
                     <p>Everything</p>
                 </div>
                 {topics?.map(topic =>
-                    <div key={topic?.id} className="subscription" onClick={() => {navigateToTopic(topic.name)}}>
+                    <div key={topic?.id} className="subscription" onClick={() => {navigateToTopic(topic.name);setSub(topic)}}>
                         <img src={topic?.cover_img} alt="" />
                         <p>{topic?.name}</p>
                     </div>
