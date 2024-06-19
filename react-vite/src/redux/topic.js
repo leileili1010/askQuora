@@ -29,7 +29,7 @@ const getTopic = (topic) => ({
 // thunk
 // get all topics
 export const thunkGetTopics = () => async (dispatch) => {
-    const res = await fetch("/api/topics")
+    const res = await fetch("/api/topics/")
      if (res.ok) {
        const topics = await res.json()
        dispatch(getTopics(topics))

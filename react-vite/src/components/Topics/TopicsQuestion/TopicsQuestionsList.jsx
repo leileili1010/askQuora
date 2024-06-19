@@ -13,9 +13,9 @@ const TopicsQuestionsList = ({sub}) => {
     const topics = Object.values(topicsObj)
     let subTopics;
 
-    // useEffect(() => {
-    //     dispatch(thunkGetTopicsQuestions());
-    // }, [dispatch,deleteQ, editQ])
+    useEffect(() => {
+        dispatch(thunkGetTopicsQuestions());
+    }, [dispatch,deleteQ, editQ])
 
     useEffect(() => {
         dispatch(thunkSetUserAnswers())

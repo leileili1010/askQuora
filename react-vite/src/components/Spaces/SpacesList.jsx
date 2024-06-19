@@ -1,4 +1,4 @@
-import { thunkGetTopics, thunkGetTopicsQuestions } from "../../redux/topic";
+import { thunkGetTopics} from "../../redux/topic";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -13,7 +13,7 @@ const SpacesList = ({setSub}) => {
     const topics = Object.values(topicsObj);
    
     useEffect(() => {
-        dispatch(thunkGetTopicsQuestions())
+        dispatch(thunkGetTopics())
     }, [dispatch])
    
     return (
