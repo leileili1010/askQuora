@@ -21,8 +21,6 @@ const HomePage = () => {
     const [initialLoad, setInitialLoad] = useState(true);
     const [openChatbot, setOpenChatbot] = useState(false);
 
-    let subAnswers
-
     useEffect(() => {
         if (!user) navigate("/");
     }, [user, navigate]);

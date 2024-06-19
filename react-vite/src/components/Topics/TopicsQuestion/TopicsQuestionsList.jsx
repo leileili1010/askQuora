@@ -13,12 +13,9 @@ const TopicsQuestionsList = ({sub}) => {
     const topics = Object.values(topicsObj)
     let subTopics;
 
-    useEffect(() => {
-        dispatch(thunkGetTopicsQuestions());
-        // return () => {
-        //     dispatch(returnTopicInitial());
-        // };
-    }, [dispatch,deleteQ, editQ])
+    // useEffect(() => {
+    //     dispatch(thunkGetTopicsQuestions());
+    // }, [dispatch,deleteQ, editQ])
 
     useEffect(() => {
         dispatch(thunkSetUserAnswers())
@@ -47,9 +44,6 @@ const TopicsQuestionsList = ({sub}) => {
                         {topic && topic.questions && topic.questions.map(question => (
                             <QuestionListItem question={question} setDeleteQ={setDeleteQ} setEditQ={setEditQ} key={question.id} />
                         ))}
-                        {/* <div className="more">
-                            More <i className="fa-solid fa-arrow-down"></i>
-                        </div> */}
                     </div>
                 ))}
             </div>
