@@ -1,13 +1,12 @@
 import { useModal } from '../../context/Modal';
-import { useDispatch, useSelector} from "react-redux";
-import { useNavigate, useParams, } from "react-router-dom";
+import { useSelector } from 'react-redux';
 
 const UnsubscripModal = ({space, setDeleteS}) => {
-    const dispatch = useDispatch()
-    const navigate = useNavigate()
+    // const dispatch = useDispatch()
+    // const navigate = useNavigate()
     const { closeModal } = useModal()
     const spaceId = space?.id
-    console.log("🚀 ~ UnsubscripModal ~ spaceId:", spaceId)
+    // console.log("🚀 ~ UnsubscripModal ~ spaceId:", spaceId)
     const user = useSelector(state => state.session.user)
 
     if (user.id !== space.user.id) 

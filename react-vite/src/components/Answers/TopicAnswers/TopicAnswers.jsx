@@ -12,7 +12,7 @@ const TopicAnswers = () => {
 
     useEffect(() => {
         dispatch(thunkGetTopicAnswers(topicId))
-    }, [dispatch])
+    }, [dispatch, topicId])
 
     if (answersObj.length == 0) return null
     const answers = Object.values(answersObj)

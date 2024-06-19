@@ -8,8 +8,7 @@ import CreateQuestionModal from '../Questions/CreateQuestion/CreateQuestion'
 import OpenModalButton from '../OpenModalButton/OpenModalButton'
 import TopicsQuestionsList from "../Topics/TopicsQuestion/TopicsQuestionsList"
 import SpacesList from "../Spaces/SpacesList";
-// import RecommendTopics from "../Spaces/RecomendSpace";
-
+import ChatbotComponent from "../Chatbot/ChatbotComponent";
 import "./HomePage.css"
 
 const HomePage = () => {
@@ -20,8 +19,8 @@ const HomePage = () => {
     const [sub, setSub] = useState({})
     const topicName = useParams().topicName;    
     const [initialLoad, setInitialLoad] = useState(true);
-    // console.log("🚀 ~ HomePage ~ topicName:", topicName)
-    // const [loading, setLoading] = useState(true);
+    const [openChatbot, setOpenChatbot] = useState(false);
+
     let subAnswers
 
     useEffect(() => {
@@ -99,11 +98,16 @@ const HomePage = () => {
                     {activeTab === 'answers' && topicName && <AnswerListTopic topicName={topicName} />}
                     {activeTab === 'questions' && <TopicsQuestionsList sub={sub}   />}
                 </div>
+              { openChatbot && <div className="chatbot">
+                    <ChatbotComponent/>
+                </div>}
                
-               {/* <div className="relevant-spaces-container">
-                    <RecommendTopics setSub={setSub} spaces={spaces} setTopicForUser={setTopicForUser} />     
-               </div> */}
+            <div className="chat-icon" onClick={() => setOpenChatbot(!openChatbot)}>
+                <img src="../../../public/chat.png" alt=""  />
             </div>
+            </div>
+          
+            
         </div>
     )
 }

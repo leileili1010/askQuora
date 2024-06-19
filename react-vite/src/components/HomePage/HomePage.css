@@ -57,6 +57,7 @@
     border-radius: 3px;
     margin-bottom: 10px;
     gap: 7px;
+    position: relative;
 }
 
 .answer-list-component {
@@ -244,3 +245,39 @@
 .new-sub button:hover {
     font-weight: bold;
 }
+
+.chatbot {
+    position: sticky;
+}
+
+.chat-icon img{
+    position: fixed;
+    bottom: 30px;
+    right: 50px;
+    background-color: #333;
+    padding: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+    width: 80px;
+    height: 80px;
+    color: red;
+    background-color: #333
+}
+
+@keyframes scaleIn {
+    from {
+      opacity: 0;
+      transform: scale(0.5);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  
+  .chatbot {
+    opacity: 0;
+    transform: scale(0.5);
+    animation: scaleIn 0.4s forwards ease-in-out;
+  }
+
