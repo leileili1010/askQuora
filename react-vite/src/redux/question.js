@@ -53,7 +53,7 @@ const editQuestion = (question) => ({
 // thunk functions
 // get all questions
 export const thunkGetQuestions = () => async (dispatch) => {
-   const res = await fetch("/api/questions")
+   const res = await fetch("/api/questions/")
     if (res.ok) {
       const questions = await res.json()
       dispatch(getQuestions(questions))
