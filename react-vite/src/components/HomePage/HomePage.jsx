@@ -65,10 +65,6 @@ const HomePage = () => {
                                     modalComponent={<CreateQuestionModal />}
                                  />
                                 </div>
-                                {/* <div>
-                                    <i className="fa-regular fa-pen-to-square"></i> 
-                                    <span>Answer</span>
-                                </div> */}
                             </div>
                             </>
                         }
@@ -94,7 +90,7 @@ const HomePage = () => {
                     </div> 
                     {activeTab === 'answers' &&  !topicName && <AnswerListHome initialLoad={initialLoad} setInitialLoad={setInitialLoad}/>}
                     {activeTab === 'answers' && topicName && <AnswerListTopic topicName={topicName} />}
-                    {activeTab === 'questions' && <TopicsQuestionsList sub={sub}   />}
+                    {/* {activeTab === 'questions' && <TopicsQuestionsList sub={sub}   />} */}
                 </div>
               { openChatbot && <div className="chatbot">
                     <ChatbotComponent/>
