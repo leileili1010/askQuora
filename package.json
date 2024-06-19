@@ -8,6 +8,8 @@
     "emoji-picker-react": "^4.10.0",
     "html-react-parser": "^5.1.8",
     "openai": "^4.51.0",
+    "react-chatbot-kit": "^2.2.2",
+    "react-draggable": "^4.4.6",
     "react-html-parser": "^2.0.2",
     "react-infinite-scroll-component": "^6.1.0",
     "reselect": "^5.1.1"

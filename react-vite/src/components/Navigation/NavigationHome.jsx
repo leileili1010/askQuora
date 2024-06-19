@@ -8,7 +8,7 @@ import "./Navigation.css";
 
 function NavigationHome({setSub, answers, searchInput, setSearchInput, currentAnswers, setCurrentAnswers}) {
   const navigate = useNavigate();
-  const [active, setActive] = useState("home")
+  // const [active, setActive] = useState("home")
 
   const handleInputChange = (e) => {
       setSub({})

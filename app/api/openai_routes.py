@@ -25,6 +25,14 @@ def get_completion(prompt, model="gpt-3.5-turbo"):
     )
     return response.choices[0].message.content
 
+def get_completion_from_messages(messages, model="gpt-3.5-turbo"):
+    response = client.chat.completions.create(
+        model=model,
+        messages=messages,
+        temperature=1,
+    )
+    return response.choices[0].message.content
+
 @login_required
 @openai_routes.route('/edit', methods=["POST"])
 def edit():

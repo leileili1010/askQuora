@@ -17,7 +17,7 @@ const QuestionList = () => {
         } else {
             dispatch(thunkGetQuestions())
         }
-    }, [dispatch])
+    }, [dispatch, topicId])
     
     if (questions.length == 0) return null
 

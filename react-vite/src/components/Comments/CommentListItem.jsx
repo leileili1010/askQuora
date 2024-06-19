@@ -10,7 +10,6 @@ const CommentListItem = ({ comment, answer, setAddComment, setDeleteComment}) =>
     const dispatch = useDispatch();
     const [like, setLike] = useState(false);
     const [ifReply, setIfReply] = useState(false);
-    const [ifEdit, setIfEdit] = useState(false);
     const [text, setText] = useState("");
     const user = useSelector(state => state.session.user);
     const ifAuthor = user?.id === comment.author.id;

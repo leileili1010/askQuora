@@ -1,6 +1,6 @@
 import AnswerListItem from "./AnswerListItem";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState } from "react";
+import { useEffect} from "react";
 import { useNavigate} from "react-router-dom";
 import { thunkGetQuestionAnswers, returnInitial } from "../../../redux/answer";
 
