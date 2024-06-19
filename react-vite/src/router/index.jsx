@@ -6,7 +6,6 @@ import HomePage from '../components/HomePage/HomePage';
 import LandingPage from '../components/HomePage/LandingPage';
 import UserProfile from '../components/UserProfile/UserProfile';
 import CommentList from '../components/Comments/CommentsList';
-import ChatbotComponent from '../components/Chatbot/ChatbotComponent';
 
 export const router = createBrowserRouter([
   {
@@ -42,10 +41,7 @@ export const router = createBrowserRouter([
         path: "topics/:topicName",
         element: <HomePage />,
       },
-      {
-        path: "chatbot",
-        element: <ChatbotComponent />,
-      },
+
       {
         path: "comments/:answerId",
         element: <CommentList />,

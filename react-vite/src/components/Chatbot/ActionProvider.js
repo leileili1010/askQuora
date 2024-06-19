@@ -1,43 +1,46 @@
-import dotenv from 'dotenv';
-dotenv.config();
-
-
 class ActionProvider {
   constructor(createChatBotMessage, setStateFunc) {
     this.createChatBotMessage = createChatBotMessage;
     this.setState = setStateFunc;
-    this.chatHistory = []; 
+    this.chatHistory = [];
   }
 
   async handleMessage(message) {
-    this.chatHistory.push({ role: "user", content: message }); 
+    this.chatHistory.push({ role: "user", content: message });
 
-    const response = await fetch("https://api.openai.com/v1/chat/completions", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization": `Bearer ${process.env.OPENAI_API_KEY}`
-      },
-      body: JSON.stringify({
-        model: "gpt-3.5-turbo", 
-        messages: this.chatHistory
-      })
-    });
+    try {
+      const response = await fetch("/api/openai/chat", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          messages: this.chatHistory
+        })
+      });
 
-    const data = await response.json();
-    const reply = data.choices[0].message.content;
+      const data = await response.json();
+      if (response.ok) {
+        const reply = data.reply;
 
-    this.chatHistory.push({ role: "bot", content: reply }); 
+        this.chatHistory.push({ role: "bot", content: reply });
 
-    const botMessage = this.createChatBotMessage(reply);
+        const botMessage = this.createChatBotMessage(reply);
 
-    this.setState((prev) => ({
-      ...prev,
-      messages: [...prev.messages, botMessage]
-    }));
+        this.setState((prev) => ({
+          ...prev,
+          messages: [...prev.messages, botMessage]
+        }));
+      } else {
+        console.error("Chat Error:", data.error);
+      }
+    } catch (error) {
+      console.error("Error:", error);
+    }
   }
 }
 
 export default ActionProvider;
+
 
   

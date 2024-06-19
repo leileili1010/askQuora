@@ -9,6 +9,7 @@ import './ChatbotComponent.css';
 
 const ChatbotComponent = () => {
   const nodeRef = useRef(null);
+
   return (
     <Draggable nodeRef={nodeRef}>
       <div className="chatbot-container" ref={nodeRef}>
