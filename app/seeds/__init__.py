@@ -26,7 +26,7 @@ def seed():
         undo_comments()
         undo_answers()
         undo_questions()
-        undo_topics
+        undo_topics()
         undo_users()
     seed_users()
     seed_topics()
