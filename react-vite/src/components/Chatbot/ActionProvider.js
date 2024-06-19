@@ -12,7 +12,7 @@ class ActionProvider {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "Authorization": `Bearer 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`
+        "Authorization": `Bearer`
       },
       body: JSON.stringify({
         model: "gpt-3.5-turbo", 
