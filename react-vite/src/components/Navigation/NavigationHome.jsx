@@ -1,14 +1,12 @@
 import { NavLink, useNavigate } from "react-router-dom";
-import {useState} from 'react';
 import ProfileButton from "./ProfileButton";
 import "./Navigation.css";
 import OpenModalButton from '../OpenModalButton/OpenModalButton'
 import CreateQuestionModal from "../Questions/CreateQuestion/CreateQuestion";
 import "./Navigation.css";
 
-function NavigationHome({setSub, answers, searchInput, setSearchInput, currentAnswers, setCurrentAnswers}) {
+function NavigationHome({setSub, answers, searchInput, setSearchInput, setCurrentAnswers}) {
   const navigate = useNavigate();
-  // const [active, setActive] = useState("home")
 
   const handleInputChange = (e) => {
       setSub({})
@@ -22,7 +20,6 @@ function NavigationHome({setSub, answers, searchInput, setSearchInput, currentAn
       }
   }
 
-  const iconId = ""
   return (
     <div className="nav-bar-container">
       <div className="navigation">
