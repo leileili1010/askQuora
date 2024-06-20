@@ -121,7 +121,7 @@ function LandingPage() {
                         </button>
                     </div>
                     <div className="create-account">
-                        <p>Don't have an account?</p>
+                        <p>Don&apos;t have an account?</p>
                         <Link to="/signup">Create account</Link>
                     </div>
                 </div>

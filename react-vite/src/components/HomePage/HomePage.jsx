@@ -90,14 +90,14 @@ const HomePage = () => {
                     </div> 
                     {activeTab === 'answers' &&  !topicName && <AnswerListHome initialLoad={initialLoad} setInitialLoad={setInitialLoad}/>}
                     {activeTab === 'answers' && topicName && <AnswerListTopic topicName={topicName} />}
-                    {/* {activeTab === 'questions' && <TopicsQuestionsList sub={sub}   />} */}
+                    {activeTab === 'questions' && <TopicsQuestionsList sub={sub}   />}
                 </div>
               { openChatbot && <div className="chatbot">
                     <ChatbotComponent/>
                 </div>}
                
             <div className="chat-icon" onClick={() => setOpenChatbot(!openChatbot)}>
-                <img src="../../../public/chat.png" alt=""  />
+                <img src="https://askcora.s3.us-west-1.amazonaws.com/Answer_img/chat.png" alt=""  />
             </div>
             </div>
           

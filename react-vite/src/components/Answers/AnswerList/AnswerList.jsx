@@ -9,24 +9,24 @@ const AnswerList = ({questionId, setDeleteA, setEditA, editA, deleteA}) => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const answersObj = useSelector(state => state.answers)
-    if (answersObj.length == 0) return null
-    const answers = Object.values(answersObj)
-    const sortedAnswers = answers.sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at));
-
+    
     useEffect(() => {
         dispatch(thunkGetQuestionAnswers(questionId))
         return () => {
             dispatch(returnInitial());
-          };
+        };
     }, [dispatch, questionId, editA, deleteA])
-
-
+    
+    
     useEffect(() => {
         if (!user) navigate("/");
-      }, [user, navigate]);
-
-
+    }, [user, navigate]);
+    
+    // if (answersObj.length == 0) return null
+    const answers = Object.values(answersObj)
     if (!answers.length) return null;
+    const sortedAnswers = answers.sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at));
+
 
     return (
         <div className="answer-list-component">
