@@ -4,8 +4,8 @@
 }
 
 .create-answer {
-    background-color: white;
-    border: 1px solid #ddd;
+    background-color: #262626;
+    border: 1px solid #333;
     padding: 20px;
     width: 700px; 
     margin: auto;
@@ -105,6 +105,70 @@ div.quill.editor {
     color: red;
     font-size: 15px;
 }
+
+
+/* QuillDarkTheme.css */
+
+.ql-container {
+    background-color: #262626;
+    color: #fff;
+}
+
+.ql-toolbar {
+    background-color: #262626;
+    border: 1px solid #333;
+}
+
+.ql-toolbar button {
+    color: #ffF;
+    border: none;
+    background-color: transparent;
+}
+
+.ql-toolbar button:hover, .ql-toolbar button:focus {
+    background-color: #262626;
+}
+
+.ql-toolbar .ql-picker {
+    color: #fff;
+}
+
+.ql-toolbar .ql-picker-options {
+    background-color: #262626;
+    border: 1px solid #333;
+}
+
+.ql-toolbar .ql-picker-options .ql-picker-item:hover {
+    background-color: #262626;
+}
+
+.ql-editor {
+    background-color: #2e2e2e;
+    color: #fff;
+    border: 1px solid #333;
+}
+
+
+.ql-container .ql-editor.ql-blank::before {
+    color: #999; 
+    font-style: italic; 
+    content: attr(data-placeholder); 
+}
+
+
+.ql-editor::-webkit-scrollbar {
+    width: 10px;
+}
+
+.ql-editor::-webkit-scrollbar-thumb {
+    background: #999;
+    border-radius: 5px;
+}
+
+.ql-editor::-webkit-scrollbar-thumb:hover {
+   cursor: pointer;;
+}
+
 
 
 

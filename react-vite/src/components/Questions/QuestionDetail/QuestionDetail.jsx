@@ -95,8 +95,8 @@ const QuestionDetail = () => {
                   }
             </div>
             
-                <div className="chat-icon" onClick={() => setOpenChatbot(!openChatbot)}>
-                    <img src="https://askcora.s3.us-west-1.amazonaws.com/Answer_img/chat.png" alt="" />
+                <div className="chat-icon" >
+                    <img src="https://askcora.s3.us-west-1.amazonaws.com/Answer_img/chat.png" alt="" onClick={() => setOpenChatbot(!openChatbot)}/>
                     {openChatbot && <div className="question-chatbot">
                     <ChatbotComponent />
                 </div>}
