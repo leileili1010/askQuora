@@ -14,30 +14,13 @@ const CreateQuestionModal = () => {
     const [title, setTitle] = useState("")
     const [errors, setErrors] = useState({});
     const [AIEdit, setAIEdit] = useState("");
-    // const topicsObj = useSelector(state => state.topics)
-    // const topics = Object.values(topicsObj);
     const user = useSelector((state) => state.session.user);
-
-    // const shuffleAndSelect = (arr) => {
-    //     const shuffled = arr.sort(() => 0.5 - Math.random());
-    //     return shuffled.slice(0, 6); 
-    // };
-
-    // useEffect(() => {
-    //     dispatch(thunkGetTopics())
-    //     return () => {
-    //         dispatch(returnInitial());
-    //     };
-    // }, [dispatch])
+ 
 
     if (!user) {
         return <h2>You must be logged in to add a question</h2>;
     } // need to update later on
 
-    // if (topicsObj.length == 0) return null;
-
-    // const selectedTopics = shuffleAndSelect(topics);
-    
     
     const handleQuestionSubmit = async (e) => {
         e.preventDefault();
@@ -119,7 +102,12 @@ const CreateQuestionModal = () => {
                         placeholder='Start your question with "what", "How", "Why", etc.'
                     />
                 </label>
-                <p>{AIEdit}</p>
+                
+                <div className = "AI-edit">
+                    <p>{AIEdit}</p>  
+                    {AIEdit && <div className="AI-Edit-Icon" onClick={() => {setTitle(AIEdit);setAIEdit("")}}>{<i className="fa-regular fa-square-check AI-edit-accept"  ></i>}</div>}
+                </div>
+
                 <div className="question-errors">
                     {"title" in errors && <p >{errors.title}</p>}
                 </div>

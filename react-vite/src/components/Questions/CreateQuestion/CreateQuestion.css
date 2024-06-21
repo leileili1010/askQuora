@@ -120,4 +120,21 @@
     background-color: #333;
 }
 
+.AI-edit {
+    padding: 10PX;
+    display: flex;
+    gap: 10px;
+}
+
+.AI-edit-accept {
+    color: red;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+.AI-edit-accept:hover {
+    color: green;
+}
+
+
 
