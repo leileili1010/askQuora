@@ -8,6 +8,7 @@ import { useNavigate} from "react-router-dom";
 import QuestionListItem from "../QuestionListItem/QuestionListItem";
 import { thunkSetUserAnswers } from "../../../redux/session";
 import { thunkGetTopic, returnTopicInitial } from "../../../redux/topic"; 
+import ChatbotComponent from "../../Chatbot/ChatbotComponent";
 import "./QuestionDetail.css"
 
 
@@ -24,6 +25,7 @@ const QuestionDetail = () => {
     const [editQ, setEditQ] = useState(0)
     const [editA, setEditA] = useState(0)
     const [deleteA, setDeleteA] = useState(0)
+    const [openChatbot, setOpenChatbot] = useState(false);
     let relevantQs
     
     if (questions?.length > 1)
@@ -60,7 +62,7 @@ const QuestionDetail = () => {
 
     return (
         <div className="question-details-page">  
-            <Navigation />
+            <Navigation openChatbot={openChatbot} setOpenChatbot={setOpenChatbot}/>
             <div className="question-detail">
                 {/*part 1: question detail*/}
                 <div  className="question-answers-container">
@@ -91,6 +93,15 @@ const QuestionDetail = () => {
                     </div>
                   )
                   }
+            </div>
+            
+                <div className="chat-icon" onClick={() => setOpenChatbot(!openChatbot)}>
+                    <img src="https://askcora.s3.us-west-1.amazonaws.com/Answer_img/chat.png" alt="" />
+                    {openChatbot && <div className="question-chatbot">
+                    <ChatbotComponent />
+                </div>}
+               
+                
             </div>
             
 
