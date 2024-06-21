@@ -37,7 +37,7 @@ const HomePage = () => {
         <div className="homepage">
             <div className="home-nav-bar">
                 {
-                    <Navigation/>
+                    <Navigation  setOpenChatbot={setOpenChatbot} openChatbot={openChatbot}/>
                 }
             </div>
             

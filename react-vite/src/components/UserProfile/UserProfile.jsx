@@ -108,10 +108,10 @@ const UserProfile = () => {
                             </div>
                         </div>
 
-                        <div className="user-subscriptions">
+                        {/* <div className="user-subscriptions">
                             <p className="credentials-title" id="user-subscriptions-title" >Manage Your Subscriptions</p>
                             <UserSpacesList />
-                        </div>
+                        </div> */}
 
                         {/* <div className="user-subscriptions knows">
                             <p className="credentials-title">Knows About</p>

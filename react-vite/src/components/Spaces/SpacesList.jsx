@@ -22,7 +22,7 @@ const SpacesList = ({setSub}) => {
                 <span className="add-sub">Featured Spaces</span>
             </div>
             <div className="subscriptions">
-                <div className="subscription" onClick={() => navigate("/topics")}>
+                <div className="subscription" onClick={() => {navigate("/topics");setSub({})}}>
                     <img src="https://askcora.s3.us-west-1.amazonaws.com/topics_image/everything-cover.jpg" />
                     <p>Everything</p>
                 </div>

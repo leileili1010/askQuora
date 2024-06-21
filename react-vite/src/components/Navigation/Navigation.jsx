@@ -9,7 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import SearchResultsModal from "./SearchResults";
 import "./Navigation.css";
 
-function Navigation() {
+function Navigation({setOpenChatbot, openChatbot}) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const questions = useSelector(state => state.search.questions)
@@ -59,7 +59,7 @@ const handleCloseModal = () => {
           </div>
           <i id="home-sign" onClick={() => navigate("/topics")} className="fa-solid fa-house" ></i>
           {/* <i className="fa-regular fa-pen-to-square" style={{ color: "#626466" }} onClick={() => window.alert("Feature coming soon...")} ></i> */}
-          <div className = "chatbot-icon"><i className="fa-solid fa-robot" style={{color: "red"}}></i></div>
+          <div className = "chatbot-icon" onClick={() => setOpenChatbot(!openChatbot)}><i className="fa-solid fa-robot" style={{color: "red"}}></i></div>
           {/* <i id="group-sign" className="fa-solid fa-users" onClick={() => navigate("/explore-topics")}></i> */}
           <div className="search-container">
             <form style={{ width: isTyping? '500px' : '360px' }}action="/search" method="get">

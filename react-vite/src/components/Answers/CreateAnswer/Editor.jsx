@@ -1,6 +1,7 @@
 import { useMemo, useRef } from "react";
 import "react-quill/dist/quill.snow.css";
 import ReactQuill from 'react-quill';
+import "./CreateAnswer.css";
 
 const Editor = ({ value, onValueChange }) => {
     const quillRef = useRef(null);
@@ -67,6 +68,7 @@ const Editor = ({ value, onValueChange }) => {
   
     return (
       <ReactQuill
+
         className="editor"
         ref={quillRef}
         theme="snow"
