@@ -7,7 +7,7 @@ export const searchQuestions = (questions) => ({
 })
 
 export const thunkSearchQuestions = () => async(dispatch) => {
-    const res = await fetch("/api/questions")
+    const res = await fetch("/api/questions/")
     if (res.ok) {
       const questions = await res.json()
       dispatch(searchQuestions(questions))
