@@ -31,7 +31,7 @@ function Navigation() {
       setCurrentQuestions([])
       setModalOpen(false)
     } else {
-      const newQuestions= questions.filter(question => question.title.toLowerCase().includes(searchInput.toLocaleLowerCase()))
+      const newQuestions= questions?.filter(question => question.title.toLowerCase().includes(searchInput.toLocaleLowerCase()))
       if (!newQuestions.length) setCurrentQuestions([noResultQ])
       else setCurrentQuestions(newQuestions.slice(0,8))
       setModalOpen(true)
