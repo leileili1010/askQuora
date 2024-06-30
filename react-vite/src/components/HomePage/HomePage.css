@@ -281,3 +281,8 @@
     animation: scaleIn 0.4s forwards ease-in-out;
   }
 
+  .loader-container {
+    position: fixed; 
+    top: 30%; 
+    left: 50%; 
+}
