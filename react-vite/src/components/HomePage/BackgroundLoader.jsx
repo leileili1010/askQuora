@@ -10,6 +10,12 @@ function BackgroundLoader() {
    ];
 
    useEffect(() => {
+
+      backgrounds.forEach((src) => {
+         const img = new Image();
+         img.src = src;
+      });
+
       const changeBackground = () => {
           setBgIndex((prevIndex) => (prevIndex + 1) % backgrounds.length);
       };
