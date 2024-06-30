@@ -57,7 +57,6 @@ const AnswerListHome = ({ initialLoad, setInitialLoad }) => {
 
     return (
         <div className="answer-list-component">
-            {isLoading && <Spinner />}
             <InfiniteScroll
                 dataLength={sortedAnswers.length}
                 next={() => setPage(page + 1)}

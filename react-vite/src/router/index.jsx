@@ -6,6 +6,7 @@ import HomePage from '../components/HomePage/HomePage';
 import LandingPage from '../components/HomePage/LandingPage';
 import UserProfile from '../components/UserProfile/UserProfile';
 import CommentList from '../components/Comments/CommentsList';
+import Loader from '../components/Loader/Loader';
 
 export const router = createBrowserRouter([
   {
@@ -41,10 +42,13 @@ export const router = createBrowserRouter([
         path: "topics/:topicName",
         element: <HomePage />,
       },
-
       {
         path: "comments/:answerId",
         element: <CommentList />,
+      },
+      {
+        path: "loader",
+        element: <Loader />,
       },
       {
         path: '/*',

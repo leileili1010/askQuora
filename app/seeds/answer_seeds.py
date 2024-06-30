@@ -7,7 +7,7 @@ answers = [
         "question_id": 1,
         "topic_id": 1,
         "detail_text": "In 2024, some of the most essential programming languages to learn include Python, JavaScript, and Go. Python continues to dominate various fields such as web development, data science, and artificial intelligence, making it a versatile language with abundant job opportunities. JavaScript remains crucial for frontend web development, especially with the growing popularity of frameworks like React and Vue.js. Go, also known as Golang, is gaining traction for its efficiency in building scalable and concurrent systems.",
-        "detail_firstImgUrl": None
+        "detail_firstImgUrl": "https://askcora.s3.us-west-1.amazonaws.com/Answer_img/2024+language.jpg"
     },
     {
         "detail": "Yo! So, in 2024, the coolest languages you gotta learn are Python, JavaScript, and Rust. Python's like the Swiss Army knife of coding, used everywhere. JavaScript's all about making web stuff pretty, and Rust? Well, Rust is for the pros who wanna build super-fast and reliable stuff. Get on it!",
@@ -15,7 +15,7 @@ answers = [
         "question_id": 1,
         "topic_id": 1,
         "detail_text": "Yo! So, in 2024, the coolest languages you gotta learn are Python, JavaScript, and Rust. Python's like the Swiss Army knife of coding, used everywhere. JavaScript's all about making web stuff pretty, and Rust? Well, Rust is for the pros who wanna build super-fast and reliable stuff. Get on it!",
-        "detail_firstImgUrl": None
+        "detail_firstImgUrl": "https://askcora.s3.us-west-1.amazonaws.com/Answer_img/in-demand-programming-languages.jpg"
     },
     # Q2
     {
@@ -42,7 +42,7 @@ answers = [
         "question_id": 4,
         "topic_id": 2,
         "detail_text": "The latest trends in web dev for 2024? Static site generators, serverless stuff, and headless CMS. Static sites are fast, serverless is easy to scale, and headless CMS lets you do whatever you want with your content. Pretty neat, huh?",
-        "detail_firstImgUrl": None
+        "detail_firstImgUrl": "https://askcora.s3.us-west-1.amazonaws.com/Answer_img/Web-Development-Trends.jpg"
     },
     {
         "detail": "Frontend web development in 2024 is marked by trends such as progressive web apps (PWAs), augmented reality (AR) and virtual reality (VR) integration, and the adoption of web assembly (Wasm) for high-performance web applications. PWAs offer an app-like experience with offline capabilities, while AR and VR technologies are revolutionizing user interactions and experiences. Web assembly enables running complex applications directly in the browser, enhancing performance and versatility.",
@@ -50,7 +50,7 @@ answers = [
         "question_id": 4,
         "topic_id": 2,
         "detail_text": "Frontend web development in 2024 is marked by trends such as progressive web apps (PWAs), augmented reality (AR) and virtual reality (VR) integration, and the adoption of web assembly (Wasm) for high-performance web applications. PWAs offer an app-like experience with offline capabilities, while AR and VR technologies are revolutionizing user interactions and experiences. Web assembly enables running complex applications directly in the browser, enhancing performance and versatility.",
-        "detail_firstImgUrl": None
+        "detail_firstImgUrl": "https://askcora.s3.us-west-1.amazonaws.com/Answer_img/front_end_trends.jpg"
     },
     # Q5
     {
@@ -94,7 +94,7 @@ answers = [
         "question_id": 7,
         "topic_id": 3,
         "detail_text": "Don't sweat it! Start with Python for its simplicity, then try your hand at JavaScript for web stuff. Remember, it's all about practice, so dive in and have fun!",
-        "detail_firstImgUrl": None
+        "detail_firstImgUrl": "https://askcora.s3.us-west-1.amazonaws.com/Answer_img/learn+which+language.png"
     },
     {
         "detail": "When choosing a programming language as a beginner, consider factors such as your career goals, the industry demand for specific languages, and your personal interests. Python is often recommended for its simplicity and versatility, making it an excellent choice for beginners interested in various domains such as web development, data science, and automation. Alternatively, JavaScript is ideal for frontend development and offers numerous resources and tutorials for beginners.",
@@ -102,7 +102,7 @@ answers = [
         "question_id": 7,
         "topic_id": 3,
         "detail_text": "When choosing a programming language as a beginner, consider factors such as your career goals, the industry demand for specific languages, and your personal interests. Python is often recommended for its simplicity and versatility, making it an excellent choice for beginners interested in various domains such as web development, data science, and automation. Alternatively, JavaScript is ideal for frontend development and offers numerous resources and tutorials for beginners.",
-        "detail_firstImgUrl": None
+        "detail_firstImgUrl": "https://askcora.s3.us-west-1.amazonaws.com/Answer_img/learn+which+language+2.png"
     },
     # Q8
     {
