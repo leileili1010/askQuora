@@ -3,10 +3,10 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    min-height: 700px;
-    width: 800px;
+    min-height: 650px;
+    width: 760px;
     text-align: center;
-    background-color: white;
+    background-color: #333;
     border-radius: 4px;
     position: fixed;
     top: 50%;
@@ -31,8 +31,8 @@
     margin-bottom: 15px;
 }
 
-.seperator {
-    border: 0.5px solid #ccc;;
+div.seperator {
+    border: 0.5px solid #999
 } 
 
 #sign-up-container h1 {
@@ -74,6 +74,7 @@
     border: 1px solid #ddd;
     border-radius: 4px;
     box-sizing: border-box;
+    color: #333
 }
 
 #sign-up-container .input-errors {
@@ -134,7 +135,7 @@
 }
 
 #sign-up-container .have-account {
-    color:#333;
+    color:#999;
     margin-bottom: 12px;
     font-weight: normal;
     text-align: center;
