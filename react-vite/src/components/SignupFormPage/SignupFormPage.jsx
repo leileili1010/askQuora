@@ -2,31 +2,10 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, Link } from "react-router-dom";
 import { thunkSignup } from "../../redux/session";
+import BackgroundLoader from "../HomePage/BackgroundLoader";
 import './SignupForm.css'
 
 function SignupFormPage() {
-  // background image
-  useEffect(() => {
-    document.body.style.backgroundImage = "url('https://askcora.s3.us-west-1.amazonaws.com/topics_image/background.png')";
-    document.body.style.backgroundSize = "cover";
-    document.body.style.backgroundPosition = "center";
-    document.body.style.backgroundRepeat = "no-repeat";
-    document.body.style.height = "100vh";
-    document.body.style.margin = "0"; 
-    document.body.style.width = "100%";
-    document.body.style.overflowX = "hidden"; 
-
-    return () => {
-        document.body.style.backgroundImage = "";
-        document.body.style.backgroundSize = "";
-        document.body.style.backgroundPosition = "";
-        document.body.style.backgroundRepeat = "";
-        document.body.style.height = "";
-        document.body.style.margin = "";
-        document.body.style.width = "";
-        document.body.style.overflowX = "";
-    };
-}, []);
 
 const sessionUser = useSelector((state) => state.session.user);
 const dispatch = useDispatch();
@@ -99,7 +78,9 @@ const handleSubmit = async (e) => {
 };
 
 return (
-  <div id="sign-up-container">
+  <>
+    <BackgroundLoader/> 
+    <div id="sign-up-container">
     <h1>askQuora</h1>
     <p className="slogan">A place to connect and share knowledge</p>
     {errors.server && <p className="input-error">{errors.server}</p>}
@@ -230,6 +211,8 @@ return (
       </form>
     </div>
   </div>
+  </>
+  
 );
 }
 
