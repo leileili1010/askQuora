@@ -11,7 +11,7 @@ const SpacesList = ({setSub}) => {
     const navigate = useNavigate();
     const navigateToTopic = useNavigateToTopic();
     const topics = Object.values(topicsObj);
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(true);
    
     useEffect(() => {
         const fetchData = async () => {
@@ -36,7 +36,7 @@ const SpacesList = ({setSub}) => {
             
             {loading && <Spinner />}
 
-            <div className="subscriptions">
+            {!loading && <div className="subscriptions">
                 <div className="subscription" onClick={() => {navigate("/topics");setSub({})}}>
                     <img src="https://askcora.s3.us-west-1.amazonaws.com/topics_image/everything-cover.jpg" />
                     <p>Everything</p>
@@ -47,7 +47,7 @@ const SpacesList = ({setSub}) => {
                         <p>{topic?.name}</p>
                     </div>
                 )}
-            </div>
+            </div>}
         </div>
     )
 }
