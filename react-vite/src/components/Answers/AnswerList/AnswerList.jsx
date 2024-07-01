@@ -16,6 +16,7 @@ const AnswerList = ({questionId, setDeleteA, setEditA, editA, deleteA}) => {
     useEffect(() => {
         const fetchData = async () => {
             setLoading(true);
+            await dispatch(returnInitial());
             await dispatch(thunkGetQuestionAnswers(questionId));
             setLoading(false);
         };
