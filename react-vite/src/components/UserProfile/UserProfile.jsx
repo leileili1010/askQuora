@@ -35,6 +35,13 @@ const UserProfile = () => {
         setActiveTab(tab);
     };
 
+    const handleChatIconClick = () => {
+        // if (localStorage.getItem('chat_messages')) {
+        //   localStorage.removeItem('chat_messages');
+        // }
+        setOpenChatbot(!openChatbot);
+    };
+
     useEffect(() => {
         if (!user) navigate("/");
       }, [user, navigate]);
@@ -48,9 +55,15 @@ const UserProfile = () => {
         dispatch(thunkGetUserQuestions())
      }, [dispatch, deleteQ, editQ])
 
+     useEffect(() => {
+        if(!openChatbot && localStorage.getItem('chat_messages')) {
+            localStorage.removeItem('chat_messages');
+        }
+    }, [openChatbot])
+
     return (
         <div className="User-profile-page">
-            <Navigation />
+            <Navigation openChatbot={openChatbot} setOpenChatbot={setOpenChatbot}/>
 
             <div className={activeTab == 'answers' ? 'background-answer' : 'background-Qs'}>
                 <div className="profile-container">
@@ -118,7 +131,7 @@ const UserProfile = () => {
             </div>}
 
             <div className="chat-icon" >
-                <img src="https://askcora.s3.us-west-1.amazonaws.com/Answer_img/chat.png" alt="" onClick={() => setOpenChatbot(!openChatbot)} />
+                <img src="https://askcora.s3.us-west-1.amazonaws.com/Answer_img/chat.png" alt="" onClick={handleChatIconClick} />
             </div>
 
         </div>
