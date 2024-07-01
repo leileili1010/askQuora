@@ -12,12 +12,6 @@ const AnswerList = ({questionId, setDeleteA, setEditA, editA, deleteA}) => {
     const answersObj = useSelector(state => state.answers)
     const [loading, setLoading] = useState(true);
     
-    // useEffect(() => {
-    //     dispatch(thunkGetQuestionAnswers(questionId))
-    //     return () => {
-    //         dispatch(returnInitial());
-    //     };
-    // }, [dispatch, questionId, editA, deleteA])
 
     useEffect(() => {
         const fetchData = async () => {
