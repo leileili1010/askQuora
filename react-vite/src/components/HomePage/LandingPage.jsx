@@ -13,7 +13,6 @@ function LandingPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState({});
-  const [isFadingOut, setIsFadingOut] = useState(false);
 
   useEffect(() => {
     if (sessionUser) navigate("/topics");

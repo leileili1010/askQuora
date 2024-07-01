@@ -47,10 +47,6 @@ export const router = createBrowserRouter([
         element: <CommentList />,
       },
       {
-        path: "loader",
-        element: <Loader />,
-      },
-      {
         path: '/*',
         element: <HomePage />
       }
