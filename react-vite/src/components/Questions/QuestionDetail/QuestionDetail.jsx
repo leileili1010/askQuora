@@ -31,7 +31,18 @@ const QuestionDetail = () => {
     if (questions?.length > 1)
         relevantQs = questions.filter(question => question.id !== parseInt(questionId)).slice(0, 10); // Limit to 10 Qs
     
-    
+    const handleChatIconClick = () => {
+        // if (localStorage.getItem('chat_messages')) {
+        //   localStorage.removeItem('chat_messages');
+        // }
+        setOpenChatbot(!openChatbot);
+    };
+
+    useEffect(() => {
+        if(!openChatbot && localStorage.getItem('chat_messages')) {
+            localStorage.removeItem('chat_messages');
+        }
+    }, [openChatbot])
     
     useEffect(() => {
         if (!user) navigate("/");
@@ -100,7 +111,7 @@ const QuestionDetail = () => {
             </div>}
 
             <div className="chat-icon" >
-                <img src="https://askcora.s3.us-west-1.amazonaws.com/Answer_img/chat.png" alt="" onClick={() => setOpenChatbot(!openChatbot)} />
+                <img src="https://askcora.s3.us-west-1.amazonaws.com/Answer_img/chat.png" alt="" onClick={handleChatIconClick} />
             </div>
 
 

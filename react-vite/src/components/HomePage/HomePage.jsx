@@ -21,6 +21,13 @@ const HomePage = () => {
     const [initialLoad, setInitialLoad] = useState(true);
     const [openChatbot, setOpenChatbot] = useState(false);
 
+    const handleChatIconClick = () => {
+        // if (localStorage.getItem('chat_messages')) {
+        //   localStorage.removeItem('chat_messages');
+        // }
+        setOpenChatbot(!openChatbot);
+    };
+
     useEffect(() => {
         if (!user) navigate("/");
     }, [user, navigate]);
@@ -33,7 +40,11 @@ const HomePage = () => {
         setInitialLoad(true);
     }, [topicName]);
 
-   
+    useEffect(() => {
+        if(!openChatbot && localStorage.getItem('chat_messages')) {
+            localStorage.removeItem('chat_messages');
+        }
+    }, [openChatbot])
 
     return (
         <div className="homepage">
@@ -94,7 +105,7 @@ const HomePage = () => {
                     </div>
                 )}
 
-                <div className="chat-icon" onClick={() => setOpenChatbot(!openChatbot)}>
+                <div className="chat-icon" onClick={handleChatIconClick}>
                     <img src="https://askcora.s3.us-west-1.amazonaws.com/Answer_img/chat.png" alt="chat icon" />
                 </div>
             </div>
