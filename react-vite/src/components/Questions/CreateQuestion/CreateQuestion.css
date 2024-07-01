@@ -31,7 +31,7 @@
 .create-q-form i.fa-circle-xmark {
     float: right;
     cursor: pointer;
-    color: darkgray;
+    color: red;
     font-size: 30px;
 }
 
@@ -135,6 +135,23 @@
 .AI-edit-accept:hover {
     color: green;
 }
+
+.add-topic {
+    background-color: #262626;
+    font-size: 14px;
+    padding: 5px;
+    border-radius: 8px;
+  
+}
+
+.add-topic option {
+    font-size: 14px;
+}
+
+.add-topic:focus {
+    outline: none;
+}
+
 
 
 
