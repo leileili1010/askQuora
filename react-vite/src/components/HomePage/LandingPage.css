@@ -146,5 +146,6 @@ div.create-account {
 }
 
 .loader-container {
+    margin-top: 50px;
     margin-left: 50%;
 }

@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { thunkGetTopicsQuestions} from "../../../redux/topic"
 import { thunkSetUserAnswers } from "../../../redux/session";
+import Loader from "../../Loader/Loader";
 import './TopicsQuestionsList.css'
 
 const TopicsQuestionsList = ({sub}) => {
@@ -11,10 +12,16 @@ const TopicsQuestionsList = ({sub}) => {
     const [editQ, setEditQ] = useState(0);
     const topicsObj =  useSelector(state => state.topics)
     const topics = Object.values(topicsObj)
+    const [loading, setLoading] = useState(true);
     let subTopics;
 
     useEffect(() => {
-        dispatch(thunkGetTopicsQuestions());
+        const fetchData = async () => {
+            setLoading(true);
+            await dispatch(thunkGetTopicsQuestions());
+            setLoading(false);
+        }
+        fetchData();
     }, [dispatch,deleteQ, editQ])
 
     useEffect(() => {
@@ -25,6 +32,15 @@ const TopicsQuestionsList = ({sub}) => {
     if (Object.keys(sub).length > 0 ) {
         subTopics = topics.filter(topic => topic.name === sub.name)
     }
+
+    if (loading) {
+        return (
+            <div className="loader-container">
+                <Loader />
+            </div>
+        ); 
+    }
+
     const topicsRendered = Object.keys(sub).length > 0 ? subTopics: topics
 
 

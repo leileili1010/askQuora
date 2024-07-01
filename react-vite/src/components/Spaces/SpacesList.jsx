@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { useNavigateToTopic } from "./HelperFunctions";
 
 
-const SpacesList = ({setSub, setIsLoading}) => {
+const SpacesList = ({setSub}) => {
     const dispatch = useDispatch();
     const topicsObj = useSelector(state => state.topics)
     const navigate = useNavigate();
@@ -14,13 +14,6 @@ const SpacesList = ({setSub, setIsLoading}) => {
    
     useEffect(() => {
         dispatch(thunkGetTopics())
-            .then(() => {
-                setIsLoading(false); 
-            })
-            .catch((error) => {
-                console.error('Error fetching topics:', error);
-                setIsLoading(false); 
-            });
     }, [dispatch]);
    
     return (
