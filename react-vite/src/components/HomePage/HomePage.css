@@ -129,7 +129,7 @@
 
 /* spaces and topics*/
 .spaces-container {
-    width: 150px;
+    width: 170px;
     display: flex;
     flex-direction: column;
     gap: 18px;  
@@ -188,6 +188,7 @@
     padding: 10px 12px;
     margin-bottom: -10px;
     border-radius: 10px;
+   
 }
 
 .render-space img{

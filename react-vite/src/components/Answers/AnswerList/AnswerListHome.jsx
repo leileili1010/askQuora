@@ -46,6 +46,9 @@ const AnswerListHome = ({ initialLoad, setInitialLoad }) => {
         };
 
         fetchData();
+        return () => {
+            dispatch(returnInitial());
+        };
     }, [dispatch, editA, deleteA, page, initialLoad, setInitialLoad]);
 
 

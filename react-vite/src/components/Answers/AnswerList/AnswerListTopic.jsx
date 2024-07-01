@@ -41,6 +41,9 @@ const AnswerListTopic = ({topicName}) => {
         };
 
         fetchData();
+        return () => {
+            dispatch(returnInitial());
+        };
     }, [dispatch, editA, deleteA, page, topicName]);
 
 
