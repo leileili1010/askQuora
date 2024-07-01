@@ -21,6 +21,7 @@ const HomePage = () => {
     const topicName = useParams().topicName;
     const [initialLoad, setInitialLoad] = useState(true);
     const [openChatbot, setOpenChatbot] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
         if (!user) navigate("/");
@@ -34,6 +35,10 @@ const HomePage = () => {
         setInitialLoad(true);
     }, [topicName]);
 
+    if (isLoading) {
+        return <Loader />;
+    }
+
 
     return (
         <div className="homepage">
@@ -42,7 +47,7 @@ const HomePage = () => {
             </div>
 
             <div className="topics">
-                <SpacesList setSub={setSub} />
+                <SpacesList setSub={setSub} setIsLoading={setIsLoading} />
 
                 <div className="topic-answers">
                     <div className="ask-answer">
