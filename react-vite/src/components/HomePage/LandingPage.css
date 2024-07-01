@@ -144,3 +144,7 @@ div.create-account {
     border: 1px solid #007bff;
     outline: none; 
 }
+
+.loader-container {
+    margin-left: 50%;
+}
