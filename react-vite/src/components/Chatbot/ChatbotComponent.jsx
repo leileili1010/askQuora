@@ -10,6 +10,15 @@ import './ChatbotComponent.css';
 const ChatbotComponent = () => {
   const nodeRef = useRef(null);
 
+  const saveMessages = (messages, HTMLString) => {
+    localStorage.setItem('chat_messages', JSON.stringify(messages));
+  };
+
+  const loadMessages = () => {
+    const messages = JSON.parse(localStorage.getItem('chat_messages'));
+    return messages;
+  };
+
   return (
     <Draggable nodeRef={nodeRef}>
       <div className="chatbot-container" ref={nodeRef}>
@@ -17,6 +26,8 @@ const ChatbotComponent = () => {
           config={config}
           messageParser={MessageParser}
           actionProvider={ActionProvider}
+          saveMessages={saveMessages}
+          loadMessages={loadMessages()}
         />
       </div>
 

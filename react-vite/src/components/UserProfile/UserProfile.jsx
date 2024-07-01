@@ -106,25 +106,6 @@ const UserProfile = () => {
                                 <p>Joined {formattedDate}</p>
                             </div>
                         </div>
-
-                        {/* <div className="user-subscriptions">
-                            <p className="credentials-title" id="user-subscriptions-title" >Manage Your Subscriptions</p>
-                            <UserSpacesList />
-                        </div> */}
-
-                        {/* <div className="user-subscriptions knows">
-                            <p className="credentials-title">Knows About</p>
-                            <div className="subscriptions">
-                                {
-                                    Object.values(answersObj).map(answer => 
-                                        <div key={answer.id} className="subscription" id="knows">
-                                            <img src={answer.topic.cover_img} alt="" />
-                                            <p>{answer.topic.name}</p>
-                                        </div>
-                                    )
-                                }
-                            </div>
-                        </div> */}
                     </div>
 
                 </div>

@@ -2,11 +2,13 @@ class ActionProvider {
   constructor(createChatBotMessage, setStateFunc) {
     this.createChatBotMessage = createChatBotMessage;
     this.setState = setStateFunc;
-    this.chatHistory = [];
+    const storedChatHistory = localStorage.getItem('chat_messages');
+    this.chatHistory = storedChatHistory ? JSON.parse(storedChatHistory) : [];
   }
 
   async handleMessage(message) {
     this.chatHistory.push({ role: "user", content: message });
+    localStorage.setItem('chat_messages', JSON.stringify(this.chatHistory));
 
     try {
       const response = await fetch("/api/openai/chat", {
@@ -23,13 +25,16 @@ class ActionProvider {
       if (response.ok) {
         const reply = data.reply;
 
-        this.chatHistory.push({ role: "bot", content: reply });
+        this.chatHistory.push({ role: "assistant", content: reply });
+        localStorage.setItem('chat_messages', JSON.stringify(this.chatHistory));
+        
 
         const botMessage = this.createChatBotMessage(reply);
 
         this.setState((prev) => ({
           ...prev,
           messages: [...prev.messages, botMessage]
+
         }));
       } else {
         console.error("Chat Error:", data.error);
