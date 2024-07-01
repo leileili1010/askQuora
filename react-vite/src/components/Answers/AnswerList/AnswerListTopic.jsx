@@ -29,7 +29,6 @@ const AnswerListTopic = ({topicName}) => {
             setIsLoading(true);
             try {
                 const result = await dispatch(thunkGetTopicAnswers(topicName, page));
-                // console.log("🚀 ~ fetchData ~ result :", result )
                 if (result?.length === 0) {
                     setHasMore(false);
                 }

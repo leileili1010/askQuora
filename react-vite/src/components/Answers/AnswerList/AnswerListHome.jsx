@@ -8,7 +8,7 @@ import { createSelector } from 'reselect';
 import Spinner from "../Spinner/Spinner";
 
 
-const AnswerListHome = ({ initialLoad, setInitialLoad }) => {
+const AnswerListHome = ({ initialLoad, setInitialLoad, setFirstLanding }) => {
     const user = useSelector(state => state.session.user)
     const dispatch = useDispatch()
     const navigate = useNavigate()
@@ -27,6 +27,7 @@ const AnswerListHome = ({ initialLoad, setInitialLoad }) => {
     useEffect(() => {
         const fetchData = async () => {
             setIsLoading(true);
+            // setFirstLanding(true)
             try {
                 if (initialLoad) {
                     dispatch(returnInitial());
@@ -38,6 +39,7 @@ const AnswerListHome = ({ initialLoad, setInitialLoad }) => {
                     setHasMore(false);
                 }
                 setInitialLoad(false);
+                // setFirstLanding(false);
             } catch (error) {
                 console.error('Error fetching data:', error);
             } finally {
@@ -59,6 +61,7 @@ const AnswerListHome = ({ initialLoad, setInitialLoad }) => {
 
     return (
         <div className="answer-list-component">
+             {isLoading && <Spinner />}
             <InfiniteScroll
                 dataLength={sortedAnswers.length}
                 next={() => setPage(page + 1)}

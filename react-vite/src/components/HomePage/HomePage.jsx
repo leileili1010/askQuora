@@ -9,6 +9,7 @@ import OpenModalButton from '../OpenModalButton/OpenModalButton';
 import TopicsQuestionsList from "../Topics/TopicsQuestion/TopicsQuestionsList";
 import SpacesList from "../Spaces/SpacesList";
 import ChatbotComponent from "../Chatbot/ChatbotComponent";
+import Loader from "../Loader/Loader";
 import "./HomePage.css";
 
 const HomePage = () => {
@@ -20,11 +21,10 @@ const HomePage = () => {
     const topicName = useParams().topicName;
     const [initialLoad, setInitialLoad] = useState(true);
     const [openChatbot, setOpenChatbot] = useState(false);
+    const [firstLanding, setFirstLanding] = useState(false);
+
 
     const handleChatIconClick = () => {
-        // if (localStorage.getItem('chat_messages')) {
-        //   localStorage.removeItem('chat_messages');
-        // }
         setOpenChatbot(!openChatbot);
     };
 
@@ -45,6 +45,14 @@ const HomePage = () => {
             localStorage.removeItem('chat_messages');
         }
     }, [openChatbot])
+
+    if (firstLanding) {
+        return (
+            <div className="loader-container">
+                <Loader />
+            </div>
+        )
+    }
 
     return (
         <div className="homepage">
@@ -94,7 +102,7 @@ const HomePage = () => {
                         <p className={activeTab === 'questions' ? 'active' : ''} onClick={() => handleTabClick('questions')}>Questions</p>
                     </div>
 
-                    {activeTab === 'answers' && !topicName && <AnswerListHome initialLoad={initialLoad} setInitialLoad={setInitialLoad} />}
+                    {activeTab === 'answers' && !topicName && <AnswerListHome initialLoad={initialLoad} setInitialLoad={setInitialLoad} setFirstLanding={setFirstLanding}/>}
                     {activeTab === 'answers' && topicName && <AnswerListTopic topicName={topicName} />}
                     {activeTab === 'questions' && <TopicsQuestionsList sub={sub} />}
                 </div>
