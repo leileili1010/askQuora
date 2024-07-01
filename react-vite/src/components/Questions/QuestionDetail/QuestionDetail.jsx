@@ -61,21 +61,21 @@ const QuestionDetail = () => {
     if(!question) return null;
 
     return (
-        <div className="question-details-page">  
-            <Navigation openChatbot={openChatbot} setOpenChatbot={setOpenChatbot}/>
+        <div className="question-details-page">
+            <Navigation openChatbot={openChatbot} setOpenChatbot={setOpenChatbot} />
             <div className="question-detail">
                 {/*part 1: question detail*/}
-                <div  className="question-answers-container">
+                <div className="question-answers-container">
                     {/*question details*/}
-                    <QuestionListItem question={question} setDeleteQ={setDeleteQ} setEditQ={setEditQ}/>
+                    <QuestionListItem question={question} setDeleteQ={setDeleteQ} setEditQ={setEditQ} />
                     {/*answers list*/}
                     <div className="answers-container">
-                        <AnswerList questionId={questionId} setDeleteA={setDeleteA} setEditA={setEditA}/>
+                        <AnswerList questionId={questionId} setDeleteA={setDeleteA} setEditA={setEditA} />
                     </div>
                 </div>
-                
-                  {/*part 2: relevant questions */}
-                  {relevantQs && relevantQs.length > 0? (
+
+                {/*part 2: relevant questions */}
+                {relevantQs && relevantQs.length > 0 ? (
                     <div className="relevant-Qs">
                         <p>Related questions</p>
                         <div className="relevantQs">
@@ -84,26 +84,25 @@ const QuestionDetail = () => {
                             ))}
                         </div>
                     </div>
-                  ): (
+                ) : (
                     <div className="relevant-Qs">
                         <p>Related questions</p>
                         <div className="relevantQs">
                             <p></p>
                         </div>
                     </div>
-                  )
-                  }
+                )
+                }
             </div>
-            
-                <div className="chat-icon" >
-                    <img src="https://askcora.s3.us-west-1.amazonaws.com/Answer_img/chat.png" alt="" onClick={() => setOpenChatbot(!openChatbot)}/>
-                    {openChatbot && <div className="question-chatbot">
+
+            {openChatbot && <div className="question-chatbot">
                     <ChatbotComponent />
-                </div>}
-               
-                
+            </div>}
+
+            <div className="chat-icon" >
+                <img src="https://askcora.s3.us-west-1.amazonaws.com/Answer_img/chat.png" alt="" onClick={() => setOpenChatbot(!openChatbot)} />
             </div>
-            
+
 
 
         </div>

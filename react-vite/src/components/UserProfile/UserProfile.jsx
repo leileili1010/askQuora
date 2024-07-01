@@ -6,6 +6,7 @@ import UserAnswers from "../Answers/UserAnswers/UserAnswers";
 import UserQuestions from "../Questions/UserQuestions/UserQuestions";
 import { thunkSetUserAnswers } from "../../redux/session";
 import { thunkGetUserQuestions } from "../../redux/question";
+import ChatbotComponent from "../Chatbot/ChatbotComponent";
 import "./UserProfile.css"
 
 const UserProfile = () => {
@@ -24,6 +25,7 @@ const UserProfile = () => {
     const [editQ, setEditQ] = useState(0)
     const [deleteA, setDeleteA] = useState(0)
     const [editA, setEditA] = useState(0)
+    const [openChatbot, setOpenChatbot] = useState(false);
     
     const userAnswers = useSelector(state => state.session.userAnswers) || [];
     const answerTitle =  userAnswers.length>1? `${ userAnswers.length} Answers`: `${ userAnswers.length} Answer`
@@ -111,7 +113,13 @@ const UserProfile = () => {
                 </div>
             </div>
 
+            {openChatbot && <div className="question-chatbot">
+                    <ChatbotComponent />
+            </div>}
 
+            <div className="chat-icon" >
+                <img src="https://askcora.s3.us-west-1.amazonaws.com/Answer_img/chat.png" alt="" onClick={() => setOpenChatbot(!openChatbot)} />
+            </div>
 
         </div>
 

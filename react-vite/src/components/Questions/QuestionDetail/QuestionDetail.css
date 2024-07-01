@@ -71,13 +71,9 @@ body {
     font-weight: normal;
 }
 
-.chat-icon img {
-    position: relative;
-}
 
 .question-chatbot {
     position: absolute;
-    z-index: 1000; 
     bottom:200px;
     right: 150px;
     opacity: 0;
