@@ -21,7 +21,6 @@ const HomePage = () => {
     const topicName = useParams().topicName;
     const [initialLoad, setInitialLoad] = useState(true);
     const [openChatbot, setOpenChatbot] = useState(false);
-    const [isLoading, setIsLoading] = useState(true); // Set initial loading state to true
 
     useEffect(() => {
         if (!user) navigate("/");
@@ -35,21 +34,6 @@ const HomePage = () => {
         setInitialLoad(true);
     }, [topicName]);
 
-    useEffect(() => {
-        const timeoutId = setTimeout(() => {
-            setIsLoading(false);
-        }, 3000);
-
-        return () => clearTimeout(timeoutId);
-    }, []);
-
-    if (isLoading) {
-        return (
-            <div className="loader-container">
-                <Loader />
-            </div>
-        )
-    }
 
     return (
         <div className="homepage">

@@ -6,6 +6,7 @@ import { thunkGetAllAnswers, returnInitial } from "../../../redux/answer";
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { createSelector } from 'reselect';
 import Spinner from "../Spinner/Spinner";
+import Loader from "../../Loader/Loader";
 
 
 const AnswerListHome = ({ initialLoad, setInitialLoad }) => {
@@ -54,6 +55,12 @@ const AnswerListHome = ({ initialLoad, setInitialLoad }) => {
     }, [user, navigate]);
 
     if (!sortedAnswers.length) return null;
+
+
+    if (initialLoad) {
+        return <Loader />;
+    }
+
 
     return (
         <div className="answer-list-component">
