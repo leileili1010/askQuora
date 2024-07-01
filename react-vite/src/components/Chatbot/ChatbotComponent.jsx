@@ -26,6 +26,8 @@ const ChatbotComponent = () => {
           config={config}
           messageParser={MessageParser}
           actionProvider={ActionProvider}
+          saveMessages={saveMessages}
+          loadMessages={loadMessages()}
         />
       </div>
 
