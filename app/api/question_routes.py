@@ -58,6 +58,7 @@ def new_question():
     if form.validate_on_submit():
         new_question = Question(
             title = form.data["title"],
+            topic_id = form.data["topic_id"],
             owner_id = current_user.id,
         )
 

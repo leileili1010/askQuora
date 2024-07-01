@@ -1,10 +1,10 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useModal } from "../../../context/Modal"
 import { useState } from "react";
-// import { thunkGetTopics, returnTopicInitial} from "../../../redux/topic";
 import {thunkCreateQuestion} from "../../../redux/question";
 import { useNavigate } from "react-router-dom";
 import "./CreateQuestion.css"
+import { topics } from "./topics";
 
 
 const CreateQuestionModal = () => {
@@ -15,11 +15,13 @@ const CreateQuestionModal = () => {
     const [errors, setErrors] = useState({});
     const [AIEdit, setAIEdit] = useState("");
     const user = useSelector((state) => state.session.user);
+    const [selectedTopicId, setSelectedTopicId] = useState("");
+    
  
 
     if (!user) {
         return <h2>You must be logged in to add a question</h2>;
-    } // need to update later on
+    } 
 
     
     const handleQuestionSubmit = async (e) => {
@@ -33,11 +35,14 @@ const CreateQuestionModal = () => {
             setErrors(validationErrors);
           } else {
             const formData = new FormData();
+            const topicId = selectedTopicId == "" ? 11 : selectedTopicId;
             formData.append("title", title);
+            formData.append("topic_id", topicId);
             
             await dispatch(thunkCreateQuestion(formData))
             .then((createdQuestion) => {
                 closeModal()
+                setSelectedTopicId("");
                 navigate(`/questions/${createdQuestion.id}`)
             })
             .catch(async (res) => {
@@ -46,6 +51,7 @@ const CreateQuestionModal = () => {
           }
     }
 
+    
     const handleCancel = (e) => {
         e.preventDefault()
         closeModal()
@@ -86,7 +92,12 @@ const CreateQuestionModal = () => {
                         <i className="fa-solid fa-play"></i>
                     </div>
                     <div className="add-question">
-                        <p>Add Question</p>
+                        <select  className="add-topic" value={selectedTopicId} onChange={(e) => setSelectedTopicId(e.target.value)}>
+                            <option value="" disabled>Select a topic (Optional)</option>
+                            {topics.map(topic => (
+                                <option key={topic.id} value={topic.id}>{topic.name}</option>
+                            ))}
+                        </select>
                     </div>
                 </div>
                 

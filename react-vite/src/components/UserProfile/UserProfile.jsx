@@ -6,7 +6,6 @@ import UserAnswers from "../Answers/UserAnswers/UserAnswers";
 import UserQuestions from "../Questions/UserQuestions/UserQuestions";
 import { thunkSetUserAnswers } from "../../redux/session";
 import { thunkGetUserQuestions } from "../../redux/question";
-import UserSpacesList from "../Spaces/UserSpaces";
 import "./UserProfile.css"
 
 const UserProfile = () => {
