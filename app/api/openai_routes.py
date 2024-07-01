@@ -22,7 +22,7 @@ You are designed to help users with the following tasks: \
 4. Chat with users to provide information or answer questions"
 }
 
-# helper function to get completion from openai
+# helper function to get completion from openai for editing task
 def get_completion(prompt, model="gpt-3.5-turbo"):
     response = client.chat.completions.create(
         model=model,
