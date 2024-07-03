@@ -35,7 +35,9 @@ const CreateAnswerModal = ({question}) => {
             firstImageUrl,
         };
     }
-    
+  
+  
+
     const handleAnswerSubmit = async (e) => {
         e.preventDefault();
         setErrors({})
