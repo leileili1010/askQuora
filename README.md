@@ -4,7 +4,7 @@
 https://askquora.onrender.com/
 
 ### Creator
-Fiona(Lei) Li [Github](https://github.com/leileili1010) | [LinkedIn](https://www.linkedin.com/in/leileili/)
+Fiona(Lei) Li [Github](https://github.com/leileili1010)
 
 ### Let's Get Technical
 In this project I have used Javascript, React, Redux, Python, Flask, SQLAlchemy, PostgreSQL, Render, HTML5, CSS3, AWS S3
