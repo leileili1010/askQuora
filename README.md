@@ -15,9 +15,15 @@ In this project I have used the following tech stack:
 - Deployment: Docker and Render
 
 ### Summary
-askQuora aims to provide a similar platform as Quora where users can ask questions, post answers, and engage in discussions on a wide range of topics. The platform allows users to subscribe to topics of interest, receive recommendations for relevant questions and topics, and format their answers using rich text editors for better readability.
+At **askQuora**, we're all about sparking great discussions, especially in the world of **software engineering**. Whether you're debugging a tricky bug, exploring the latest tech trends, or just sharing your knowledge, this is the perfect space for you.  
 
-## Screenshots
+✨ **Stay in the loop** with personalized recommendations.  
+🛠️ **Format your answers beautifully** with our rich text editor.  
+🤖 **Get AI-powered assistance** to refine your content and enhance your answers.  
+
+Join our growing community, ask your questions, share your expertise, and let's build something amazing together! 🚀
+
+## Demo
 #### Login Page
 ![image](https://github.com/leileili1010/askQuora/assets/143532361/572d8319-e731-48bc-af5f-f6c26cdc1028)
 
@@ -30,6 +36,48 @@ askQuora aims to provide a similar platform as Quora where users can ask questio
 #### Subscribe a Topic
 ![askQuora_4](https://github.com/leileili1010/askQuora/assets/143532361/53ef0c9d-1790-4829-91ba-09a5adcd8fbd)
 
+## Features - What You Can Do on askQuora
+At askQuora, we believe in making learning and discussions easy, engaging, and fun! Whether you're here to ask, answer, or just explore, here’s everything you can do:
+
+### 🤖 AI Chatbot & Smart Content Suggestions (NEW! 🚀)
+- Got a tricky question? Our AI chatbot can help you refine it for better responses.
+- Need help writing an answer? Get AI-powered suggestions to make your response clear and impactful.
+- Let AI assist you in generating content, fixing grammar, and enhancing readability.
+
+### 👤 User Account
+-  View and manage your account details in one place.
+- Keep track of all your questions, answers, and subscriptions easily.
+- Update or delete your questions and answers whenever you need to—because we all change our minds sometimes!
+
+### ❓ Questions – Ask Away!
+- Find relevant discussions by browsing questions from the community.
+- Post your own question to get answers from experts and enthusiasts.
+- See how many answers your question has received at a glance.
+- Edit your questions anytime—to fix typos, add details, or refine your thoughts.
+- Delete questions if they’re no longer relevant or you got the answers you needed.
+
+### 💡 Answers – Share Your Knowledge!
+- Read answers from real people who have been there, done that.
+- Post your own answers—whether it’s text, code snippets, or images.
+- Edit your answers to keep them accurate and helpful.
+- Delete answers if they no longer make sense or if you want to update your stance.
+
+### 🔔 Subscriptions – Stay in the Loop!
+-  Follow topics you love and never miss a discussion.
+- Get updates on new questions and answers in your favorite categories.
+- Unsubscribe from topics when you’re no longer interested (we won’t take it personally! 😉).
+
+🔍 Search – Find What Matters!
+🔹 Search by keywords to quickly find relevant questions and answers.
+🔹 Save time by jumping straight to the best insights instead of scrolling endlessly.
+
+### 💬 Comments – Keep the Discussion Going!
+- Leave comments on questions and answers to ask for clarifications or share extra insights.
+- Engage in mini discussions without needing to post a full answer.
+- Add a friendly nudge like, "Hey, can you explain this part more?" or "Great answer! Here’s an additional thought..."
+
+Join askQuora today, be part of the conversation, and let’s make learning fun, insightful, and engaging together! 🎉💡
+  
 ## Getting started
 
 1. Clone this repository (only this branch).
@@ -81,49 +129,4 @@ askQuora aims to provide a similar platform as Quora where users can ask questio
   to create the `dist` folder.
   - Run `npm run build` every time before live deployment.
   - You can run from the default port in development to see changes live.
-
-## Features
-1. Users
-- users can create an account
-- users can Log-in and Logout of their created account with authentication
-2. Questions
-- Logged in users can view questions
-- Logged in users can post questions
-- Logged in users can update questions 
-- Logged in users can delete questions
-3. Answers
-- Logged in users can view answers to questions
-- Logged in users can post their answers
-- Logged in users can update their answers
-- Logged in users can delete answers
-4. subcription
-- Logged in users can view subscriptions
-- Logged in users can subscribe to different topics
-- Logged in users can delete their subscriptions
-
-## User Stories
-1. User Account
-- Logged in users can view their account details
-- Logged in users can view question/answers they posted and subscriptions
-- Logged in users can update their questions and answers
-- Logged in users can delete their questions and answers
-2. Question
-- Logged in users can view questions so to find information and contribute to discussions
-- post a question, number of answers will be displayed below question
-- Logged in users can post a question to seek answers from the community
-- Logged in users can udate posted questions to correct mistakes or add more details
-- Logged in users can delete posted questions if they are no longer relevant or if user received the needed information
-3. Answer
-- Logged-in user can view answers to questions to gain knowledge or find solutions to problems
-- Logged-in user can post answers to questions, text, code, and images are all supported forms in their answers
-- Logged-in user can update posted answers to correct mistakes or provide additional information
-- Logged-in user can delete posted answers if they are no longer relevant or if the user wants to retract response
-4. Subscription
-- Logged-in user can view subscriptions so that the user can keep track of the topics the user interested in
-- Logged-in user can subscribe to different topics so that the user can receive updates and stay informed about new content
-- Logged-in user can delete subscriptions if the user longer interested in a topic
-5. Search 
-- Logged-in user can search for questions by keyword so that user can quickly find relevant questions and answers
-  
-
 
