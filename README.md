@@ -3,11 +3,16 @@
 ### Link to live site:
 https://askquora.onrender.com/
 
-### Creator
+### Developer
 Fiona(Lei) Li [Github](https://github.com/leileili1010)
 
 ### Let's Get Technical
-In this project I have used Javascript, React, Redux, Python, Flask, SQLAlchemy, PostgreSQL, Render, HTML5, CSS3, AWS S3
+In this project I have used the following tech stack:
+- Front end: Javascript, React, Redux, HTML5, CSS3
+- Backend: Python, Flask, PostgreSQL
+- Cloud: AWS S3
+- Testing: Postman for API testing
+- Deployment: Docker and Render
 
 ### Summary
 askQuora aims to provide a similar platform as Quora where users can ask questions, post answers, and engage in discussions on a wide range of topics. The platform allows users to subscribe to topics of interest, receive recommendations for relevant questions and topics, and format their answers using rich text editors for better readability.
